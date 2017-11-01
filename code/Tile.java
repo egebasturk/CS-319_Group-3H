@@ -1,15 +1,13 @@
-public class Tile// extends GameObject { TODO: commented out for debugging
-{
+import java.awt.image.BufferedImage;
+
+public class Tile extends GameObject {
+
 	private int type;
-	private boolean blocking; // For collision detection
-	private BufferedImage[] image; // TODO: Load image of tile
+	private boolean blocking;
+	private BufferedImage[] image;
 
 	public Tile() {
-		// TODO - implement Tile.Tile
 		throw new UnsupportedOperationException();
-	}
-	public Tile(int xPos, int yPos, int height, int width) {
-	    
 	}
 
 	/**
@@ -17,7 +15,7 @@ public class Tile// extends GameObject { TODO: commented out for debugging
 	 * @param type
 	 */
 	public Tile(int type) {
-		// TODO - implement Tile.Tile
+		this.type = type;
 		throw new UnsupportedOperationException();
 	}
 
@@ -27,15 +25,11 @@ public class Tile// extends GameObject { TODO: commented out for debugging
 	 * @param xPos
 	 * @param yPos
 	 */
-	 // This call may be missing. Using the one above
 	public Tile(int type, int xPos, int yPos) {
-		// TODO - implement Tile.Tile
+		this.type = type;
+		super.xPosition = xPos;
+		super.YPosition = yPos;
 		throw new UnsupportedOperationException();
 	}
-	
-    public void paintComponent( Graphics g )
-    {
-        g.drawRect( xPos, yPos, width, height );
-    }
 
 }
