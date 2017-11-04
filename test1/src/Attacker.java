@@ -1,16 +1,27 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Attacker extends GameObject {
-
-	protected double speed = 1;
+public class Attacker extends GameObject
+{
+    // Motion vals
+	protected double speed = 1.7;
+	protected double currentMoveCounter = 0;
+	protected int moveThreshold = 30;
 	protected double health = 100;
+	protected enum direction { right, left, up, down}
+	protected direction currentDirection = direction.right;
+	protected int locationTrackerInTile = 0;
+
 	protected BufferedImage image;
 	protected int bounty = 0;
 	protected int attackerType = 0;
 	protected int boxEdge = 20;
+	// Boolean vals
 	protected boolean alive = false;
 	protected boolean killed = false;
+
+	// Position vals
 	protected int xPos = 0;
 	protected int yPos = 0;
 	protected int xPosTile = 0;
@@ -46,10 +57,103 @@ public class Attacker extends GameObject {
         spawn(this.xPos, this.yPos);
     }
 
-	public void move() {
-		// TODO - implement Attacker.move
-		xPos += 1;
+	public void move()
+    {
+        try {
+            if (currentMoveCounter >= moveThreshold) {
 
+                locationTrackerInTile++;
+
+                // If it passed the tile, update which tile it is in
+                if (locationTrackerInTile >= GameMap.tileEdge) {
+                    if (currentDirection == direction.right)
+                        xPosTile++;
+                    else if (currentDirection == direction.up)
+                        yPosTile--;
+                    else if (currentDirection == direction.down)
+                        yPosTile++;
+                    else if (currentDirection == direction.left)
+                        xPosTile--;
+                    locationTrackerInTile = 0;
+                }
+
+                // Complicated, delete after writing more efficient
+                // TODO: Collision detection should be updated/cleaned. Addition of hero class changes the logic
+                // TODO: Try catch block will be added.
+                // Was moving right, hit sth from left
+                System.out.println("x,y" + xPosTile + "," + yPosTile);
+                if (currentDirection == direction.right &&
+                        this.xPos + boxEdge + speed
+                                >= GameMap.tiles[yPosTile][xPosTile + 1].getX() &&
+                        GameMap.tiles[yPosTile][xPosTile + 1].isBlocking()) {
+                    // check top if it is also blocking, change direction to up or down
+                    if (this.yPos - speed
+                            <= GameMap.tiles[yPosTile - 1][xPosTile].getY() + boxEdge &&
+                            GameMap.tiles[yPosTile - 1][xPosTile].isBlocking()) {
+                        currentDirection = direction.down;
+                    } else
+                        currentDirection = direction.up;
+                }
+                // Was moving left, hit sth from right
+                else if (currentDirection == direction.left &&
+                        this.xPos - speed
+                                <= GameMap.tiles[yPosTile][xPosTile - 1].getBounds().getX() &&
+                        GameMap.tiles[yPosTile][xPosTile - 1].isBlocking()) {
+                    // check top if it is also blocking, change direction to down
+                    if (this.yPos - 1
+                            <= GameMap.tiles[yPosTile - 1][xPosTile].getBounds().getY() + boxEdge &&
+                            GameMap.tiles[yPosTile - 1][xPosTile].isBlocking()) {
+                        currentDirection = direction.down;
+                    } else
+                        currentDirection = direction.up;
+                }
+                // Was moving up, hit sth from bottom
+                else if (currentDirection == direction.up &&
+                        this.yPos - speed - GameMap.tileEdge
+                                <= GameMap.tiles[yPosTile - 1][xPosTile].getY() &&
+                        GameMap.tiles[yPosTile - 1][xPosTile].isBlocking()) {
+                    // check right if it is also blocking, change direction to right or left
+                    if (this.xPos + boxEdge + speed
+                            >= GameMap.tiles[yPosTile][xPosTile + 1].getBounds().getX() + boxEdge &&
+                            GameMap.tiles[yPosTile][xPosTile + 1].isBlocking()) {
+                        currentDirection = direction.left;
+                    } else
+                        currentDirection = direction.right;
+                }
+                // Was moving down, hit sth from top
+                else if (currentDirection == direction.down &&
+                        this.yPos - GameMap.tileEdge - speed
+                                <= GameMap.tiles[yPosTile + 1][xPosTile].getY() &&
+                        GameMap.tiles[yPosTile + 1][xPosTile].isBlocking()) {
+                    // check right if it is also blocking, change direction to down
+                    if (this.xPos + boxEdge + speed
+                            >= GameMap.tiles[yPosTile][xPosTile + 1].getBounds().getX() + boxEdge &&
+                            GameMap.tiles[yPosTile][xPosTile + 1].isBlocking()) {
+                        currentDirection = direction.left;
+                    } else
+                        currentDirection = direction.right;
+                }
+
+                if (currentDirection == direction.right) {
+                    xPos += speed;
+                } else if (currentDirection == direction.left) {
+                    xPos -= speed;
+                } else if (currentDirection == direction.up) {
+                    yPos -= speed;
+                } else if (currentDirection == direction.down) {
+                    yPos += speed;
+                }
+                currentMoveCounter = 0;
+
+            } else {
+                currentMoveCounter++;
+            }
+        }catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("Game has finished. This is primitive end. Work in progress");
+            JOptionPane.showMessageDialog(null, "Game Has Finished");
+            System.exit(0);
+        }
 	}
 
 	public void notifyDeath() {

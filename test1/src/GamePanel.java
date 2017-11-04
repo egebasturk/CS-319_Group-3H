@@ -13,7 +13,7 @@ public class GamePanel extends JPanel implements Runnable
     private boolean firstFlag = true;
     private GameMap gameMap;
 
-    public static Attacker[] attackers = new Attacker[1 * 20];//TODO: 1 should be the level.(Also implement a proper formula)
+    public static Attacker[] attackers = new Attacker[1 ];//TODO: 1 should be the level.(Also implement a proper formula)
 
 
     public GamePanel()

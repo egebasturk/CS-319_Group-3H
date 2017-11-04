@@ -57,7 +57,7 @@ public class Tile extends Rectangle// extends GameObject { TODO: commented out f
         //System.out.println("Tile draw called");
         g.drawRect( xPos, yPos, width, height );
         if (type == 0) {
-            g.setColor(Color.DARK_GRAY);
+            g.setColor(Color.GRAY);
             g.fillRect(xPos, yPos, width, height);
         }
         else if ( type == 1) {
@@ -65,5 +65,18 @@ public class Tile extends Rectangle// extends GameObject { TODO: commented out f
             g.fillRect(xPos, yPos, width, height);
         }
     }
+    public boolean isBlocking()
+	{
+		return blocking;
+	}
 
+    @Override
+    public double getX() {
+        return xPos;
+    }
+
+    @Override
+    public double getY() {
+        return yPos;
+    }
 }
