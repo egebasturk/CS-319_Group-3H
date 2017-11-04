@@ -5,16 +5,16 @@ import java.awt.*;
 import java.io.IOException;
 import javax.swing.*;
 
-public class AreaAttackTower extends Tower {
+public class SingleAttackTower extends Tower {
 
     public void attack(int attackerID, double damage) {
 
-
+        throw new UnsupportedOperationException();
     }
 
-    public AreaAttackTower() {
+    public SingleAttackTower() {
         try {
-            image = ImageIO.read(new File("C:/Users/Baris/Desktop/CS Stuff/CS 319/tower1.png"));
+            image = ImageIO.read(new File("C:/Users/Baris/Desktop/CS Stuff/CS 319/tower2.png"));
         }
         catch (IOException e) {
             e.printStackTrace();
