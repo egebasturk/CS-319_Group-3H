@@ -118,7 +118,14 @@ public class MainPageFrame extends JPanel {
                 createStars(levelNumber);
                 for(int i = 0; i < 3; i ++)
                 {
-                    levelContainer.add(starPic, i * 50);
+                    try {
+                        levelContainer.add(starPic, i * 50);
+                    }catch (IllegalArgumentException e)
+                    {
+                        System.out.println("Not functional," +
+                                " work under construction" +
+                                "Button may be black");
+                    }
                 }
 
             }
