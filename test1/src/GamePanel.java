@@ -3,14 +3,13 @@ import java.awt.*;
 
 
 // GamePanel class is the panel which game is shown. Tiles, path etc.
-public class GamePanel extends JPanel implements Runnable
+public class GamePanel extends JPanel// implements Runnable
 {
-    private Thread thread = new Thread(this);
+    //private Thread thread = new Thread(this);
     public static long elapsedTime = 0;
     private int spawnCooldown = 1000;
     private int spawnTimer = 0;
     public static int frame = 0, fps = 60;
-    private boolean firstFlag = true;
     private GameMap gameMap;
 
     public static Attacker[] attackers = new Attacker[1 ];//TODO: 1 should be the level.(Also implement a proper formula)
@@ -26,7 +25,7 @@ public class GamePanel extends JPanel implements Runnable
             attackers[i] = new Attacker(9);
         }
 
-        thread.start();
+        //thread.start();
     }
     public void paintComponent( Graphics g )
     {
@@ -77,23 +76,5 @@ public class GamePanel extends JPanel implements Runnable
         }
 
     }
-    @Override
-    public void run()
-    {
-        elapsedTime++;
-        while( true )
-        {
 
-            if (firstFlag)
-            {
-                attackerSpawnLoop();
-                motion();
-            }
-            repaint();
-
-            try {
-                Thread.sleep(1);
-            } catch (Exception e){}
-        }
-    }
 }

@@ -1,27 +1,23 @@
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-public class GameController {
+public class GameController implements Runnable{
 
-	public long elapsedTime = 0;
-	public static int level;
+    private Thread thread = new Thread(this);
+	public long elapsedTime = 0; // TODO: Will be used for resource calculations
+	public static int level; // TODO: Will be used for the attacker list calculations
+    // States
 	private boolean isRunning;
 	private boolean isPaused;
+
 	private GamePanel gamePanel;
 	private Frame frame;
 	private TowerListController towerListController;
-    /*
-	private InputController inputController;
-	private WındowController windowController;
-	private ResourceController resourceController;
-	private TowerListController towerListController;
-	private FileController fileController;
-	*/
+
     public static int gamePanelWidth = 800, gamePanelHeight = 700;
 
 	public GameController() {
 	    level = 1; // TODO: Properly implement this
-		// TODO - implement GameController.GameController
         frame = new Frame();
         frame.setLayout(new BorderLayout());
         gamePanel = new GamePanel();
@@ -35,8 +31,25 @@ public class GameController {
         frame.setVisible(true);
 
         System.out.println("GameController created");
+        thread.start();
 	}
+	/** Run method. Calls paint method of gamePanel which calls the draw method of all objects.
+	*/
+	@Override
+	public void run()
+	{
+		elapsedTime++;
+		while( true )
+		{
+			gamePanel.attackerSpawnLoop();
+			gamePanel.motion();
+			gamePanel.repaint();
 
+			try {
+				Thread.sleep(1);
+			} catch (Exception e){}
+		}
+	}
 	public void updateTime() {
 		// TODO - implement GameController.updateTime
 		throw new UnsupportedOperationException();
