@@ -1,7 +1,7 @@
 /**
  * AreaAttackTower class
  * A tower type
- * @ author
+ * @ Barış Eymür
  * @ version 04.11.2017
  */
 

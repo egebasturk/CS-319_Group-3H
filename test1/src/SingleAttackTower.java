@@ -1,7 +1,7 @@
 /**
  * SingleAttackTower Class
  * Type of Tower
- * @ author
+ * @ author Barış Eymür
  * @ version 04.11.2017
  */
 

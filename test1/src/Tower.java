@@ -1,7 +1,7 @@
 /**
  * Tower Class
  * Parent class of towers.
- * @ author Alp Ege Basturk
+ * @ author Barış Eymür
  * @ version 04.11.2017
  */
 
