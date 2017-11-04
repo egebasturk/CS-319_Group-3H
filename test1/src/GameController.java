@@ -3,8 +3,8 @@ import java.awt.image.BufferStrategy;
 
 public class GameController {
 
-	private long elapsedTime;
-	private int level;
+	public long elapsedTime = 0;
+	public static int level;
 	private boolean isRunning;
 	private boolean isPaused;
 	private GamePanel gamePanel;
@@ -20,6 +20,7 @@ public class GameController {
     public static int gamePanelWidth = 800, gamePanelHeight = 700;
 
 	public GameController() {
+	    level = 1; // TODO: Properly implement this
 		// TODO - implement GameController.GameController
         frame = new Frame();
         frame.setLayout(new BorderLayout());
@@ -33,7 +34,7 @@ public class GameController {
         frame.pack();
         frame.setVisible(true);
 
-        System.out.print("GameController created");
+        System.out.println("GameController created");
 	}
 
 	public void updateTime() {

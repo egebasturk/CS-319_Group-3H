@@ -1,7 +1,8 @@
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class GameObject {
+public class GameObject extends Rectangle{
 
 	private int xPosition;
 	private int yPosition;

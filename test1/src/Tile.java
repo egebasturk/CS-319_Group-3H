@@ -9,7 +9,7 @@ public class Tile extends Rectangle// extends GameObject { TODO: commented out f
     private int yPos = 0;
     private int width = 10;
     private int height = 10;
-	private boolean blocking; // For collision detection
+	private boolean blocking = false; // For collision detection
 	//private BufferedImage[] image; // TODO: Load image of tile
 
 	public Tile() {
@@ -25,6 +25,10 @@ public class Tile extends Rectangle// extends GameObject { TODO: commented out f
 	    this.height = height;
 	    this.type = type;
 	    this.id = id;
+	    if (type == 1)
+	    	blocking = true;
+	    else
+	        blocking = false;
 	}
 
 	/**

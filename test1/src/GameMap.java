@@ -7,16 +7,17 @@ import java.util.Scanner;
 public class GameMap {
 
 	//private ArrayList<Tile> tiles;
-    public int mapWidth = 20;
-    public int mapHeight =15;
-    public int tileEdge = 40;
-    public Tile[][] tiles;
+    // Static Because there are other classes which should know these values
+    public static int mapWidth = 20;
+    public static int mapHeight =15;
+    public static int tileEdge = 40;
+    public static Tile[][] tiles;
     // TODO This will be passed from the InputController
     private int[][] typeMatrix;
 
 	public GameMap() {
-		// TODO - implement GameMap.GameMap
-		//throw new UnsupportedOperationException();
+
+	    // TODO Input controller will read when it is implemented
         tiles = new Tile[mapHeight][mapWidth];
         typeMatrix = new int[mapHeight][mapWidth];
         try {
