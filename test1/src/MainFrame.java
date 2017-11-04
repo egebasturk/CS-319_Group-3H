@@ -1,3 +1,12 @@
+/**
+ * MainFrame class
+ * This class is the main frame of the game.
+ * It displays displays all the panels such as HelpPage, CreditsPage.
+ * @ author Emre Gürçay
+ * @ version 04.11.2017
+ */
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
