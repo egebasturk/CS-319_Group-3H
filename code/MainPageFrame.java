@@ -1,6 +1,6 @@
+
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class MainPageFrame extends JFrame {
+public class MainPageFrame extends JPanel {
 
     public JButton help;
     public JButton credits;
@@ -27,23 +27,25 @@ public class MainPageFrame extends JFrame {
     public JPanel nameContainer;
     public JLabel gameName;
     public int levelNumber;
-
+    public int state;
+    public boolean playClicked;
 
     public MainPageFrame()
     {
+
         //new ImageIcon("/Users/egurcay/Desktop/background.png");
-
-
+        //
         setLayout(new BorderLayout());
-        setContentPane(new JLabel(new ImageIcon("/Users/egurcay/Desktop/background.png")));
+        setOpaque(false);
         setLayout(new BorderLayout(120,120));
 
 
         JLabel starPic = new JLabel(new ImageIcon("/Users/egurcay/Desktop/star.png"));
         starPic.setSize(50,50);
 
+         state = 0;
 
-
+        playClicked = false;
         // stars = new
 
         help = new JButton("HELP");
@@ -149,30 +151,171 @@ public class MainPageFrame extends JFrame {
                 createStars(levelNumber);
             }
         });
-
         play.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playLevels(levelNumber);
+
             }
         });
-
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new HelpPage().setVisible(true);
-                setVisible(false);
             }
         });
-
         credits.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CreditsPage().setVisible(true);
-                setVisible(false);
+
 
             }
         });
+
+        credits.addMouseListener(new MouseAdapter()
+        {
+            public void mouseEntered(MouseEvent evt)
+            {
+                credits.setForeground(new Color(0,143,255));
+            }
+            public void mouseExited(MouseEvent evt)
+            {
+                credits.setForeground(Color.BLACK);
+            }
+            public void mousePressed(MouseEvent evt)
+            {
+                credits.setBackground(new Color(0,143,255));
+            }
+            public void mouseReleased(MouseEvent evt)
+            {
+                credits.setBackground(Color.BLACK);
+            }
+        });
+
+        help.addMouseListener(new MouseAdapter()
+        {
+            public void mouseEntered(MouseEvent evt)
+            {
+                help.setForeground(new Color(0,143,255));
+            }
+            public void mouseExited(MouseEvent evt)
+            {
+                help.setForeground(Color.BLACK);
+            }
+            public void mousePressed(MouseEvent evt)
+            {
+                help.setBackground(new Color(0,143,255));
+            }
+            public void mouseReleased(MouseEvent evt)
+            {
+                help.setBackground(Color.BLACK);
+            }
+        });
+        play.addMouseListener(new MouseAdapter()
+        {
+            public void mouseEntered(MouseEvent evt)
+            {
+                play.setForeground(Color.red);
+            }
+            public void mouseExited(MouseEvent evt)
+            {
+                play.setForeground(Color.BLACK);
+            }
+
+        });
+        level1.addMouseListener(new MouseAdapter()
+        {
+            public void mouseEntered(MouseEvent evt)
+            {
+                level1.setForeground(new Color(0,143,255));
+            }
+            public void mouseExited(MouseEvent evt)
+            {
+                level1.setForeground(Color.BLACK);
+            }
+            public void mousePressed(MouseEvent evt)
+            {
+                level1.setBackground(new Color(0,143,255));
+            }
+            public void mouseReleased(MouseEvent evt)
+            {
+                level1.setBackground(Color.BLACK);
+            }
+        });
+        if(level2.isEnabled() == true) {
+            level2.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent evt) {
+                    level2.setForeground(new Color(0, 143, 255));
+                }
+
+                public void mouseExited(MouseEvent evt) {
+                    level2.setForeground(Color.BLACK);
+                }
+
+                public void mousePressed(MouseEvent evt) {
+                    level2.setBackground(new Color(0, 143, 255));
+                }
+
+                public void mouseReleased(MouseEvent evt) {
+                    level2.setBackground(Color.BLACK);
+                }
+            });
+        }
+        if(level3.isEnabled() == true) {
+            level3.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent evt) {
+                    level3.setForeground(new Color(0, 143, 255));
+                }
+
+                public void mouseExited(MouseEvent evt) {
+                    level3.setForeground(Color.BLACK);
+                }
+
+                public void mousePressed(MouseEvent evt) {
+                    level3.setBackground(new Color(0, 143, 255));
+                }
+
+                public void mouseReleased(MouseEvent evt) {
+                    level3.setBackground(Color.BLACK);
+                }
+            });
+        }
+        if(level4.isEnabled() == true) {
+            level4.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent evt) {
+                    level4.setForeground(new Color(0, 143, 255));
+                }
+
+                public void mouseExited(MouseEvent evt) {
+                    level4.setForeground(Color.BLACK);
+                }
+
+                public void mousePressed(MouseEvent evt) {
+                    level4.setBackground(new Color(0, 143, 255));
+                }
+
+                public void mouseReleased(MouseEvent evt) {
+                    level4.setBackground(Color.BLACK);
+                }
+            });
+        }
+        if(level5.isEnabled() == true) {
+            level5.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent evt) {
+                    level5.setForeground(new Color(0, 143, 255));
+                }
+
+                public void mouseExited(MouseEvent evt) {
+                    level5.setForeground(Color.BLACK);
+                }
+
+                public void mousePressed(MouseEvent evt) {
+                    level5.setBackground(new Color(0, 143, 255));
+                }
+
+                public void mouseReleased(MouseEvent evt) {
+                    level5.setBackground(Color.BLACK);
+                }
+            });
+        }
 
         buttonContainer.add(help);
         buttonContainer.add(credits);
@@ -185,7 +328,7 @@ public class MainPageFrame extends JFrame {
         add(levelContainer,BorderLayout.CENTER);
         add(buttonContainer,BorderLayout.EAST);
         add(playButtonContainer,BorderLayout.SOUTH);
-        setVisible(true);
+        //setVisible(true);
         setSize(1280,720);
 
     }
@@ -211,6 +354,8 @@ public class MainPageFrame extends JFrame {
     {
         //İstenilen bölüm oynanıcak
     }
+
+
 
 
 }

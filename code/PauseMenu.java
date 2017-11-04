@@ -2,19 +2,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class PauseMenu extends JFrame {
+public class PauseMenu extends JPanel {
 
-    private JButton resumeButton;
-    private JButton mainMenuButton;
+    public JButton resumeButton;
+    public JButton mainMenuButton;
     public JPanel buttonContainer;
     public JPanel nameContainer;
     public JLabel gameName;
-
+    public JLabel paused;
+    public JPanel centerPanel;
     public PauseMenu() {
 
         setLayout(new BorderLayout());
-        setContentPane(new JLabel(new ImageIcon("/Users/egurcay/Desktop/background.png")));
+        setOpaque(false);
         setLayout(new BorderLayout(120,120));
 
         resumeButton = new JButton("RESUME");
@@ -30,6 +33,18 @@ public class PauseMenu extends JFrame {
         gameName.setDisplayedMnemonic(240);
         gameName.setFont(new Font(gameName.getFont().getName(), Font.ITALIC, 45));
 
+        paused = new JLabel("GAME PAUSED");
+        paused.setDisplayedMnemonic(240);
+        paused.setFont(new Font(gameName.getFont().getName(), Font.ITALIC, 20));;
+
+        centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
+        centerPanel.add(Box.createRigidArea(new Dimension(0,66)));
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        centerPanel.setBackground(new Color(0,0,0,0));
+
+        centerPanel.add(paused);
+
         nameContainer = new JPanel(new BorderLayout());
 
         nameContainer.add(gameName,BorderLayout.CENTER);
@@ -39,11 +54,11 @@ public class PauseMenu extends JFrame {
         buttonContainer.add(mainMenuButton);
         buttonContainer.setBackground(new Color(0,0,0,0));
 
+        centerPanel.add(buttonContainer);
+
         mainMenuButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                returnMainMenu();
-            }
+            public void actionPerformed(ActionEvent e) {}
         });
 
         resumeButton.addActionListener(new ActionListener() {
@@ -53,21 +68,53 @@ public class PauseMenu extends JFrame {
             }
         });
 
+        mainMenuButton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                mainMenuButton.setForeground(new Color(0, 143, 255));
+            }
+
+            public void mouseExited(MouseEvent evt) {
+                mainMenuButton.setForeground(Color.BLACK);
+            }
+
+            public void mousePressed(MouseEvent evt) {
+                mainMenuButton.setBackground(new Color(0, 143, 255));
+            }
+
+            public void mouseReleased(MouseEvent evt) {
+                mainMenuButton.setBackground(Color.BLACK);
+            }
+        });
+
+        resumeButton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                resumeButton.setForeground(new Color(0, 143, 255));
+            }
+
+            public void mouseExited(MouseEvent evt) {
+                resumeButton.setForeground(Color.BLACK);
+            }
+
+            public void mousePressed(MouseEvent evt) {
+                resumeButton.setBackground(new Color(0, 143, 255));
+            }
+
+            public void mouseReleased(MouseEvent evt) {
+                resumeButton.setBackground(Color.BLACK);
+            }
+        });
+
         add(nameContainer,BorderLayout.NORTH);
-        add(buttonContainer,BorderLayout.CENTER);
+        add(centerPanel,BorderLayout.CENTER);
         setVisible(true);
         setSize(1280,720);
     }
 
-    public void returnMainMenu() {
-        new MainPageFrame().setVisible(true);
-        this.setVisible(false);
-        throw new UnsupportedOperationException();
-    }
 
     public void resume() {
 
         throw new UnsupportedOperationException();
     }
+
 
 }

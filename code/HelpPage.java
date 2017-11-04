@@ -2,11 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
-public class HelpPage extends JFrame {
+public class HelpPage extends JPanel {
 
-    private JButton mainMenuButton;
+    public JButton mainMenuButton;
     public JPanel buttonContainer;
     public JPanel nameContainer;
     public JLabel gameName;
@@ -16,13 +18,12 @@ public class HelpPage extends JFrame {
     public HelpPage() {
 
         setLayout(new BorderLayout());
-        setContentPane(new JLabel(new ImageIcon("/Users/egurcay/Desktop/background.png")));
+        setOpaque(false);
         setLayout(new BorderLayout(120,120));
 
         mainMenuButton = new JButton("MAIN MENU");
         mainMenuButton.setEnabled(true);
         mainMenuButton.setPreferredSize(new Dimension(100, 40));
-
 
         helpText = new JLabel("HOW TO DEFENDERS OF THE KINGDOM? ...");
         helpText.setDisplayedMnemonic(240);
@@ -49,10 +50,27 @@ public class HelpPage extends JFrame {
         mainMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new PauseMenu().setVisible(true);
-                setVisible(false);
             }
         });
+
+        mainMenuButton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                mainMenuButton.setForeground(new Color(0, 143, 255));
+            }
+
+            public void mouseExited(MouseEvent evt) {
+                mainMenuButton.setForeground(Color.BLACK);
+            }
+
+            public void mousePressed(MouseEvent evt) {
+                mainMenuButton.setBackground(new Color(0, 143, 255));
+            }
+
+            public void mouseReleased(MouseEvent evt) {
+                mainMenuButton.setBackground(Color.BLACK);
+            }
+        });
+
 
         add(nameContainer,BorderLayout.NORTH);
         add(helpContainer,BorderLayout.CENTER);
@@ -61,10 +79,6 @@ public class HelpPage extends JFrame {
         setSize(1280,720);
     }
 
-    public void returnMainMenu() {
-        new MainPageFrame().setVisible(true);
-        this.setVisible(false);
-        throw new UnsupportedOperationException();
-    }
+
 
 }
