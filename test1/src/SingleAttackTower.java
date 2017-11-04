@@ -22,7 +22,7 @@ public class SingleAttackTower extends Tower {
     public SingleAttackTower() {
         try {
             // TODO: Implement better resource loading methods
-            image = ImageIO.read(new File("C:/Users/Baris/Desktop/CS Stuff/CS 319/tower2.png"));
+            image = ImageIO.read(new File(Assets.tower2));
         }
         catch (IOException e) {
             e.printStackTrace();

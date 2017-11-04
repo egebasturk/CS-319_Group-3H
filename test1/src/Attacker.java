@@ -6,9 +6,12 @@
  * @ version 04.11.2017
  */
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Attacker extends GameObject
 {
@@ -24,7 +27,7 @@ public class Attacker extends GameObject
 	protected BufferedImage image;
 	protected int bounty = 0;
 	protected int attackerType = 0;
-	protected int boxEdge = 20;
+	protected int boxEdge = 50;
 	// Boolean vals
 	protected boolean alive = false;
 	protected boolean killed = false;
@@ -49,6 +52,12 @@ public class Attacker extends GameObject
         this.yPos = entryPosition;
         this.yPosTile = entryRow;
         //this.alive = true;
+        try {
+            image = ImageIO.read(new File(Assets.attacker2));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     // Spawns in the given location
     public void spawn(int xPos, int yPos)
@@ -187,10 +196,12 @@ public class Attacker extends GameObject
 
 	public void draw(Graphics g)
     {
+
         if (alive || !killed) {
-            g.drawRect(xPos, yPos, boxEdge, boxEdge);
-            g.setColor(Color.BLACK);
-            g.fillRect(xPos, yPos, boxEdge, boxEdge);
+            g.drawImage(image,xPos, yPos, boxEdge, boxEdge,null,null);
+            //g.drawRect(xPos, yPos, boxEdge, boxEdge);
+            //g.setColor(Color.BLACK);
+            //g.fillRect(xPos, yPos, boxEdge, boxEdge);
         }
     }
 

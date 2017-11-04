@@ -16,7 +16,7 @@ public class AreaAttackTower extends Tower {
     }
     public AreaAttackTower() {
         try {
-            image = ImageIO.read(new File("C:/Users/Baris/Desktop/CS Stuff/CS 319/tower1.png"));
+            image = ImageIO.read(new File(Assets.tower1));
         }
         catch (IOException e) {
             e.printStackTrace();
