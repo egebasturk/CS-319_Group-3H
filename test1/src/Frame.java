@@ -8,6 +8,7 @@ public class Frame extends JFrame
     
     public Frame()
     {
+        //GameController gameController = new GameController();
         setTitle(title);
         //setSize(dim);
         setResizable(true);
