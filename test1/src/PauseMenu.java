@@ -1,3 +1,10 @@
+/**
+ * Pause Menu Class
+ * This class is the pause page of the game.
+ * @ author Emre Gürçay
+ * @ version 04.11.2017
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
