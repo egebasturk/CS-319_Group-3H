@@ -1,3 +1,9 @@
+/**
+ * Basic JFrame adaptation
+ * Frame where panels are put
+ * @ author Alp Ege Basturk
+ * @ version 04.11.2017
+ */
 import javax.swing.*;
 import java.awt.*;
 

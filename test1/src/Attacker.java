@@ -1,3 +1,11 @@
+/**
+ * Attacker Class
+ * Parent of all attacker. Currently it is the only attacker.
+ * These are the things which attack the objective and must be destroyed.
+ * @ author Alp Ege Basturk
+ * @ version 04.11.2017
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -31,6 +39,7 @@ public class Attacker extends GameObject
 	public Attacker() {
 
 	}
+	// TODO: Attackers may find entry point themselves.
 	public Attacker(int entryRow)
     {
         // 0 - boxEdge, to start off the map
@@ -40,7 +49,6 @@ public class Attacker extends GameObject
         this.yPos = entryPosition;
         this.yPosTile = entryRow;
         //this.alive = true;
-        //spawn(xPos, yPos);
     }
     // Spawns in the given location
     public void spawn(int xPos, int yPos)
@@ -50,13 +58,19 @@ public class Attacker extends GameObject
         // x - boxEdge, to better transition from outside of the map to inside
         this.setBounds(xPos, yPos, boxEdge, boxEdge);
     }
-    // Wrapper method for the one above. Used for testing. Probably will be deleted.
+    // Wrapper method for the one above. Used for testing. Probably will be deleted or changed.
     // TODO: Delete if not necessary.
     public void spawn()
     {
         spawn(this.xPos, this.yPos);
     }
 
+    /**
+     * This is the decision mechanic for the motion of an attacker
+     * Object moves in a direction, checks map in the path. If it cannot move,
+     * then it changes its direction accordingly.
+     * */
+    // TODO: This part is Buggy. Direction change works but position update is problematic.
 	public void move()
     {
         try {
@@ -79,7 +93,6 @@ public class Attacker extends GameObject
 
                 // Complicated, delete after writing more efficient
                 // TODO: Collision detection should be updated/cleaned. Addition of hero class changes the logic
-                // TODO: Try catch block will be added.
                 // Was moving right, hit sth from left
                 System.out.println("x,y" + xPosTile + "," + yPosTile);
                 if (currentDirection == direction.right &&
@@ -150,6 +163,7 @@ public class Attacker extends GameObject
             }
         }catch (ArrayIndexOutOfBoundsException e)
         {
+            // TODO: Implement a proper exit strategy
             System.out.println("Game has finished. This is primitive end. Work in progress");
             JOptionPane.showMessageDialog(null, "Game Has Finished");
             System.exit(0);
@@ -158,7 +172,7 @@ public class Attacker extends GameObject
 
 	public void notifyDeath() {
 		// TODO - implement Attacker.notifyDeath
-        // Intention: Caller will see this and set reference to null.
+        // Intention: Caller will know this and set reference to null.
         // TODO: Should be implemented for this class and the caller
         if (health <= 0)
         {

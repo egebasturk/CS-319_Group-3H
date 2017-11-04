@@ -1,9 +1,16 @@
+/**
+ * Game Map Class
+ * GameMap stores the objects that will be drawn on the map such as tiles, attackers etc.
+ * Calls their draw methods.
+ * @ author Alp Ege Basturk
+ * @ version 04.11.2017
+ */
+
 import java.awt.*;
 import java.io.*;
 
 public class GameMap {
 
-	//private ArrayList<Tile> tiles;
     // Static Because there are other classes which should know these values
     public static int mapWidth = 20;
     public static int mapHeight =15;
@@ -58,6 +65,9 @@ public class GameMap {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+     * Calls draw methods of tiles.
+     * */
 	public void draw(Graphics g)
     {
         //System.out.println("Draw GameMap called");
@@ -69,7 +79,7 @@ public class GameMap {
     }
 
 	/**
-	 * 
+	 * Currently default constructor directly reads from the file.
 	 * @param map
 	 */
 	// TODO get this 2d arrray as input for the code above

@@ -1,9 +1,15 @@
+/**
+ * InputController Class
+ * Takes inputs from user.
+ * @ author Alp Ege Basturk
+ * @ version 04.11.2017
+ */
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class InputController implements MouseMotionListener, MouseListener {
-
+    // TODO: Will be implemented
 	private boolean mouseClicked;
 	private int xPos, yPos;
 

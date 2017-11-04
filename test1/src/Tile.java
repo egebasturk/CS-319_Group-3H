@@ -1,7 +1,14 @@
+/**
+ * Tile Class
+ * Tile will be used to fill the map. Also they will be used to store information
+ * @ author Alp Ege Basturk
+ * @ version 04.11.2017
+ */
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Tile extends Rectangle// extends GameObject { TODO: commented out for debugging
+public class Tile extends GameObject// extends GameObject { TODO: commented out for debugging
 {
     public int id; // TODO gamebojects will have such id. Try to use it instead
 	private int type;
@@ -12,6 +19,7 @@ public class Tile extends Rectangle// extends GameObject { TODO: commented out f
 	private boolean blocking = false; // For collision detection
 	//private BufferedImage[] image; // TODO: Load image of tile
 
+    // Not used currently
 	public Tile() {
 		// TODO - implement Tile.Tile
 		//throw new UnsupportedOperationException();
@@ -51,7 +59,9 @@ public class Tile extends Rectangle// extends GameObject { TODO: commented out f
 		// TODO - implement Tile.Tile
 		throw new UnsupportedOperationException();
 	}
-	
+	/**
+     * Draws a rectangle for tiles
+     * */
     public void draw( Graphics g )
     {
         //System.out.println("Tile draw called");

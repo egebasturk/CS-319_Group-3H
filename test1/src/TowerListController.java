@@ -1,3 +1,11 @@
+/**
+ * TowerList Controller Class
+ * This is also the panel which it controls. It shows the list of towers,
+ * near the game map, which player can click and deploy towers.
+ * @ author Alp Ege Basturk
+ * @ version 04.11.2017
+ */
+// TODO: Current implementation is primitive
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -30,6 +38,9 @@ public class TowerListController extends JPanel{
         }
 	}
 
+    /**
+     * paints rectangles(later they will be tower images) list.
+     */
     public void paintComponent( Graphics g )
     {
         for ( int i = 0; i < towers.length; i++)

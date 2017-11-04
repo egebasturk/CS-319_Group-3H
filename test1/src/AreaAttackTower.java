@@ -1,17 +1,19 @@
+/**
+ * AreaAttackTower class
+ * A tower type
+ * @ author
+ * @ version 04.11.2017
+ */
+
 import javax.imageio.ImageIO;
 import java.io.File;
-import java.awt.image.*;
 import java.awt.*;
 import java.io.IOException;
-import javax.swing.*;
 
 public class AreaAttackTower extends Tower {
 
     public void attack(int attackerID, double damage) {
-
-
     }
-
     public AreaAttackTower() {
         try {
             image = ImageIO.read(new File("C:/Users/Baris/Desktop/CS Stuff/CS 319/tower1.png"));

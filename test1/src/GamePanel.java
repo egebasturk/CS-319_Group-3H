@@ -1,43 +1,42 @@
+/**
+ * Game Panel Class
+ * GamePanel class is the panel which game is shown. Tiles, path etc.
+ * Draw methods of this class is called to draw the map.
+ * Also it stores game objects like attackers, map which will be drawn.
+ * @ author Alp Ege Basturk
+ * @ version 04.11.2017
+ */
 import javax.swing.*;
 import java.awt.*;
 
-
-// GamePanel class is the panel which game is shown. Tiles, path etc.
+/*
+ */
 public class GamePanel extends JPanel// implements Runnable
 {
-    //private Thread thread = new Thread(this);
-    public static long elapsedTime = 0;
     private int spawnCooldown = 1000;
     private int spawnTimer = 0;
-    public static int frame = 0, fps = 60;
     private GameMap gameMap;
 
-    public static Attacker[] attackers = new Attacker[1 ];//TODO: 1 should be the level.(Also implement a proper formula)
-
+    public static Attacker[] attackers = new Attacker[7 ];//TODO: Make according to level.(Also implement a proper formula)
 
     public GamePanel()
     {
         System.out.print("GamePanel Created");
         gameMap = new GameMap();
+        /*
+         * Creates attackers according to level.
+         * TODO: This initializes only the parent Attacker class.
+        * */
         for ( int i = 0; i < attackers.length; i++)
         {
             // TODO: Get rid of magic numbers
             attackers[i] = new Attacker(9);
         }
-
-        //thread.start();
     }
     public void paintComponent( Graphics g )
     {
-        /*
-        if ( firstFlag)
-        {
-            //
-            gameMap = new GameMap();
-            firstFlag = false;
-        }*/
-
         g.clearRect(0,0,getWidth(),getHeight());
+        // Call the draw method of the gameMap
         gameMap.draw(g);
         for (int i = 0; i < attackers.length; i++)
         {
@@ -45,6 +44,11 @@ public class GamePanel extends JPanel// implements Runnable
                 attackers[i].draw(g);
         }
     }
+    /**
+    * Iterates over the list of attackers and checks if they entered or killed.
+    * Spawns if they have not entered the game so far.
+    * */
+    // TODO: isGameOver check may be added here
     public void attackerSpawnLoop()
     {
         //System.out.println(spawnTimer);
@@ -64,7 +68,10 @@ public class GamePanel extends JPanel// implements Runnable
         else
             spawnTimer++;
     }
-
+    /**
+    * Calls move function of the Attackers. Which makes them update their locations
+    * after checking their position according to path.
+    * */
     public void motion()
     {
         for ( int i = 0; i < attackers.length; i++)
@@ -74,7 +81,5 @@ public class GamePanel extends JPanel// implements Runnable
                 attackers[i].move();
             }
         }
-
     }
-
 }

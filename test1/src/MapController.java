@@ -1,4 +1,9 @@
-
+/**
+ * Map Controller Class
+ * Currently Obsolete
+ * @ author Alp Ege Basturk
+ * @ version 04.11.2017
+ */
 
 public class MapController {
 

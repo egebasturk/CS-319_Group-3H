@@ -1,3 +1,11 @@
+/**
+ * Game Controller Class
+ * Controls the other classes of the game. Creates other objects and calls their operations while running.
+ * Also creates a frame which panels are added.
+ * @ author Alp Ege Basturk
+ * @ version 04.11.2017
+ */
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -7,14 +15,16 @@ public class GameController implements Runnable{
 	public long elapsedTime = 0; // TODO: Will be used for resource calculations
 	public static int level; // TODO: Will be used for the attacker list calculations
     // States
-	private boolean isRunning;
+	private boolean isRunning = true;
 	private boolean isPaused;
 
 	private GamePanel gamePanel;
 	private Frame frame;
 	private TowerListController towerListController;
 
+	// TODO: Change magic numbers
     public static int gamePanelWidth = 800, gamePanelHeight = 700;
+
 
 	public GameController() {
 	    level = 1; // TODO: Properly implement this
@@ -33,13 +43,14 @@ public class GameController implements Runnable{
         System.out.println("GameController created");
         thread.start();
 	}
-	/** Run method. Calls paint method of gamePanel which calls the draw method of all objects.
+	/**
+     *  Run method. Calls paint method of gamePanel which calls the draw method of all objects.
 	*/
 	@Override
 	public void run()
 	{
 		elapsedTime++;
-		while( true )
+		while( isRunning )
 		{
 			gamePanel.attackerSpawnLoop();
 			gamePanel.motion();
@@ -88,6 +99,7 @@ public class GameController implements Runnable{
 		throw new UnsupportedOperationException();
 	}
 
+	// Currently this is implemented by checking the ArrayIndexOutOfBounds Exception, which is thrown when an attacker finishes the path.
 	private boolean isGameOver() {
 		// TODO - implement GameController.isGameOver
 		throw new UnsupportedOperationException();
