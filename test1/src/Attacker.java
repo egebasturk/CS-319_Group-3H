@@ -16,7 +16,8 @@ import java.io.IOException;
 public class Attacker extends GameObject
 {
     // Motion vals
-	protected double speed = 1.7;
+    // TODO: this should not be a double, else path shifts. Or change some ints to double, worse.
+	protected double speed = 1.0;
 	protected double currentMoveCounter = 0;
 	protected int moveThreshold = 30;
 	protected double health = 100;
@@ -168,7 +169,7 @@ public class Attacker extends GameObject
                 currentMoveCounter = 0;
 
             } else {
-                currentMoveCounter++;
+                currentMoveCounter += speed;
             }
         }catch (ArrayIndexOutOfBoundsException e)
         {

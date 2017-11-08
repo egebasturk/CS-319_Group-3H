@@ -23,7 +23,7 @@ public class GameController implements Runnable{
 	private TowerListController towerListController;
 
 	// TODO: Change magic numbers
-    public static int gamePanelWidth = 800, gamePanelHeight = 700;
+    public static int gamePanelWidth = 800, gamePanelHeight = 600;
 
 
 	public GameController() {
@@ -61,6 +61,8 @@ public class GameController implements Runnable{
 			} catch (Exception e){}
 		}
 	}
+
+
 	public void updateTime() {
 		// TODO - implement GameController.updateTime
 		throw new UnsupportedOperationException();
