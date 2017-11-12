@@ -16,13 +16,13 @@ import java.awt.event.MouseEvent;
 
 public class HelpPage extends JPanel {
 
-    public JButton mainMenuButton;
-    public JPanel buttonContainer;
-    public JPanel nameContainer;
-    public JLabel gameName;
-    public JLabel helpText;
-    public JLabel construction;
-    public JPanel helpContainer;
+    protected JButton mainMenuButton;
+    private JPanel buttonContainer;
+    private JPanel nameContainer;
+    private JLabel gameName;
+    private JLabel helpText;
+    private JLabel construction;
+    private JPanel helpContainer;
 
     public HelpPage() {
 

@@ -20,12 +20,12 @@ import javax.imageio.ImageIO;
 
 public class MainFrame extends JFrame {
 
-    public MainPageFrame main;
-    public PauseMenu pause;
-    public CreditsPage credits = new CreditsPage();
-    public  HelpPage help;
-    public BufferedImage img;
-    public GameController gameController;
+    private MainPageFrame main;
+    private PauseMenu pause;
+    private CreditsPage credits = new CreditsPage();
+    private  HelpPage help;
+    private BufferedImage img;
+    private GameController gameController;
 
     public MainFrame()
     {

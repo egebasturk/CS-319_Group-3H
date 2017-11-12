@@ -19,23 +19,23 @@ import javax.swing.JPanel;
 
 public class MainPageFrame extends JPanel {
 
-    public JButton help;
-    public JButton credits;
-    public JButton play;
-    public JButton level1;
-    public JButton level2;
-    public JButton level3;
-    public JButton level4;
-    public JButton level5;
-    public JPanel levelContainer;
-    public JPanel starContainer;
-    public JPanel buttonContainer;
-    public JPanel playButtonContainer;
-    public JPanel nameContainer;
-    public JLabel gameName;
-    public int levelNumber;
-    public int state;
-    public boolean playClicked;
+    protected JButton help;
+    protected JButton credits;
+    protected JButton play;
+    protected JButton level1;
+    protected JButton level2;
+    protected JButton level3;
+    protected JButton level4;
+    protected JButton level5;
+    private JPanel levelContainer;
+    private JPanel starContainer;
+    private JPanel buttonContainer;
+    private JPanel playButtonContainer;
+    private JPanel nameContainer;
+    private JLabel gameName;
+    private int levelNumber;
+    private int state;
+    private boolean playClicked;
 
     public MainPageFrame()
     {

@@ -11,21 +11,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 
 public class CreditsPage extends JPanel {
 
-    public JButton mainMenuButton;
-    public JPanel buttonContainer;
-    public JPanel nameContainer;
-    public JLabel gameName;
-    public JLabel creditsText;
-    public JLabel ALP;
-    public JLabel BARIS;
-    public JLabel EMRE;
-    public JLabel OYKU;
-    public JLabel GITHUB;
-    public JPanel credits;
+    protected JButton mainMenuButton;
+    private JPanel buttonContainer;
+    private JPanel nameContainer;
+    private JLabel gameName;
+    private JLabel creditsText;
+    private JLabel ALP;
+    private JLabel BARIS;
+    private JLabel EMRE;
+    private JLabel OYKU;
+    private JLabel GITHUB;
+    private JPanel credits;
 
     public CreditsPage() {
 
@@ -42,25 +45,26 @@ public class CreditsPage extends JPanel {
         creditsText.setDisplayedMnemonic(240);
         creditsText.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 30));
 
-        ALP = new JLabel("ALP EGE BAŞTÜRK");
+        ALP = new JLabel("ALP EGE BAŞTÜRK ");
         ALP.setDisplayedMnemonic(240);
         ALP.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 20));
 
-        BARIS = new JLabel("BARIŞ EYMÜR");
+        BARIS = new JLabel("BARIŞ EYMÜR ");
         BARIS.setDisplayedMnemonic(240);
         BARIS.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 20));
 
-        EMRE = new JLabel("EMRE GÜRÇAY");
+        EMRE = new JLabel("EMRE GÜRÇAY ");
         EMRE.setDisplayedMnemonic(240);
         EMRE.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 20));
 
-        OYKU = new JLabel("ÖYKÜ ECE AYAZ");
+        OYKU = new JLabel("ÖYKÜ ECE AYAZ ");
         OYKU.setDisplayedMnemonic(240);
         OYKU.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 20));
 
-        GITHUB = new JLabel("https://github.com/egebasturk/CS-319_Group-3H");
+        GITHUB = new JLabel("<html> PROJECT WEBSITE : <a href=\"\">https://github.com/egebasturk/CS-319_Group-3H/</a></html>");
+        GITHUB.setCursor(new Cursor(Cursor.HAND_CURSOR));
         GITHUB.setDisplayedMnemonic(240);
-        GITHUB.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 20));
+        GITHUB.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 15));
 
         credits = new JPanel();
         credits.setLayout(new BoxLayout(credits, BoxLayout.PAGE_AXIS));
@@ -113,6 +117,7 @@ public class CreditsPage extends JPanel {
             }
         });
 
+        open(GITHUB);
 
         add(nameContainer,BorderLayout.NORTH);
         add(credits,BorderLayout.CENTER);
@@ -121,5 +126,17 @@ public class CreditsPage extends JPanel {
         setSize(1280,720);
     }
 
+    private void open(JLabel website) {
+        website.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/egebasturk/CS-319_Group-3H/"));
+                } catch (URISyntaxException | IOException ex) {
+                    //Not connected
+                }
+            }
+        });
+    }
 
 }
