@@ -6,15 +6,15 @@
  */
 
 
+import sun.misc.IOUtils;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.*;
+import java.util.Scanner;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 
 public class MainPageFrame extends JPanel {
@@ -28,32 +28,36 @@ public class MainPageFrame extends JPanel {
     protected JButton level4;
     protected JButton level5;
     private JPanel levelContainer;
-    private JPanel starContainer;
     private JPanel buttonContainer;
     private JPanel playButtonContainer;
     private JPanel nameContainer;
+    private BufferedImage starImage;
     private JLabel gameName;
     private int levelNumber;
-    private int state;
+    protected int levelStar;
+    protected String txtFileString;
     private boolean playClicked;
+
 
     public MainPageFrame()
     {
 
-        //new ImageIcon("/Users/egurcay/Desktop/background.png");
-        //
+        levelStar = 0;
+
         setLayout(new BorderLayout());
         setOpaque(false);
         setLayout(new BorderLayout(120,120));
 
 
-        JLabel starPic = new JLabel(new ImageIcon(Assets.star));
-        starPic.setSize(50,50);
 
-         state = 0;
+        try {
+            starImage = ImageIO.read(new File(Assets.star));
 
-        playClicked = false;
-        // stars = new
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         help = new JButton("HELP");
         help.setPreferredSize(new Dimension(100, 40));
@@ -77,8 +81,7 @@ public class MainPageFrame extends JPanel {
         level5.setEnabled(false);
         level5.setPreferredSize(new Dimension(100, 40));
 
-        levelContainer = new JPanel();
-        starContainer = new JPanel(new BorderLayout());
+        levelContainer = new JPanel();;
         buttonContainer = new JPanel(new FlowLayout(FlowLayout.CENTER));
         playButtonContainer = new JPanel(new BorderLayout());
         nameContainer = new JPanel(new BorderLayout());
@@ -97,9 +100,12 @@ public class MainPageFrame extends JPanel {
         levelContainer.add(level5);
         levelContainer.setBackground(new Color(0,0,0,0)); //
 
+
+
         //checks wheter the levels are available to play
         for(int i = 1; i < 6; i++)
         {
+            levelStar = 0;
             boolean available =  checkLevelAvailable(i);
             if(available)
             {
@@ -117,31 +123,23 @@ public class MainPageFrame extends JPanel {
 
         }
 
+
+
+
         levelNumber = 0;
         level1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 1;
                 createStars(levelNumber);
-                for(int i = 0; i < 3; i ++)
-                {
-                    try {
-                        levelContainer.add(starPic, i * 50);
-                    }catch (IllegalArgumentException e)
-                    {
-                        System.out.println("Not functional," +
-                                " work under construction" +
-                                "Button may be black");
-                    }
-                }
-
             }
         });
+
         level2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 2;
-                createStars(levelNumber);
+                createStars(levelNumber);;
             }
         });
         level3.addActionListener(new ActionListener() {
@@ -188,7 +186,7 @@ public class MainPageFrame extends JPanel {
         {
             public void mouseEntered(MouseEvent evt)
             {
-                credits.setForeground(new Color(0,143,255));
+                credits.setForeground(new Color(0, 117, 191));
             }
             public void mouseExited(MouseEvent evt)
             {
@@ -196,7 +194,7 @@ public class MainPageFrame extends JPanel {
             }
             public void mousePressed(MouseEvent evt)
             {
-                credits.setBackground(new Color(0,143,255));
+                credits.setBackground(new Color(0, 117, 191));
             }
             public void mouseReleased(MouseEvent evt)
             {
@@ -208,7 +206,7 @@ public class MainPageFrame extends JPanel {
         {
             public void mouseEntered(MouseEvent evt)
             {
-                help.setForeground(new Color(0,143,255));
+                help.setForeground(new Color(0, 117, 191));
             }
             public void mouseExited(MouseEvent evt)
             {
@@ -216,7 +214,7 @@ public class MainPageFrame extends JPanel {
             }
             public void mousePressed(MouseEvent evt)
             {
-                help.setBackground(new Color(0,143,255));
+                help.setBackground(new Color(0, 117, 191));
             }
             public void mouseReleased(MouseEvent evt)
             {
@@ -239,7 +237,7 @@ public class MainPageFrame extends JPanel {
         {
             public void mouseEntered(MouseEvent evt)
             {
-                level1.setForeground(new Color(0,143,255));
+                level1.setForeground(new Color(0, 117, 191));
             }
             public void mouseExited(MouseEvent evt)
             {
@@ -247,7 +245,7 @@ public class MainPageFrame extends JPanel {
             }
             public void mousePressed(MouseEvent evt)
             {
-                level1.setBackground(new Color(0,143,255));
+                level1.setBackground(new Color(0, 117, 191));
             }
             public void mouseReleased(MouseEvent evt)
             {
@@ -256,8 +254,10 @@ public class MainPageFrame extends JPanel {
         });
         if(level2.isEnabled() == true) {
             level2.addMouseListener(new MouseAdapter() {
+
                 public void mouseEntered(MouseEvent evt) {
-                    level2.setForeground(new Color(0, 143, 255));
+
+                    level2.setForeground(new Color(0, 117, 191));
                 }
 
                 public void mouseExited(MouseEvent evt) {
@@ -265,7 +265,7 @@ public class MainPageFrame extends JPanel {
                 }
 
                 public void mousePressed(MouseEvent evt) {
-                    level2.setBackground(new Color(0, 143, 255));
+                    level2.setBackground(new Color(0, 117, 191));
                 }
 
                 public void mouseReleased(MouseEvent evt) {
@@ -276,7 +276,7 @@ public class MainPageFrame extends JPanel {
         if(level3.isEnabled() == true) {
             level3.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent evt) {
-                    level3.setForeground(new Color(0, 143, 255));
+                    level3.setForeground(new Color(0, 117, 191));
                 }
 
                 public void mouseExited(MouseEvent evt) {
@@ -284,7 +284,7 @@ public class MainPageFrame extends JPanel {
                 }
 
                 public void mousePressed(MouseEvent evt) {
-                    level3.setBackground(new Color(0, 143, 255));
+                    level3.setBackground(new Color(0, 117, 191));
                 }
 
                 public void mouseReleased(MouseEvent evt) {
@@ -295,7 +295,7 @@ public class MainPageFrame extends JPanel {
         if(level4.isEnabled() == true) {
             level4.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent evt) {
-                    level4.setForeground(new Color(0, 143, 255));
+                    level4.setForeground(new Color(0, 117, 191));
                 }
 
                 public void mouseExited(MouseEvent evt) {
@@ -303,7 +303,7 @@ public class MainPageFrame extends JPanel {
                 }
 
                 public void mousePressed(MouseEvent evt) {
-                    level4.setBackground(new Color(0, 143, 255));
+                    level4.setBackground(new Color(0, 117, 191));
                 }
 
                 public void mouseReleased(MouseEvent evt) {
@@ -314,7 +314,7 @@ public class MainPageFrame extends JPanel {
         if(level5.isEnabled() == true) {
             level5.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent evt) {
-                    level5.setForeground(new Color(0, 143, 255));
+                    level5.setForeground(new Color(0, 117, 191));
                 }
 
                 public void mouseExited(MouseEvent evt) {
@@ -322,7 +322,7 @@ public class MainPageFrame extends JPanel {
                 }
 
                 public void mousePressed(MouseEvent evt) {
-                    level5.setBackground(new Color(0, 143, 255));
+                    level5.setBackground(new Color(0, 117, 191));
                 }
 
                 public void mouseReleased(MouseEvent evt) {
@@ -348,17 +348,56 @@ public class MainPageFrame extends JPanel {
     }
 
     public int createStars(int level){
-        ///Burada text32 filedan yıldız sayısı gelmesi lazım
-        return 0;
+        try {
+            FileReader fileReader =
+                    new FileReader(Assets.starTxt);
+
+            BufferedReader bufferedReader =
+                    new BufferedReader(fileReader);
+            while((txtFileString = bufferedReader.readLine()) != null) {
+                System.out.println(txtFileString);
+
+                levelStar = Integer.parseInt(txtFileString.valueOf(txtFileString.charAt(level -1)));
+            }
+
+            bufferedReader.close();
+        }
+        catch(IOException ex) {
+
+        }
+        System.out.println(levelStar);
+        return levelStar;
     }
+
+    public void paintComponent(Graphics g)
+    {
+        if(levelStar == 3){
+            g.drawImage(starImage, 350, 250, 75,70,null);
+            g.drawImage(starImage, 430, 250, 75,70,null);
+            g.drawImage(starImage, 510, 250, 75,70,null);
+        }
+        else if (levelStar == 2)
+        {
+            g.drawImage(starImage, 395, 250, 75,70,null);
+            g.drawImage(starImage, 475, 250, 75,70,null);
+        }
+        else if (levelStar == 1)
+        {
+            g.drawImage(starImage, 430, 250, 75,70,null);
+
+        }
+        repaint();
+    }
+
 
     public boolean checkLevelAvailable(int level)
     {
+
         if(level == 1){
             return true;
         }
         else {
-            if (createStars((level - 1)) == 0) {
+            if (createStars(level) == 0) {
                 return false;
             } else return true;
         }
@@ -368,6 +407,7 @@ public class MainPageFrame extends JPanel {
     {
         //İstenilen bölüm oynanıcak
     }
+
 
 
 
