@@ -63,7 +63,7 @@ public class Attacker extends GameObject
     // Spawns in the given location
     public void spawn(int xPos, int yPos)
     {
-        System.out.println("Attacker spawned");
+        //System.out.println("Attacker spawned");
         this.alive = true;
         // x - boxEdge, to better transition from outside of the map to inside
         this.setBounds(xPos, yPos, boxEdge, boxEdge);
@@ -104,7 +104,7 @@ public class Attacker extends GameObject
                 // Complicated, delete after writing more efficient
                 // TODO: Collision detection should be updated/cleaned. Addition of hero class changes the logic
                 // Was moving right, hit sth from left
-                System.out.println("x,y" + xPosTile + "," + yPosTile);
+                //System.out.println("x,y" + xPosTile + "," + yPosTile);
                 if (currentDirection == direction.right &&
                         this.xPos + boxEdge + speed
                                 >= GameMap.tiles[yPosTile][xPosTile + 1].getX() &&

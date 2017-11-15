@@ -4,6 +4,7 @@
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
  */
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -14,8 +15,7 @@ public class InputController implements MouseMotionListener, MouseListener {
 	private int xPos, yPos;
 
 	public InputController() {
-		// TODO - implement InputController.InputController
-		//throw new UnsupportedOperationException();
+
         xPos = 0;
         yPos = 0;
 	}
@@ -46,7 +46,8 @@ public class InputController implements MouseMotionListener, MouseListener {
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
-
+        GameController.mouseX = mouseEvent.getX();
+        GameController.mouseY = mouseEvent.getY();
     }
 
     @Override

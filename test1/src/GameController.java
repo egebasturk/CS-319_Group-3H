@@ -21,6 +21,9 @@ public class GameController implements Runnable{
 	private GamePanel gamePanel;
 	private Frame frame;
 	private TowerListController towerListController;
+	private InputController inputController;
+
+	public static int mouseX = 0, mouseY = 0;
 
 	// TODO: Change magic numbers
     public static int gamePanelWidth = 800, gamePanelHeight = 600;
@@ -32,8 +35,11 @@ public class GameController implements Runnable{
         frame.setLayout(new BorderLayout());
         gamePanel = new GamePanel();
         gamePanel.setPreferredSize(new Dimension(gamePanelWidth, gamePanelHeight));
-        towerListController = new TowerListController(gamePanelWidth, gamePanelHeight);
+        inputController = new InputController();
+        towerListController = new TowerListController();
         towerListController.setPreferredSize( new Dimension(80,80));
+        towerListController.addMouseMotionListener(inputController);
+        towerListController.addMouseListener(inputController);
 
 		frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
 		frame.getContentPane().add(towerListController, BorderLayout.EAST);
@@ -49,12 +55,14 @@ public class GameController implements Runnable{
 	@Override
 	public void run()
 	{
-		elapsedTime++;
 		while( isRunning )
 		{
-			gamePanel.attackerSpawnLoop();
+            elapsedTime++;
+			gamePanel.spawnAttackers();
 			gamePanel.motion();
 			gamePanel.repaint();
+			towerListController.repaint();
+            //System.out.println(mouseX + " " + mouseY);
 
 			try {
 				Thread.sleep(1);

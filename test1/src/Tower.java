@@ -14,10 +14,13 @@ public class Tower extends GameObject {
 	protected int range;
 	protected int towerType;
 	protected BufferedImage image;
+	public int height;
+	public int width;
 
 	public Tower() {
-		// TODO - implement Tower.Tower
-		throw new UnsupportedOperationException();
+	    super();
+	    this.height = 50;
+	    this.width = 50;
 	}
 
 	/**
