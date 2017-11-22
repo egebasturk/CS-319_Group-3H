@@ -23,10 +23,11 @@ public class GameMap {
     private int[][] typeMatrix;
 
 	public GameMap() {
-
+	    AbstractFactory factory = new FactoryLevel1();
 	    // TODO Input controller will read when it is implemented
-        tiles = new Tile[mapHeight][mapWidth];
-        attackers = new Attacker[7 ];//TODO: Make according to level.(Also implement a proper formula)
+        tiles = factory.createTiles();//new Tile[mapHeight][mapWidth];
+        attackers = factory.createAttackers();//new Attacker[7 ];//TODO: Make according to level.(Also implement a proper formula)
+        /*
         typeMatrix = new int[mapHeight][mapWidth];
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("src/map1.mat"));
@@ -56,19 +57,11 @@ public class GameMap {
                         tileEdge, tileEdge, 0, typeMatrix[y][x]);
         }
         System.out.println("Tiles Created");
-        createAttackers();
+        createAttackers();*/
 	}
 	private void createAttackers()
     {
-        /*
-         * Creates attackers according to level.
-         * TODO: This initializes only the parent Attacker class.
-        * */
-        for ( int i = 0; i < attackers.length; i++)
-        {
-            // TODO: Get rid of magic numbers
-            attackers[i] = new Attacker(9);
-        }
+
     }
     /**
      * Iterates over the list of attackers and checks if they entered or killed.
