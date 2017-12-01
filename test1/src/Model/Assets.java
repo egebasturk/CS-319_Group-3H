@@ -1,3 +1,5 @@
+package Model;
+
 public class Assets
 {
     public static String background = "src/main/resources/background.png";

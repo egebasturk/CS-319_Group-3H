@@ -1,3 +1,6 @@
+package Controller;
+import Model.*;
+import View.*;
 /**
  * Game Controller Class
  * Controls the other classes of the game. Creates other objects and calls their operations while running.
@@ -5,6 +8,10 @@
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
  */
+
+import Model.TowerListController;
+import View.Frame;
+import View.GamePanel;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -19,7 +26,7 @@ public class GameController implements Runnable{
 	private boolean isPaused;
 
 	private GamePanel gamePanel;
-	private Frame frame;
+	private View.Frame frame;
 	private TowerListController towerListController;
 	private InputController inputController;
 
@@ -46,7 +53,7 @@ public class GameController implements Runnable{
         frame.pack();
         frame.setVisible(true);
 
-        System.out.println("GameController created");
+        System.out.println("Controller.GameController created");
         thread.start();
 	}
 	/**
@@ -72,12 +79,12 @@ public class GameController implements Runnable{
 
 
 	public void updateTime() {
-		// TODO - implement GameController.updateTime
+		// TODO - implement Controller.GameController.updateTime
 		throw new UnsupportedOperationException();
 	}
 
 	public void notifyDeath() {
-		// TODO - implement GameController.notifyDeath
+		// TODO - implement Controller.GameController.notifyDeath
 		throw new UnsupportedOperationException();
 	}
 
@@ -86,12 +93,12 @@ public class GameController implements Runnable{
 	 * @param strategy
 	 */
 	public GameController(BufferStrategy strategy) {
-		// TODO - implement GameController.GameController
+		// TODO - implement Controller.GameController.Controller.GameController
 		throw new UnsupportedOperationException();
 	}
 
 	private void updateBaseHealth() {
-		// TODO - implement GameController.updateBaseHealth
+		// TODO - implement Controller.GameController.updateBaseHealth
 		throw new UnsupportedOperationException();
 	}
 
@@ -100,23 +107,23 @@ public class GameController implements Runnable{
 	 * @param level
 	 */
 	public void startGame(int level) {
-		// TODO - implement GameController.startGame
+		// TODO - implement Controller.GameController.startGame
 		throw new UnsupportedOperationException();
 	}
 
 	private void decreaseBaseHealth() {
-		// TODO - implement GameController.decreaseBaseHealth
+		// TODO - implement Controller.GameController.decreaseBaseHealth
 		throw new UnsupportedOperationException();
 	}
 
 	// Currently this is implemented by checking the ArrayIndexOutOfBounds Exception, which is thrown when an attacker finishes the path.
 	private boolean isGameOver() {
-		// TODO - implement GameController.isGameOver
+		// TODO - implement Controller.GameController.isGameOver
 		throw new UnsupportedOperationException();
 	}
 
 	private void saveScore() {
-		// TODO - implement GameController.saveScore
+		// TODO - implement Controller.GameController.saveScore
 		throw new UnsupportedOperationException();
 	}
 

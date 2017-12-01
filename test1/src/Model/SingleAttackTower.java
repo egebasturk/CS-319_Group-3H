@@ -1,7 +1,7 @@
-/**
- * AreaAttackTower class
- * A tower type
- * @ Barış Eymür
+package Model; /**
+ * Model.SingleAttackTower Class
+ * Type of Model.Tower
+ * @ author Barış Eymür
  * @ version 04.11.2017
  */
 
@@ -10,13 +10,17 @@ import java.io.File;
 import java.awt.*;
 import java.io.IOException;
 
-public class AreaAttackTower extends Tower {
+public class SingleAttackTower extends Tower {
 
     public void attack(int attackerID, double damage) {
+
+        throw new UnsupportedOperationException();
     }
-    public AreaAttackTower() {
+
+    public SingleAttackTower() {
         try {
-            image = ImageIO.read(new File(Assets.tower1));
+            // TODO: Implement better resource loading methods
+            image = ImageIO.read(new File(Assets.tower2));
         }
         catch (IOException e) {
             e.printStackTrace();

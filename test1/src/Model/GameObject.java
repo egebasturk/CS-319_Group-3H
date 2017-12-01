@@ -1,5 +1,5 @@
-/**
- * GameObject class
+package Model; /**
+ * Model.GameObject class
  * It is the parent of all drawable objects, such as attacker, tile etc.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
@@ -23,12 +23,12 @@ public class GameObject extends Rectangle{
 	 * @param posY
 	 */
 	public void draw(int image, int posX, int posY) {
-		// TODO - implement GameObject.draw
+		// TODO - implement Model.GameObject.draw
 		throw new UnsupportedOperationException();
 	}
 
 	public int[][] getObjectLocation() {
-		// TODO - implement GameObject.getObjectLocation
+		// TODO - implement Model.GameObject.getObjectLocation
 		throw new UnsupportedOperationException();
 	}
 

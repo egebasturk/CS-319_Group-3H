@@ -1,13 +1,12 @@
-/**
+package Model; /**
  * Game Map Class
- * GameMap stores the objects that will be drawn on the map such as tiles, attackers etc.
+ * Model.GameMap stores the objects that will be drawn on the map such as tiles, attackers etc.
  * Calls their draw methods.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
  */
 
 import java.awt.*;
-import java.io.*;
 
 public class GameMap {
 
@@ -19,14 +18,14 @@ public class GameMap {
     private int spawnTimer = 0;
     public static Tile[][] tiles;
     public static Attacker[] attackers;
-    // TODO This will be passed from the InputController
+    // TODO This will be passed from the Controller.InputController
     private int[][] typeMatrix;
 
 	public GameMap() {
 	    AbstractFactory factory = new FactoryLevel1();
 	    // TODO Input controller will read when it is implemented
-        tiles = factory.createTiles();//new Tile[mapHeight][mapWidth];
-        attackers = factory.createAttackers();//new Attacker[7 ];//TODO: Make according to level.(Also implement a proper formula)
+        tiles = factory.createTiles();//new Model.Tile[mapHeight][mapWidth];
+        attackers = factory.createAttackers();//new Model.Attacker[7 ];//TODO: Make according to level.(Also implement a proper formula)
         /*
         typeMatrix = new int[mapHeight][mapWidth];
         try {
@@ -53,7 +52,7 @@ public class GameMap {
         for ( int y = 0; y < mapHeight; y++)
         {
             for ( int x = 0; x < mapWidth;x++)
-                tiles[y][x] = new Tile(x * tileEdge, y * tileEdge,
+                tiles[y][x] = new Model.Tile(x * tileEdge, y * tileEdge,
                         tileEdge, tileEdge, 0, typeMatrix[y][x]);
         }
         System.out.println("Tiles Created");
@@ -79,7 +78,7 @@ public class GameMap {
                 //System.out.println(i + " " + attackers[i].isAlive() + " " + attackers[i].isKilled());
                 if (!attackers[i].isAlive() && !attackers[i].killed) {
                     attackers[i].spawn();
-                    //System.out.println("Attacker" + i + "Spawned");
+                    //System.out.println("Model.Attacker" + i + "Spawned");
                     break;
                 }
             }
@@ -105,7 +104,7 @@ public class GameMap {
 	 * @param objectID
 	 */
 	public void updateMap(int x, int y, int objectType, int objectID) {
-		// TODO - implement GameMap.updateMap
+		// TODO - implement Model.GameMap.updateMap
 		throw new UnsupportedOperationException();
 	}
 
@@ -114,7 +113,7 @@ public class GameMap {
      * */
 	public void draw(Graphics g)
     {
-        //System.out.println("Draw GameMap called");
+        //System.out.println("Draw Model.GameMap called");
         for ( int y = 0; y < tiles.length; y++)
         {
             for ( int x = 0; x < tiles[0].length; x++)
@@ -134,7 +133,7 @@ public class GameMap {
 	 */
 	// TODO get this 2d arrray as input for the code above
 	public GameMap(int[][] map) {
-		// TODO - implement GameMap.GameMap
+		// TODO - implement Model.GameMap.Model.GameMap
 		throw new UnsupportedOperationException();
 	}
 

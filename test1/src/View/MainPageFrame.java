@@ -1,18 +1,17 @@
-/**
- * MainPageFrame class
+package View; /**
+ * View.MainPageFrame class
  * This class is the main page of the game.
  * @ author Emre Gürçay
  * @ version 04.11.2017
  */
 
 
-import sun.misc.IOUtils;
+import Model.Assets;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.Scanner;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 

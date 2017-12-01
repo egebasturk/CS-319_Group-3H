@@ -1,5 +1,5 @@
-/**
- * CreditsPage class
+package View; /**
+ * View.CreditsPage class
  * This class has the properties of CredistsPage on JPanel.
  * @ author Emre Gürçay
  * @ version 04.11.2017

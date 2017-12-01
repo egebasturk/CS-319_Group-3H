@@ -1,4 +1,4 @@
-/**
+package Model; /**
  * TowerList Controller Class
  * This is also the panel which it controls. It shows the list of towers,
  * near the game map, which player can click and deploy towers.
@@ -6,12 +6,11 @@
  * @ version 04.11.2017
  */
 // TODO: Current implementation is primitive
+import Controller.GameController;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

@@ -1,5 +1,5 @@
-/**
- * Attacker Class
+package Model; /**
+ * Model.Attacker Class
  * Parent of all attacker. Currently it is the only attacker.
  * These are the things which attack the objective and must be destroyed.
  * @ author Alp Ege Basturk
@@ -63,7 +63,7 @@ public class Attacker extends GameObject
     // Spawns in the given location
     public void spawn(int xPos, int yPos)
     {
-        //System.out.println("Attacker spawned");
+        //System.out.println("Model.Attacker spawned");
         this.alive = true;
         // x - boxEdge, to better transition from outside of the map to inside
         this.setBounds(xPos, yPos, boxEdge, boxEdge);
@@ -181,7 +181,7 @@ public class Attacker extends GameObject
 	}
 
 	public void notifyDeath() {
-		// TODO - implement Attacker.notifyDeath
+		// TODO - implement Model.Attacker.notifyDeath
         // Intention: Caller will know this and set reference to null.
         // TODO: Should be implemented for this class and the caller
         if (health <= 0)
@@ -191,7 +191,7 @@ public class Attacker extends GameObject
 	}
 
 	public void initializeDeath() {
-		// TODO - implement Attacker.initializeDeath
+		// TODO - implement Model.Attacker.initializeDeath
 		throw new UnsupportedOperationException();
 	}
 

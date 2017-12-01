@@ -1,4 +1,4 @@
-/**
+package View; /**
  * Pause Menu Class
  * This class is the pause page of the game.
  * @ author Emre Gürçay

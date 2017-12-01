@@ -1,21 +1,22 @@
+package View;
+import Controller.*;
+import Model.*;
 /**
- * MainFrame class
+ * View.MainFrame class
  * This class is the main frame of the game.
- * It displays displays all the panels such as HelpPage, CreditsPage.
+ * It displays displays all the panels such as View.HelpPage, View.CreditsPage.
  * @ author Emre Gürçay
  * @ version 04.11.2017
  */
 
 
+import Model.Assets;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 
 public class MainFrame extends JFrame {

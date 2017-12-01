@@ -1,6 +1,6 @@
-/**
+package View; /**
  * Basic JFrame adaptation
- * Frame where panels are put
+ * View.Frame where panels are put
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
  */

@@ -1,14 +1,13 @@
-/**
- * Tile Class
- * Tile will be used to fill the map. Also they will be used to store information
+package Model; /**
+ * Model.Tile Class
+ * Model.Tile will be used to fill the map. Also they will be used to store information
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
  */
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
-public class Tile extends GameObject// extends GameObject { TODO: commented out for debugging
+public class Tile extends GameObject// extends Model.GameObject { TODO: commented out for debugging
 {
     public int id; // TODO gamebojects will have such id. Try to use it instead
 	private int type;
@@ -21,7 +20,7 @@ public class Tile extends GameObject// extends GameObject { TODO: commented out 
 
     // Not used currently
 	public Tile() {
-		// TODO - implement Tile.Tile
+		// TODO - implement Model.Tile.Model.Tile
 		//throw new UnsupportedOperationException();
 	}
 
@@ -44,7 +43,7 @@ public class Tile extends GameObject// extends GameObject { TODO: commented out 
 	 * @param type
 	 */
 	public Tile(int type) {
-		// TODO - implement Tile.Tile
+		// TODO - implement Model.Tile.Model.Tile
 		throw new UnsupportedOperationException();
 	}
 
@@ -56,7 +55,7 @@ public class Tile extends GameObject// extends GameObject { TODO: commented out 
 	 */
 	 // This call may be missing. Using the one above
 	public Tile(int type, int xPos, int yPos) {
-		// TODO - implement Tile.Tile
+		// TODO - implement Model.Tile.Model.Tile
 		throw new UnsupportedOperationException();
 	}
 	/**
@@ -64,7 +63,7 @@ public class Tile extends GameObject// extends GameObject { TODO: commented out 
      * */
     public void draw( Graphics g )
     {
-        //System.out.println("Tile draw called");
+        //System.out.println("Model.Tile draw called");
         g.drawRect( xPos, yPos, width, height );
         if (type == 0) {
             g.setColor(Color.GRAY);

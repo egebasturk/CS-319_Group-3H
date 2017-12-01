@@ -1,7 +1,6 @@
-
-// An AWT program inherits from the top-level container java.awt.Frame
+package View;
+// An AWT program inherits from the top-level container java.awt.View.Frame
 import javax.swing.*;
-import java.awt.*;
 
 //Main class
 public class MainPage extends JFrame

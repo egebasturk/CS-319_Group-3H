@@ -1,3 +1,8 @@
+package Model;
+
+import Model.GameMap;
+import Model.GameObject;
+
 /**
  * Map Controller Class
  * Currently Obsolete
@@ -10,8 +15,8 @@ public class MapController {
 	private GameMap map;
 	private int pathColour;
 	private int nonPathColour;
-	/*private ArrayList<Attacker> attackers;
-	private ArrayList<Tower> towers;
+	/*private ArrayList<Model.Attacker> attackers;
+	private ArrayList<Model.Tower> towers;
 	private Hero hero;*/
 
 	/**
@@ -20,12 +25,12 @@ public class MapController {
 	 * @param map
 	 */
 	public void loadMap(int level, int[][] map) {
-		// TODO - implement MapController.loadMap
+		// TODO - implement Model.MapController.loadMap
 		throw new UnsupportedOperationException();
 	}
 
 	public void drawMap() {
-		// TODO - implement MapController.drawMap
+		// TODO - implement Model.MapController.drawMap
 		throw new UnsupportedOperationException();
 	}
 
@@ -35,7 +40,7 @@ public class MapController {
 	 * @param posY
 	 */
 	public boolean isTowerPlaceable(int posX, int posY) {
-		// TODO - implement MapController.isTowerPlaceable
+		// TODO - implement Model.MapController.isTowerPlaceable
 		throw new UnsupportedOperationException();
 	}
 
@@ -47,7 +52,7 @@ public class MapController {
 	 * @param objectID
 	 */
 	public void updateMap(int posX, int posY, GameObject object, int objectID) {
-		// TODO - implement MapController.updateMap
+		// TODO - implement Model.MapController.updateMap
 		throw new UnsupportedOperationException();
 	}
 
@@ -56,7 +61,7 @@ public class MapController {
 	 * @param ListOfObjects
 	 */
 	public void updateMap(int ListOfObjects) {
-		// TODO - implement MapController.updateMap
+		// TODO - implement Model.MapController.updateMap
 		throw new UnsupportedOperationException();
 	}
 
@@ -64,8 +69,8 @@ public class MapController {
 	 * 
 	 * @param towerID
 	 */
-	/*public ArrayList<Attacker> findAttackersInTheTowerRange(int towerID) {
-		// TODO - implement MapController.findAttackersInTheTowerRange
+	/*public ArrayList<Model.Attacker> findAttackersInTheTowerRange(int towerID) {
+		// TODO - implement Model.MapController.findAttackersInTheTowerRange
 		throw new UnsupportedOperationException();
 	}*/
 
