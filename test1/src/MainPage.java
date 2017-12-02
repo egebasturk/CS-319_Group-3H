@@ -1,5 +1,5 @@
-package View;
-// An AWT program inherits from the top-level container java.awt.View.Frame
+
+// An AWT program inherits from the top-level container java.awt.Frame
 import javax.swing.*;
 
 //Main class

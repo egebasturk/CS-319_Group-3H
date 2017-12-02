@@ -1,5 +1,3 @@
-package Model;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -40,7 +38,7 @@ public class FactoryLevel1 extends AbstractFactory {
     {
         typeMatrix = new int[mapHeight][mapWidth];
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/Model/map1.mat"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/map1.mat"));
             // Reads according to octaves output format
             // May directly read rows and columns from the file.
             for ( int i = 0; i < 5 ; i++) {

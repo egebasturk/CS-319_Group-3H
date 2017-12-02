@@ -1,4 +1,4 @@
-package Model; /**
+/**
  * Model.Tower Class
  * Parent class of towers.
  * @ author Barış Eymür

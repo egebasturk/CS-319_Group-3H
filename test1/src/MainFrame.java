@@ -1,16 +1,13 @@
-package View;
-import Controller.*;
-import Model.*;
+
 /**
- * View.MainFrame class
+ * MainFrame class
  * This class is the main frame of the game.
- * It displays displays all the panels such as View.HelpPage, View.CreditsPage.
+ * It displays displays all the panels such as HelpPage, CreditsPage.
  * @ author Emre Gürçay
  * @ version 04.11.2017
  */
 
 
-import Model.Assets;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,9 +18,9 @@ import java.awt.image.BufferedImage;
 
 public class MainFrame extends JFrame {
 
-    private MainPageFrame main;
-    private PauseMenu pause;
-    private CreditsPage credits = new CreditsPage();
+    private  MainPageFrame main;
+    private  PauseMenu pause;
+    private  CreditsPage credits = new  CreditsPage();
     private  HelpPage help;
     private BufferedImage img;
     private GameController gameController;
@@ -35,9 +32,9 @@ public class MainFrame extends JFrame {
         setContentPane(new JLabel(new ImageIcon(Assets.background)));
         setLayout(new BorderLayout(0,0));
 
-        main = new MainPageFrame();
-        pause = new PauseMenu();
-        help = new HelpPage();
+        main = new  MainPageFrame();
+        pause = new  PauseMenu();
+        help = new  HelpPage();
 
 
         main.play.addActionListener(new ActionListener() {

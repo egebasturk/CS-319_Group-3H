@@ -1,6 +1,6 @@
-package View; /**
- * View.HelpPage class
- * This class has the properties of View.HelpPage on JPanel.
+/**
+ * HelpPage class
+ * This class has the properties of HelpPage on JPanel.
  * It displays the contents.
  * @ author Emre Gürçay
  * @ version 04.11.2017

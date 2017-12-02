@@ -1,12 +1,14 @@
-package Controller; /**
- * Controller.InputController Class
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
+/**
+ * InputController Class
  * Takes inputs from user.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
  */
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+
 
 public class InputController implements MouseMotionListener, MouseListener {
     // TODO: Will be implemented
@@ -29,12 +31,12 @@ public class InputController implements MouseMotionListener, MouseListener {
     }
 
 	public void mouseClicked() {
-		// TODO - implement Controller.InputController.mouseClicked
+		// TODO - implement InputController.mouseClicked
 		throw new UnsupportedOperationException();
 	}
 
 	public void mouseReleased() {
-		// TODO - implement Controller.InputController.mouseReleased
+		// TODO - implement InputController.mouseReleased
 		throw new UnsupportedOperationException();
 	}
 

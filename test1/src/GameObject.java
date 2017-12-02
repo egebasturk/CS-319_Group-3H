@@ -1,4 +1,4 @@
-package Model; /**
+/**
  * Model.GameObject class
  * It is the parent of all drawable objects, such as attacker, tile etc.
  * @ author Alp Ege Basturk

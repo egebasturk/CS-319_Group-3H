@@ -1,5 +1,3 @@
-package Model;
-
 /**
  * Model.Attacker Class
  * An attacker. Unused currently

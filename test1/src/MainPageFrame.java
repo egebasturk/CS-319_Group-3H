@@ -1,12 +1,10 @@
-package View; /**
- * View.MainPageFrame class
+/**
+ * MainPageFrame class
  * This class is the main page of the game.
  * @ author Emre Gürçay
  * @ version 04.11.2017
  */
 
-
-import Model.Assets;
 
 import java.awt.*;
 import java.awt.event.*;

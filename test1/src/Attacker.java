@@ -1,4 +1,4 @@
-package Model; /**
+/**
  * Model.Attacker Class
  * Parent of all attacker. Currently it is the only attacker.
  * These are the things which attack the objective and must be destroyed.

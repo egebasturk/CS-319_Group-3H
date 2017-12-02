@@ -1,4 +1,4 @@
-package Model; /**
+/**
  * Game Map Class
  * Model.GameMap stores the objects that will be drawn on the map such as tiles, attackers etc.
  * Calls their draw methods.
@@ -18,7 +18,7 @@ public class GameMap {
     private int spawnTimer = 0;
     public static Tile[][] tiles;
     public static Attacker[] attackers;
-    // TODO This will be passed from the Controller.InputController
+    // TODO This will be passed from the InputController
     private int[][] typeMatrix;
 
 	public GameMap() {

@@ -1,15 +1,13 @@
-package View;
-import Model.*;
-import Controller.*;
+
 /**
  * Game Panel Class
- * View.GamePanel class is the panel which game is shown. Tiles, path etc.
+ * GamePanel class is the panel which game is shown. Tiles, path etc.
  * Draw methods of this class is called to draw the map.
  * Also it stores game objects like attackers, map which will be drawn.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
  */
-import Model.GameMap;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,19 +24,19 @@ public class GamePanel extends JPanel
 
     public GamePanel()
     {
-        System.out.print("View.GamePanel Created");
+        System.out.print("GamePanel Created");
         //gameMap = new GameMap();
 
     }
     public GamePanel(GameMap gameMap)
     {
-        System.out.print("View.GamePanel Created");
+        System.out.print("GamePanel Created");
         //gameMap = new GameMap();
         this.gameMap = gameMap;
     }
     public GamePanel(InputController inputController)
     {
-        System.out.print("View.GamePanel Created");
+        System.out.print("GamePanel Created");
         //gameMap = new GameMap();
         this.addMouseListener(inputController);
         this.addMouseMotionListener(inputController);

@@ -1,8 +1,3 @@
-package Model;
-
-import Model.GameMap;
-import Model.GameObject;
-
 /**
  * Map Controller Class
  * Currently Obsolete
