@@ -29,6 +29,8 @@ public class GameController implements Runnable{
 	private View.Frame frame;
 	private TowerListController towerListController;
 	private InputController inputController;
+	public GameMap gameMap;
+	public Graphics g;
 
 	public static int mouseX = 0, mouseY = 0;
 
@@ -37,10 +39,11 @@ public class GameController implements Runnable{
 
 
 	public GameController() {
+        gameMap = new GameMap();
 	    level = 1; // TODO: Properly implement this
         frame = new Frame();
         frame.setLayout(new BorderLayout());
-        gamePanel = new GamePanel();
+        gamePanel = new GamePanel(gameMap);
         gamePanel.setPreferredSize(new Dimension(gamePanelWidth, gamePanelHeight));
         inputController = new InputController();
         towerListController = new TowerListController();
@@ -65,9 +68,16 @@ public class GameController implements Runnable{
 		while( isRunning )
 		{
             elapsedTime++;
+            /*
 			gamePanel.spawnAttackers();
 			gamePanel.motion();
-			gamePanel.repaint();
+			*/
+            gameMap.attackerMotionLoop();
+            gameMap.attackerSpawnLoop();
+			//gamePanel.repaint();
+			//g = gamePanel.getGraphics();
+			//gameMap.draw(g);
+            gamePanel.repaint();
 			towerListController.repaint();
             //System.out.println(mouseX + " " + mouseY);
 

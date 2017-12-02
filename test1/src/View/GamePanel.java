@@ -27,13 +27,19 @@ public class GamePanel extends JPanel
     public GamePanel()
     {
         System.out.print("View.GamePanel Created");
-        gameMap = new GameMap();
+        //gameMap = new GameMap();
 
+    }
+    public GamePanel(GameMap gameMap)
+    {
+        System.out.print("View.GamePanel Created");
+        //gameMap = new GameMap();
+        this.gameMap = gameMap;
     }
     public GamePanel(InputController inputController)
     {
         System.out.print("View.GamePanel Created");
-        gameMap = new GameMap();
+        //gameMap = new GameMap();
         this.addMouseListener(inputController);
         this.addMouseMotionListener(inputController);
     }
@@ -44,16 +50,20 @@ public class GamePanel extends JPanel
         gameMap.draw(g);
     }
 
+    @Override
+    public Graphics getGraphics() {
+        return super.getGraphics();
+    }
     /**
     * Calls move function of the Attackers. Which makes them update their locations
     * after checking their position according to path.
-    * */
+    * *//*
     public void motion()
     {
         gameMap.attackerMotionLoop();
     }
     public void spawnAttackers()
     {
-        gameMap.attackerSpawnLoop();;
-    }
+        gameMap.attackerSpawnLoop();
+    }*/
 }
