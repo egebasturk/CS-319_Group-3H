@@ -7,6 +7,7 @@
  */
 
 import java.awt.*;
+import java.util.LinkedList;
 
 public class GameMap {
 
@@ -18,6 +19,7 @@ public class GameMap {
     private int spawnTimer = 0;
     public static Tile[][] tiles;
     public static Attacker[] attackers;
+    public static LinkedList<Tower> towers;
     // TODO This will be passed from the InputController
     private int[][] typeMatrix;
 
@@ -26,6 +28,8 @@ public class GameMap {
 	    // TODO Input controller will read when it is implemented
         tiles = factory.createTiles();//new Model.Tile[mapHeight][mapWidth];
         attackers = factory.createAttackers();//new Model.Attacker[7 ];//TODO: Make according to level.(Also implement a proper formula)
+        towers = new LinkedList<>();
+        towers.add(new SingleAttackTower(this, 8*tileEdge,8*tileEdge));
         /*
         typeMatrix = new int[mapHeight][mapWidth];
         try {
@@ -58,10 +62,6 @@ public class GameMap {
         System.out.println("Tiles Created");
         createAttackers();*/
 	}
-	private void createAttackers()
-    {
-
-    }
     /**
      * Iterates over the list of attackers and checks if they entered or killed.
      * Spawns if they have not entered the game so far.
@@ -96,6 +96,13 @@ public class GameMap {
             }
         }
     }
+    public void towerAttackLoop()
+    {
+        for (Tower i: towers)
+        {
+            i.attack();
+        }
+    }
 	/**
 	 *
 	 * @param x
@@ -125,16 +132,13 @@ public class GameMap {
             if (attackers[i].isAlive())
                 attackers[i].draw(g);
         }
+        for (Tower i: towers)
+        {
+            i.draw(g);
+        }
     }
-
-	/**
-	 * Currently default constructor directly reads from the file.
-	 * @param map
-	 */
-	// TODO get this 2d arrray as input for the code above
-	public GameMap(int[][] map) {
-		// TODO - implement Model.GameMap.Model.GameMap
-		throw new UnsupportedOperationException();
-	}
-
+    public Attacker[] getAttackers()
+    {
+        return attackers;
+    }
 }

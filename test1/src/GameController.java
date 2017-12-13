@@ -69,6 +69,7 @@ public class GameController implements Runnable{
 			*/
             gameMap.attackerMotionLoop();
             gameMap.attackerSpawnLoop();
+            gameMap.towerAttackLoop();
 			//gamePanel.repaint();
 			//g = gamePanel.getGraphics();
 			//gameMap.draw(g);

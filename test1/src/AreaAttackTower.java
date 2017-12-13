@@ -14,7 +14,9 @@ public class AreaAttackTower extends Tower {
 
     public void attack(int attackerID, double damage) {
     }
-    public AreaAttackTower() {
+
+    public AreaAttackTower(GameMap currentGameMap, int xPos, int yPos) {
+        super(currentGameMap, xPos, yPos);
         try {
             image = ImageIO.read(new File(Assets.tower1));
         }

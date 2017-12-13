@@ -84,6 +84,8 @@ public class Attacker extends GameObject
 	public void move()
     {
         try {
+/*            if (this.getHealth() <= 0)
+                initializeDeath();*/
             if (currentMoveCounter >= moveThreshold) {
 
                 locationTrackerInTile++;
@@ -179,7 +181,16 @@ public class Attacker extends GameObject
             System.exit(0);
         }
 	}
-
+	public void setHealth(double health)
+    {
+	    this.health = health;
+	    if (this.health <= 0)
+	        initializeDeath();
+    }
+    public double getHealth()
+    {
+        return health;
+    }
 	public void notifyDeath() {
 		// TODO - implement Model.Attacker.notifyDeath
         // Intention: Caller will know this and set reference to null.
@@ -191,8 +202,7 @@ public class Attacker extends GameObject
 	}
 
 	public void initializeDeath() {
-		// TODO - implement Model.Attacker.initializeDeath
-		throw new UnsupportedOperationException();
+		killed = true;
 	}
 
 	public void draw(Graphics g)

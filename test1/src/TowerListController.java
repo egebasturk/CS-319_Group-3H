@@ -84,9 +84,10 @@ public class TowerListController extends JPanel{
 
     public boolean isInRectangle(int x, int y, Rectangle rectangle)
     {
+        /*
         System.out.println("Check bounds");
         System.out.println(rectangle.getX());
-        System.out.println(rectangle.getY());
+        System.out.println(rectangle.getY());*/
         if (x >= rectangle.getX() &&
                 x <= rectangle.getX() + rectangle.getWidth() &&
                 y >= rectangle.getY() &&
