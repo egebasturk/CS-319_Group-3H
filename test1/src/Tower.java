@@ -7,7 +7,9 @@
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -45,20 +47,21 @@ public class Tower extends GameObject {
 
 	public LinkedList getAttackersInRange()
     {
-        Attacker[] attackers = currentGameMap.getAttackers();
+        //Attacker[] attackers = currentGameMap.getAttackers();
+        ArrayList<Attacker> attackers = currentGameMap.getAttackers();
         // Will store calculated distances
-        double distanceArray[] = new double[attackers.length];
+        double distanceArray[] = new double[attackers.size()];
         LinkedList<Attacker> listOfAttackersInRange = new LinkedList<>();
 
         // Calculate distance with sqrt((x1-x2)^2 + (y1-y2)^2)
-        for ( int i = 0; i < attackers.length; i++)
+        for ( int i = 0; i < attackers.size(); i++)
         {
-            distanceArray[i] = getDistanceBetweenTowerAndTarget(this, attackers[i]);
+            distanceArray[i] = getDistanceBetweenTowerAndTarget(this, attackers.get(i));
             //System.out.println("Distance: " + distanceArray[i] +" Tower place: " + this.getX() + " " + this.getY());
             // If in range add attacker to the list
-            if ( distanceArray[i] <= range && (!attackers[i].isKilled() && attackers[i].isAlive() ))
+            if ( distanceArray[i] <= range && (!attackers.get(i).isKilled() && attackers.get(i).isAlive() ))
             {
-                listOfAttackersInRange.add(attackers[i]);
+                listOfAttackersInRange.add(attackers.get(i));
             }
         }
         /*

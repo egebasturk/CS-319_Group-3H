@@ -7,6 +7,8 @@
  */
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class GameMap {
@@ -18,7 +20,8 @@ public class GameMap {
     private int spawnCooldown = 1000;
     private int spawnTimer = 0;
     public static Tile[][] tiles;
-    public static Attacker[] attackers;
+    //public static Attacker[] attackers;
+    public static ArrayList<Attacker> attackers;
     public static LinkedList<Tower> towers;
     // TODO This will be passed from the InputController
     private int[][] typeMatrix;
@@ -27,7 +30,7 @@ public class GameMap {
 	    AbstractFactory factory = new FactoryLevel1();
 	    // TODO Input controller will read when it is implemented
         tiles = factory.createTiles();//new Model.Tile[mapHeight][mapWidth];
-        attackers = factory.createAttackers();//new Model.Attacker[7 ];//TODO: Make according to level.(Also implement a proper formula)
+        attackers = new ArrayList<>(Arrays.asList(factory.createAttackers()));//new Model.Attacker[7 ];
         towers = new LinkedList<>();
         towers.add(new SingleAttackTower(this, 8*tileEdge,8*tileEdge));
         /*
@@ -72,12 +75,12 @@ public class GameMap {
         //System.out.println(spawnTimer);
         if ( spawnTimer >= spawnCooldown){
             spawnTimer = 0;
-            for ( int i = 0; i < attackers.length; i++)
+            for ( int i = 0; i < attackers.size(); i++)
             {
                 // Debug prints
                 //System.out.println(i + " " + attackers[i].isAlive() + " " + attackers[i].isKilled());
-                if (!attackers[i].isAlive() && !attackers[i].killed) {
-                    attackers[i].spawn();
+                if (!attackers.get(i).isAlive() && !attackers.get(i).killed) {
+                    attackers.get(i).spawn();
                     //System.out.println("Model.Attacker" + i + "Spawned");
                     break;
                 }
@@ -88,11 +91,11 @@ public class GameMap {
     }
     public void attackerMotionLoop()
     {
-        for ( int i = 0; i < attackers.length; i++)
+        for ( int i = 0; i < attackers.size(); i++)
         {
-            if (attackers[i].alive && !attackers[i].isKilled())
+            if (attackers.get(i).alive && !attackers.get(i).isKilled())
             {
-                attackers[i].move();
+                attackers.get(i).move();
             }
         }
     }
@@ -127,17 +130,17 @@ public class GameMap {
                 tiles[y][x].draw(g);
         }
         // Draws attackers
-        for (int i = 0; i < attackers.length; i++)
+        for (int i = 0; i < attackers.size(); i++)
         {
-            if (attackers[i].isAlive())
-                attackers[i].draw(g);
+            if (attackers.get(i).isAlive())
+                attackers.get(i).draw(g);
         }
         for (Tower i: towers)
         {
             i.draw(g);
         }
     }
-    public Attacker[] getAttackers()
+    public ArrayList<Attacker> getAttackers()
     {
         return attackers;
     }
