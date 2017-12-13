@@ -15,10 +15,14 @@ public class InputController implements MouseMotionListener, MouseListener {
     // TODO: Will be implemented
 	private boolean mouseClicked;
 	private int xPos, yPos;
-	JPanel currentGamePanel;
+	GamePanel currentGamePanel;
+	TowerListController currentTowerListPanel;
+	GameController currentGameController;
 
-	public InputController( GamePanel currentGamePanel) {
+	public InputController( GamePanel currentGamePanel, TowerListController currentTowerListPanel, GameController currentGameController) {
 	    this.currentGamePanel = currentGamePanel;
+	    this.currentTowerListPanel = currentTowerListPanel;
+	    this.currentGameController = currentGameController;
         xPos = 0;
         yPos = 0;
 	}
@@ -60,8 +64,27 @@ public class InputController implements MouseMotionListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
-	    if ( mouseEvent.getComponent() == currentGamePanel)
-	        System.out.println("Clicked on: " + mouseEvent.getX() + mouseEvent.getY());
+	    if ( mouseEvent.getComponent() == currentTowerListPanel)
+        {
+            int index = currentTowerListPanel.getElementIndexFromTheList(mouseEvent.getX(), mouseEvent.getY());
+            if ( index != -1)
+            {
+                // +1 because element zero is none
+                currentGameController.setCurrentSelectedTowerFromTheList( GameController.selectedTowerFromTheList.values()[index + 1]);
+                System.out.println("Selected tower: " + index);
+            }
+        }
+	    else if ( mouseEvent.getComponent() == currentGamePanel )
+        {
+            System.out.println("Clicked on: " + mouseEvent.getX() + " " + mouseEvent.getY());
+            if ( currentGameController.getCurrentSelectedTowerFromTheList() != GameController.selectedTowerFromTheList.None)
+            {
+                currentGameController.addTower(new SingleAttackTower(currentGameController.gameMap,
+                        mouseEvent.getX(), mouseEvent.getY()));
+                currentGameController.setCurrentSelectedTowerFromTheList(GameController.selectedTowerFromTheList.None);
+            }
+
+        }
 	    else
 	        System.out.println("Failed to detect main panel");
     }

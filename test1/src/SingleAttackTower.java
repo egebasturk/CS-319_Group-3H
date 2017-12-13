@@ -59,7 +59,7 @@ public class SingleAttackTower extends Tower {
             if (currentTarget != null)
             {
                 //System.out.println("Target is not null");
-                System.out.println(currentTarget.getHealth());
+                //System.out.println(currentTarget.getHealth());
                 // Check condition if it is in range
                 if ( super.getDistanceBetweenTowerAndTarget(this, currentTarget) > this.range)
                 {

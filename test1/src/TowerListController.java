@@ -95,4 +95,13 @@ public class TowerListController extends JPanel{
             return true;
         return false;
     }
+    public int getElementIndexFromTheList( double xPos, double yPos)
+    {
+        for ( int i = 0; i < towers.length; i++)
+        {
+            if ( isInRectangle(GameController.mouseX, GameController.mouseY, towers[i]) )
+                return i;
+        }
+        return -1;
+    }
 }

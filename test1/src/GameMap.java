@@ -157,4 +157,9 @@ public class GameMap {
             }
         }
     }
+    public void addTower(Tower newTower)
+    {
+        System.out.println("Tower added");
+        towers.addLast(newTower);
+    }
 }

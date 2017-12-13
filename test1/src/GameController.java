@@ -25,6 +25,8 @@ public class GameController implements Runnable{
 	private TowerListController towerListController;
 	private InputController inputController;
 	public GameMap gameMap;
+	public enum selectedTowerFromTheList { None, tower1, tower2};
+	public selectedTowerFromTheList currentSelectedTowerFromTheList;
 	public Graphics g;
 
 	public static int mouseX = 0, mouseY = 0;
@@ -34,6 +36,7 @@ public class GameController implements Runnable{
 
 
 	public GameController() {
+	    currentSelectedTowerFromTheList = selectedTowerFromTheList.None;
         gameMap = new GameMap();
         setGameMaps();
 	    level = 1; // TODO: Properly implement this
@@ -41,10 +44,11 @@ public class GameController implements Runnable{
         frame.setLayout(new BorderLayout());
         gamePanel = new GamePanel(gameMap);
         gamePanel.setPreferredSize(new Dimension(gamePanelWidth, gamePanelHeight));
-        inputController = new InputController( gamePanel);
+        towerListController = new TowerListController();
+        inputController = new InputController( gamePanel, towerListController, this);
         gamePanel.addMouseMotionListener(inputController);
         gamePanel.addMouseListener(inputController);
-        towerListController = new TowerListController();
+
         towerListController.setPreferredSize( new Dimension(80,80));
         towerListController.addMouseMotionListener(inputController);
         towerListController.addMouseListener(inputController);
@@ -92,7 +96,19 @@ public class GameController implements Runnable{
 			} catch (Exception e){}
 		}
 	}
+	public void setCurrentSelectedTowerFromTheList( selectedTowerFromTheList selectedTower)
+    {
+        this.currentSelectedTowerFromTheList = selectedTower;
+    }
 
+    public selectedTowerFromTheList getCurrentSelectedTowerFromTheList() {
+        return currentSelectedTowerFromTheList;
+    }
+
+    public void addTower(Tower newTower)
+    {
+        gameMap.addTower(newTower);
+    }
 
 	public void updateTime() {
 		// TODO - implement GameController.updateTime
