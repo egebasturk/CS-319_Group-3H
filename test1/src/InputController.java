@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -79,14 +80,23 @@ public class InputController implements MouseMotionListener, MouseListener {
             System.out.println("Clicked on: " + mouseEvent.getX() + " " + mouseEvent.getY());
             if ( currentGameController.getCurrentSelectedTowerFromTheList() != GameController.selectedTowerFromTheList.None)
             {
+                Point clickPoint = getTileLocationOfClick( mouseEvent );
                 currentGameController.addTower(new SingleAttackTower(currentGameController.gameMap,
-                        mouseEvent.getX(), mouseEvent.getY()));
+                        (int)clickPoint.getX(), (int)clickPoint.getY()));
                 currentGameController.setCurrentSelectedTowerFromTheList(GameController.selectedTowerFromTheList.None);
             }
 
         }
 	    else
 	        System.out.println("Failed to detect main panel");
+    }
+    private Point getTileLocationOfClick( MouseEvent mouseEvent)
+    {
+        Point point = new Point();
+        // This calculation may be bad
+        point.setLocation( mouseEvent.getX() / GameMap.tileEdge * GameMap.tileEdge, mouseEvent.getY() / GameMap.tileEdge * GameMap.tileEdge);
+
+        return point;
     }
 
     @Override
