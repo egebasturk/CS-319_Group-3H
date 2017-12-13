@@ -26,9 +26,9 @@ public class SingleAttackTower extends Tower {
         super(currentGameMap, xPos, yPos);
         damage = 5;
         currentTarget = null;
-        rateOfFire = 20;
+        rateOfFire = 300;
         currentAttackCooldown = 0;
-        range = 500;
+        range = 350;
 
         try {
             // TODO: Implement better resource loading methods
@@ -68,6 +68,8 @@ public class SingleAttackTower extends Tower {
                 else// Attack
                 {
                     currentTarget.setHealth(currentTarget.getHealth() - damage);
+                    if (currentTarget.getHealth() <= 0)
+                        currentTarget = null;
                 }
             }
         }

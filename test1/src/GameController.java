@@ -35,6 +35,7 @@ public class GameController implements Runnable{
 
 	public GameController() {
         gameMap = new GameMap();
+        setGameMaps();
 	    level = 1; // TODO: Properly implement this
         frame = new Frame();
         frame.setLayout(new BorderLayout());
@@ -54,6 +55,13 @@ public class GameController implements Runnable{
         System.out.println("GameController created");
         thread.start();
 	}
+	private void setGameMaps()
+    {
+        for (Attacker i: gameMap.getAttackers())
+        {
+            i.setCurrentGameMap(gameMap);
+        }
+    }
 	/**
      *  Run method. Calls paint method of gamePanel which calls the draw method of all objects.
 	*/

@@ -9,6 +9,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class GameMap {
@@ -143,5 +144,17 @@ public class GameMap {
     public ArrayList<Attacker> getAttackers()
     {
         return attackers;
+    }
+    public void notifyDeath(GameObject object)
+    {
+        if ( object instanceof Attacker)
+        {
+            for (Iterator<Attacker> it = attackers.iterator(); it.hasNext();) {
+                Attacker at = it.next();
+                if (at ==object) {
+                    it.remove();
+                }
+            }
+        }
     }
 }

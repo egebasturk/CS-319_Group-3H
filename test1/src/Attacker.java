@@ -40,6 +40,7 @@ public class Attacker extends GameObject
 	protected int yPosTile = 0;
 	protected int attackerID;
 
+	protected GameMap currentGameMap;
 	public Attacker() {
 
 	}
@@ -200,9 +201,14 @@ public class Attacker extends GameObject
             alive = false;
         }
 	}
+	public void setCurrentGameMap(GameMap gameMap)
+    {
+        currentGameMap = gameMap;
+    }
 
 	public void initializeDeath() {
 		killed = true;
+		currentGameMap.notifyDeath(this);
 	}
 
 	public void draw(Graphics g)

@@ -15,7 +15,7 @@ public class FactoryLevel1 extends AbstractFactory {
     {
         this.level = 1;
         // TODO: implement an algorithm to calculate
-        attackers = new Attacker[7];
+        attackers = new Attacker[15];
         tiles = new Tile[mapHeight][mapWidth];
     }
     @Override
