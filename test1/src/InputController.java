@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -14,9 +15,10 @@ public class InputController implements MouseMotionListener, MouseListener {
     // TODO: Will be implemented
 	private boolean mouseClicked;
 	private int xPos, yPos;
+	JPanel currentGamePanel;
 
-	public InputController() {
-
+	public InputController( GamePanel currentGamePanel) {
+	    this.currentGamePanel = currentGamePanel;
         xPos = 0;
         yPos = 0;
 	}
@@ -58,7 +60,10 @@ public class InputController implements MouseMotionListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
-
+	    if ( mouseEvent.getComponent() == currentGamePanel)
+	        System.out.println("Clicked on: " + mouseEvent.getX() + mouseEvent.getY());
+	    else
+	        System.out.println("Failed to detect main panel");
     }
 
     @Override

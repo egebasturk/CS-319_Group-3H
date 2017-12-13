@@ -67,6 +67,8 @@ public class SingleAttackTower extends Tower {
                 }
                 else// Attack
                 {
+                    //Graphics g;
+                    //g.drawLine((int)this.getX(), (int)this.getY(), (int)currentTarget.getX(), (int)currentTarget.getY());
                     currentTarget.setHealth(currentTarget.getHealth() - damage);
                     if (currentTarget.getHealth() <= 0)
                         currentTarget = null;
@@ -85,5 +87,4 @@ public class SingleAttackTower extends Tower {
     {
         g.drawImage(image,xPos, yPos, height, width,null,null);
     }
-
 }

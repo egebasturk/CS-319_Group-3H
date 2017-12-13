@@ -41,7 +41,9 @@ public class GameController implements Runnable{
         frame.setLayout(new BorderLayout());
         gamePanel = new GamePanel(gameMap);
         gamePanel.setPreferredSize(new Dimension(gamePanelWidth, gamePanelHeight));
-        inputController = new InputController();
+        inputController = new InputController( gamePanel);
+        gamePanel.addMouseMotionListener(inputController);
+        gamePanel.addMouseListener(inputController);
         towerListController = new TowerListController();
         towerListController.setPreferredSize( new Dimension(80,80));
         towerListController.addMouseMotionListener(inputController);
