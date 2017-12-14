@@ -6,12 +6,8 @@
  */
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Tower extends GameObject {
 
@@ -19,19 +15,19 @@ public class Tower extends GameObject {
 	protected double rateOfFire;
 	protected int range;
 	protected int towerType;
-	protected BufferedImage image;
-	public int height;
-	public int width;
-	protected int xPos;
-	protected int yPos;
+	//protected BufferedImage image;
+	//public int height;
+	//Wpublic int width;
+	//protected int xPos;
+	//protected int yPos;
 	protected int xPosTile = 0;
 	protected int yPosTile = 0;
 	GameMap currentGameMap;
-	int currentAttackCooldown;
-	protected boolean attackedFlag;
+	int currentAttackCooldown; // Counter for cooldown after attack
+	protected boolean attackedFlag; // Flag to control cooldown
 
 	public Tower( GameMap currentGameMap, int xPos, int yPos) {
-	    //super();
+	    super();
         this.xPos = xPos;
         this.yPos = yPos;
 	    this.currentGameMap = currentGameMap;

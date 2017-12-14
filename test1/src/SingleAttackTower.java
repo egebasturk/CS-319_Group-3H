@@ -5,6 +5,8 @@
  * @ version 04.11.2017
  */
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.*;
@@ -69,6 +71,7 @@ public class SingleAttackTower extends Tower {
                 {
                     //Graphics g;
                     //g.drawLine((int)this.getX(), (int)this.getY(), (int)currentTarget.getX(), (int)currentTarget.getY());
+                    currentGameMap.addParticle( new Particle(this.xPos, this.yPos, currentTarget.getX(),currentTarget.getY(),currentGameMap));
                     currentTarget.setHealth(currentTarget.getHealth() - damage);
                     if (currentTarget.getHealth() <= 0)
                         currentTarget = null;
@@ -87,4 +90,5 @@ public class SingleAttackTower extends Tower {
     {
         g.drawImage(image,xPos, yPos, height, width,null,null);
     }
+
 }
