@@ -35,7 +35,7 @@ public class GameMap {
         attackers = new ArrayList<>(Arrays.asList(factory.createAttackers()));//new Model.Attacker[7 ];
         towers = new LinkedList<>();
         towers.add(new SingleAttackTower(this, 8*tileEdge,8*tileEdge));
-        hero = new HeroType1(this, 11*tileEdge,9*tileEdge);
+        hero = new HeroType2(this, 9,21);
         /*
         typeMatrix = new int[mapHeight][mapWidth];
         try {
@@ -112,6 +112,7 @@ public class GameMap {
     public void heroAttackLoop()
     {
         hero.attack();
+        hero.move();
     }
 	/**
 	 *

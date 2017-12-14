@@ -7,4 +7,5 @@ public class Assets
     public static String attacker2 = "src/main/resources/attacker2.png";
     public static String starTxt = "src/main/resources/starTxt.txt";
     public static String hero1 = "src/main/resources/hero1.png";
+    public static String hero2 = "src/main/resources/hero2.png";
 }

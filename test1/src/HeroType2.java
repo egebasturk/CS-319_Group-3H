@@ -1,27 +1,27 @@
 /**
- * Hero Type 1 Class
+ * Hero Type 2 Class
  * @ author Emre Gürçay
  * @ version 14.12.2017
  */
 import javax.imageio.ImageIO;
-import java.io.File;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 
-public class HeroType1 extends Hero{
+public class HeroType2 extends Hero{
     protected Attacker target;
+    private int time = 1000;
 
-
-    public HeroType1(GameMap gameMap, int endRow, int endColumn){
+    public HeroType2(GameMap gameMap, int endRow, int endColumn){
         super(gameMap,endRow,endColumn);
-        damage = 6;
-     //   rateOfAttack = 300;
+        damage = 26;
+        //   rateOfAttack = 300;
         target = null;
 
         try
         {
-            image = ImageIO.read(new File(Assets.hero1));
+            image = ImageIO.read(new File(Assets.hero2));
         }
         catch (IOException e){
             e.printStackTrace();
@@ -51,7 +51,7 @@ public class HeroType1 extends Hero{
             }
         }
     }
-    public void draw( int xPosition, int yPosition, Graphics g, int width, int height) {
+    public void draw(int xPosition, int yPosition, Graphics g, int width, int height) {
         //panel.paintComponent( g );
         g.drawImage( image, xPosition, yPosition, width, height, null, null);
     }
@@ -63,5 +63,4 @@ public class HeroType1 extends Hero{
 
     }
 }
-
 
