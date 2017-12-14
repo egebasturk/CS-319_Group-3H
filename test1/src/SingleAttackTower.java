@@ -5,6 +5,8 @@
  * @ version 04.11.2017
  */
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.*;
@@ -69,6 +71,7 @@ public class SingleAttackTower extends Tower {
                 {
                     //Graphics g;
                     //g.drawLine((int)this.getX(), (int)this.getY(), (int)currentTarget.getX(), (int)currentTarget.getY());
+                    attackedFlag = true;
                     currentTarget.setHealth(currentTarget.getHealth() - damage);
                     if (currentTarget.getHealth() <= 0)
                         currentTarget = null;
@@ -86,5 +89,12 @@ public class SingleAttackTower extends Tower {
     public void draw(Graphics g)
     {
         g.drawImage(image,xPos, yPos, height, width,null,null);
+        if (attackedFlag)
+        {
+            g.setColor(Color.RED);
+            g.drawLine((int)this.getX(), (int)this.getY(), (int) currentTarget.getX(), (int)currentTarget.getY());
+            attackedFlag = false;
+        }
     }
+
 }
