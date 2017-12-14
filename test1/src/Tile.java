@@ -16,6 +16,7 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
     private int width = 10;
     private int height = 10;
 	private boolean blocking = false; // For collision detection
+	private boolean heroCantPass = false;
 	//private BufferedImage[] image; // TODO: Load image of tile
 
     // Not used currently
@@ -34,6 +35,10 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
 	    this.id = id;
 	    if (type == 1)
 	    	blocking = true;
+	    else if (type == 2){
+	    	blocking = false;
+	    	heroCantPass = true;
+		}
 	    else
 	        blocking = false;
 	}
@@ -65,7 +70,7 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
     {
         //System.out.println("Model.Tile draw called");
         g.drawRect( xPos, yPos, width, height );
-        if (type == 0) {
+        if (type == 0 || type == 2) {
             g.setColor(Color.GRAY);
             g.fillRect(xPos, yPos, width, height);
         }
@@ -77,6 +82,10 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
     public boolean isBlocking()
 	{
 		return blocking;
+	}
+	public boolean heroPass()
+	{
+		return heroCantPass;
 	}
 
     @Override

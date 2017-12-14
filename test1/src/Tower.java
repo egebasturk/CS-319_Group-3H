@@ -53,6 +53,7 @@ public class Tower extends GameObject {
         for ( int i = 0; i < attackers.size(); i++)
         {
             distanceArray[i] = getDistanceBetweenTowerAndTarget(this, attackers.get(i));
+
             //System.out.println("Distance: " + distanceArray[i] +" Tower place: " + this.getX() + " " + this.getY());
             // If in range add attacker to the list
             if ( distanceArray[i] <= range && (!attackers.get(i).isKilled() && attackers.get(i).isAlive() ))

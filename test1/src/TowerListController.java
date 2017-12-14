@@ -18,7 +18,7 @@ public class TowerListController extends JPanel{
 
     // TODO deal with the magic numbers
 	private BufferedImage[] towerImages;
-	private int towerNumber = 2;
+	private int towerNumber = 3;
 	private int boxEdge = 50;
 	private int paddingLeft = 20;
 	private int paddingTop = 40;
@@ -32,10 +32,11 @@ public class TowerListController extends JPanel{
 
     public TowerListController()
     {
-        towerImages = new BufferedImage[2];
+        towerImages = new BufferedImage[3];
         try {
             towerImages[0] = ImageIO.read(new File(Assets.tower1));
             towerImages[1] = ImageIO.read(new File(Assets.tower2));
+            towerImages[2] = ImageIO.read(new File(Assets.hero1));
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -56,6 +57,7 @@ public class TowerListController extends JPanel{
         try {
             towerImages[0] = ImageIO.read(new File(Assets.tower1));
             towerImages[1] = ImageIO.read(new File(Assets.tower2));
+            towerImages[2] = ImageIO.read(new File(Assets.hero1));
         }
         catch (IOException e) {
             e.printStackTrace();
