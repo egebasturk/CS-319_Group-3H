@@ -62,6 +62,7 @@ public class Attacker extends GameObject
             e.printStackTrace();
         }
     }
+
     // Spawns in the given location
     public void spawn(int xPos, int yPos)
     {
