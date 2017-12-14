@@ -6,11 +6,10 @@
  * @ version 04.11.2017
  */
 
+import sun.rmi.runtime.Log;
+
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 public class GameMap {
 
@@ -24,10 +23,12 @@ public class GameMap {
     //public static Attacker[] attackers;
     public static ArrayList<Attacker> attackers;
     public static LinkedList<Tower> towers;
+    public static LinkedList<Particle> particles;
     // TODO This will be passed from the InputController
     private int[][] typeMatrix;
 
 	public GameMap() {
+	    particles = new LinkedList<>();
 	    AbstractFactory factory = new FactoryLevel1();
 	    // TODO Input controller will read when it is implemented
         tiles = factory.createTiles();//new Model.Tile[mapHeight][mapWidth];
@@ -140,6 +141,14 @@ public class GameMap {
         {
             i.draw(g);
         }
+        try {
+            for (Particle i: particles)
+            {
+                i.draw(g);
+            }
+        } catch (ConcurrentModificationException e) {
+
+        }
     }
     public ArrayList<Attacker> getAttackers()
     {
@@ -156,10 +165,23 @@ public class GameMap {
                 }
             }
         }
+        else if ( object instanceof Particle)
+        {
+            for (Iterator<Particle> it = particles.iterator(); it.hasNext();) {
+                Particle par = it.next();
+                if (par == object) {
+                    it.remove();
+                }
+            }
+        }
     }
     public void addTower(Tower newTower)
     {
         System.out.println("Tower added");
         towers.addLast(newTower);
+    }
+    public void addParticle(Particle particle)
+    {
+        particles.addLast(particle);
     }
 }

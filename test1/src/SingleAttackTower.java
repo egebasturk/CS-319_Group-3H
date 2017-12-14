@@ -71,7 +71,7 @@ public class SingleAttackTower extends Tower {
                 {
                     //Graphics g;
                     //g.drawLine((int)this.getX(), (int)this.getY(), (int)currentTarget.getX(), (int)currentTarget.getY());
-                    attackedFlag = true;
+                    currentGameMap.addParticle( new Particle(this.xPos, this.yPos, currentTarget.getX(),currentTarget.getY(),currentGameMap));
                     currentTarget.setHealth(currentTarget.getHealth() - damage);
                     if (currentTarget.getHealth() <= 0)
                         currentTarget = null;
@@ -89,12 +89,6 @@ public class SingleAttackTower extends Tower {
     public void draw(Graphics g)
     {
         g.drawImage(image,xPos, yPos, height, width,null,null);
-        if (attackedFlag)
-        {
-            g.setColor(Color.RED);
-            g.drawLine((int)this.getX(), (int)this.getY(), (int) currentTarget.getX(), (int)currentTarget.getY());
-            attackedFlag = false;
-        }
     }
 
 }

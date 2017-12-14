@@ -32,4 +32,12 @@ public class GameObject extends Rectangle{
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public double getX() {
+		return this.xPos;
+	}
+	@Override
+	public double getY() {
+		return this.yPos;
+	}
 }
