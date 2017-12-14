@@ -54,7 +54,7 @@ public class Hero extends GameObject {
             // System.out.println(attackers.get(i).xPosTile * GameMap.tileEdge);
          //   System.out.println(this.getX() + "and Y is: " + this.getY());
          //    System.out.println(this.getX() - attackers.get(i).xPosTile * GameMap.tileEdge);
-            if ((this.getY() - attackers.get(i).yPosTile*GameMap.tileEdge) < 2*GameMap.tileEdge && (this.getX() - attackers.get(i).xPosTile * GameMap.tileEdge) < 2*GameMap.tileEdge) {
+            if ((this.getY() - attackers.get(i).yPosTile*GameMap.tileEdge) < GameMap.tileEdge && (this.getX() - attackers.get(i).xPosTile * GameMap.tileEdge) < GameMap.tileEdge) {
                 System.out.println("Attacker catched");
                 for(int j = 0; j < attackers.size(); j++)
                     attackers.get(j).speed = 0;
@@ -63,17 +63,17 @@ public class Hero extends GameObject {
         }
         return null;
     }
-    public void moveAttckers(){
+    public void moveAttackers(){
         ArrayList<Attacker> attackers2 = gameMap.getAttackers();
 
         for(int i = 0; i < attackers2.size(); i++)
         {
-           // attackers2.get(i).speed = 20;
+            attackers2.get(i).speed = 1;
         }
     }
     public void move()
     {
-        System.out.println(" x tile is: " +  xPosTile );
+        //System.out.println(" x tile is: " +  xPosTile );
         try{
             if(currentMoveCounter >= 700) {
                 location++;
@@ -81,14 +81,15 @@ public class Hero extends GameObject {
                     xPosTile--;
                     location = 0;
                 }
-                System.out.println(GameMap.tiles[this.yPosTile][xPosTile - 1].heroPass());
+                //System.out.println(GameMap.tiles[this.yPosTile][xPosTile - 1].heroPass());
                 if (GameMap.tiles[yPosTile][xPosTile - 1].heroPass()) {
                     x -= speed;
+                    xPosTile--;
                     speed = 0;
                     currentMoveCounter = 0;
                 }
                 x -= speed;
-                System.out.println("x is : " + x);
+                //System.out.println("x is : " + x);
 
             }else
             {
@@ -97,7 +98,7 @@ public class Hero extends GameObject {
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
-            System.out.println("y tile is: " +  yPosTile + " x tile is: " +  xPosTile );
+            //System.out.println("y tile is: " +  yPosTile + " x tile is: " +  xPosTile );
         }
 
     }

@@ -394,7 +394,7 @@ public class MainPageFrame extends JPanel {
             return true;
         }
         else {
-            if (createStars(level) == 0) {
+            if (createStars(level -1) == 0) {
                 return false;
             } else return true;
         }

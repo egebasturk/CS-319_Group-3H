@@ -8,4 +8,6 @@ public class Assets
     public static String starTxt = "src/main/resources/starTxt.txt";
     public static String hero1 = "src/main/resources/hero1.png";
     public static String hero2 = "src/main/resources/hero2.png";
+    public static String kapow = "src/main/resources/kapow.png";
+    public static String kapow2 = "src/main/resources/kapow2.png";
 }
