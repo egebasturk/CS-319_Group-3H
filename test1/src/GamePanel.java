@@ -12,21 +12,15 @@
 import javax.swing.*;
 import java.awt.*;
 
-/*
- */
 public class GamePanel extends JPanel
 {
     //private int spawnCooldown = 1000;
     //private int spawnTimer = 0;
     public GameMap gameMap;
 
-//    public static Model.Attacker[] attackers = new Model.Attacker[7 ];//TODO: Make according to level.(Also implement a proper formula)
-
     public GamePanel()
     {
         System.out.print("GamePanel Created");
-        //gameMap = new GameMap();
-
     }
     public GamePanel(GameMap gameMap)
     {
@@ -52,16 +46,4 @@ public class GamePanel extends JPanel
     public Graphics getGraphics() {
         return super.getGraphics();
     }
-    /**
-    * Calls move function of the Attackers. Which makes them update their locations
-    * after checking their position according to path.
-    * *//*
-    public void motion()
-    {
-        gameMap.attackerMotionLoop();
-    }
-    public void spawnAttackers()
-    {
-        gameMap.attackerSpawnLoop();
-    }*/
 }

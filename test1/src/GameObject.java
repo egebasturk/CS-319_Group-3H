@@ -9,11 +9,11 @@ import java.awt.image.BufferedImage;
 // TODO: Under construction. Will be useful when other classes are implemented.
 public class GameObject extends Rectangle{
 
-	private int xPosition;
-	private int yPosition;
-	private BufferedImage image;
-	private int width;
-	private int height;
+	protected int xPos;
+	protected int yPos;
+	protected BufferedImage image;
+	protected int width;
+	protected int height;
 	private int objectID;
 
 	/**

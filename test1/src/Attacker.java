@@ -25,7 +25,7 @@ public class Attacker extends GameObject
 	protected direction currentDirection = direction.right;
 	protected int locationTrackerInTile = 0;
 
-	protected BufferedImage image;
+	//protected BufferedImage image;
 	protected int bounty = 0;
 	protected int attackerType = 0;
 	protected int boxEdge = 50;
@@ -34,11 +34,11 @@ public class Attacker extends GameObject
 	protected boolean killed = false;
 
 	// Position vals
-	protected int xPos = 0;
-	protected int yPos = 0;
+	//protected int xPos = 0;
+	//protected int yPos = 0;
 	protected int xPosTile = 0;
 	protected int yPosTile = 0;
-	protected int attackerID;
+	//protected int attackerID;
 
 	protected GameMap currentGameMap;
 	public Attacker() {
@@ -47,11 +47,12 @@ public class Attacker extends GameObject
 	// TODO: Attackers may find entry point themselves.
 	public Attacker(int entryRow)
     {
+        super();
         // 0 - boxEdge, to start off the map
         this.xPos = 0;
         this.xPosTile = 0;
-        int entryPosition = entryRow * GameMap.tileEdge;
-        this.yPos = entryPosition;
+        // Starts y from the entry row
+        this.yPos = entryRow * GameMap.tileEdge;
         this.yPosTile = entryRow;
         //this.alive = true;
         try {
@@ -64,7 +65,6 @@ public class Attacker extends GameObject
     // Spawns in the given location
     public void spawn(int xPos, int yPos)
     {
-        //System.out.println("Model.Attacker spawned");
         this.alive = true;
         // x - boxEdge, to better transition from outside of the map to inside
         this.setBounds(xPos, yPos, boxEdge, boxEdge);
@@ -192,15 +192,6 @@ public class Attacker extends GameObject
     {
         return health;
     }
-	public void notifyDeath() {
-		// TODO - implement Model.Attacker.notifyDeath
-        // Intention: Caller will know this and set reference to null.
-        // TODO: Should be implemented for this class and the caller
-        if (health <= 0)
-        {
-            alive = false;
-        }
-	}
 	public void setCurrentGameMap(GameMap gameMap)
     {
         currentGameMap = gameMap;
@@ -216,9 +207,6 @@ public class Attacker extends GameObject
 
         if (alive || !killed) {
             g.drawImage(image,xPos, yPos, boxEdge, boxEdge,null,null);
-            //g.drawRect(xPos, yPos, boxEdge, boxEdge);
-            //g.setColor(Color.BLACK);
-            //g.fillRect(xPos, yPos, boxEdge, boxEdge);
         }
     }
 
