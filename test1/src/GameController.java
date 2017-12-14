@@ -13,7 +13,40 @@ import java.awt.image.BufferStrategy;
 
 public class GameController implements Runnable{
 
+    enum ThreadFunctionality {ONE, TWO, THREE};
     private Thread thread = new Thread(this);
+    /*private ThreadMethod threadMethod1 = new ThreadMethod( this, this, ThreadFunctionality.ONE);
+    private ThreadMethod threadMethod2 = new ThreadMethod( this, this, ThreadFunctionality.TWO);
+    private ThreadMethod threadMethod3 = new ThreadMethod( this, this, ThreadFunctionality.THREE);*/
+
+    class ThreadMethod extends Thread{
+        GameController gameController;
+        GameController.ThreadFunctionality threadFunctionality;
+        public ThreadMethod(Runnable runnable, GameController gameController, GameController.ThreadFunctionality threadFunctionality)
+        {
+            this.threadFunctionality = threadFunctionality;
+            this.gameController = gameController;
+        }
+        @Override
+        public void run()
+        {
+            while ( isRunning) {
+                if (threadFunctionality == ThreadFunctionality.ONE)
+                    gameController.gameMap.towerAttackLoop();
+                else if (threadFunctionality == ThreadFunctionality.TWO)
+                    gameController.gameMap.attackerMotionLoop();
+                else if (threadFunctionality == ThreadFunctionality.THREE)
+                    gameController.gameMap.attackerSpawnLoop();
+            }
+            try {
+                ThreadMethod.sleep(1);
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
 	public long elapsedTime = 0; // TODO: Will be used for resource calculations
 	public static int level; // TODO: Will be used for the attacker list calculations
     // States
@@ -59,7 +92,10 @@ public class GameController implements Runnable{
         frame.setVisible(true);
 
         System.out.println("GameController created");
-        thread.start();
+        thread.start();/*
+        threadMethod1.start();
+        threadMethod2.start();
+        threadMethod3.start();*/
 	}
 	private void setGameMaps()
     {
@@ -68,6 +104,7 @@ public class GameController implements Runnable{
             i.setCurrentGameMap(gameMap);
         }
     }
+
 	/**
      *  Run method. Calls paint method of gamePanel which calls the draw method of all objects.
 	*/
@@ -81,6 +118,7 @@ public class GameController implements Runnable{
 			gamePanel.spawnAttackers();
 			gamePanel.motion();
 			*/
+
             gameMap.attackerMotionLoop();
             gameMap.attackerSpawnLoop();
             gameMap.towerAttackLoop();
