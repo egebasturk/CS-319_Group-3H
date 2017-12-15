@@ -23,7 +23,7 @@ public class TowerListController extends JPanel{
 	private int paddingLeft = 20;
 	private int paddingTop = 40;
 	private int paddingAmongBoxes = 10;
-	private int[] towerCosts = {0,10,15};
+	private int[] towerCosts = {0,10,15, 40};
 
 	private Rectangle[] towers = new Rectangle[towerNumber];
 	public static int panelWidth = 20;

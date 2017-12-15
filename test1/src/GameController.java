@@ -59,7 +59,7 @@ public class GameController implements Runnable{
 	private TowerListController towerListController;
 	private InputController inputController;
 	public GameMap gameMap;
-	public enum selectedTowerFromTheList { None, tower1, tower2};
+	public enum selectedTowerFromTheList { None, tower1, tower2, hero1, hero2}
 	public selectedTowerFromTheList currentSelectedTowerFromTheList;
 	public Graphics g;
 
@@ -147,7 +147,7 @@ public class GameController implements Runnable{
         return currentSelectedTowerFromTheList;
     }
 
-    public void addTower(Tower newTower)
+    public void addTowerOrHero(GameObject newTowerOrHero)
     {
         // The loop finds the selected tower
         int i;
@@ -160,7 +160,7 @@ public class GameController implements Runnable{
         // Add only if the player has enough gold
         if ( towerListController.getTowerCost(i) <= playerGold)
         {
-            if ( gameMap.addTower(newTower) )
+            if ( gameMap.addTowerOrHero(newTowerOrHero) )
                 playerGold = playerGold - towerListController.getTowerCost(i);
         }
     }
