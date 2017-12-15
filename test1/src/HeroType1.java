@@ -18,7 +18,7 @@ public class HeroType1 extends Hero{
 
     public HeroType1(GameMap gameMap, int endRow, int endColumn){
         super(gameMap,endRow,endColumn);
-        damage = 5;
+        damage = 15;
         //target = null;
 
         xPos = endColumn * GameMap.tileEdge;
@@ -35,7 +35,7 @@ public class HeroType1 extends Hero{
     @Override
     public void attack()
     {
-        currentAttackBehaviour.heroAttack( this );
+        fight = currentAttackBehaviour.heroAttack( this );
         /*
         if (target == null) {
             target = killList();
@@ -84,6 +84,7 @@ public class HeroType1 extends Hero{
         {
             //System.out.println("kapoww");
             g.drawImage(kapowImage,xPos- GameMap.tileEdge/2, yPos-GameMap.tileEdge/2, 75, 75,null,null);
+            fight = false;
         }
     }
 }

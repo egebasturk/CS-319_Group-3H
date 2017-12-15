@@ -15,8 +15,9 @@ public class HeroAttack implements AttackBehaviour {
     }
 
     @Override
-    public void heroAttack(Hero attackSource)
+    public boolean heroAttack(Hero attackSource)
     {
+        boolean flag = false;
         if (attackSource.currentAttackCooldown >= attackSource.rateOfFire )
         {
             attackSource.currentAttackCooldown = 0;
@@ -27,10 +28,12 @@ public class HeroAttack implements AttackBehaviour {
                 at.setxPosTile( at.getxPosTile() - 1);
                 at.setX(at.getX() - 20);
                 at.setHealth(at.getHealth() - attackSource.damage);
+                flag = true;
             }
         }
         else
             attackSource.currentAttackCooldown++;
+        return flag;
     }
 
 }
