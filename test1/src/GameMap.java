@@ -47,12 +47,12 @@ public class GameMap {
         attackers = new ArrayList<>(Arrays.asList(factory.createAttackers()));
         towers = new LinkedList<>();
         //towers.add(new AreaAttackTower(this, 8*tileEdge,8*tileEdge));
-<<<<<<< HEAD
+
        // hero = new HeroType1(this, 9,18);
         base = new Base( this, 9, 19);
-=======
+
         //hero = new HeroType1(this, 9,18);
->>>>>>> f8e80aa156aec8b9223757a1a78537088f90316b
+
         //obstacle = new Obstacle(this,11,9);
         /*
         typeMatrix = new int[mapHeight][mapWidth];
@@ -146,22 +146,22 @@ public class GameMap {
     }
     public void heroAttackLoop()
     {
-<<<<<<< HEAD
+
         //hero.attack();
        // hero.move();
-=======
+
         // Somehow if (null) check does not always work.
         // It may be due to concurrent modification. Written try-catch when it goes wrong
-        try {
+       /* try {
             if (hero != null) {
                 hero.attack();
-                hero.move();
+                hero.move(); 
             }
-        } catch (NullPointerException ne)
+        } catch (NullPointerException ne) */
         {
 
         }
->>>>>>> f8e80aa156aec8b9223757a1a78537088f90316b
+
        // obstacle.stopList();
     }
 	/**
@@ -197,13 +197,13 @@ public class GameMap {
         {
             i.draw(g);
         }
-<<<<<<< HEAD
+
         //hero.draw(g);
         base.draw(g);
-=======
-        if ( hero != null)
-            hero.draw(g);
->>>>>>> f8e80aa156aec8b9223757a1a78537088f90316b
+
+     //   if ( hero != null)
+           // hero.draw(g);
+
        // obstacle.draw(g);
         try {
             for (Particle i: particles)
@@ -241,7 +241,7 @@ public class GameMap {
         }
         if ( object instanceof Hero )
         {
-            hero = null;
+           // hero = null;
         }
     }
     public boolean addTowerOrHero(GameObject newTowerOrHero)
@@ -261,7 +261,7 @@ public class GameMap {
         }
         else if ( newTowerOrHero instanceof Hero )
         {
-            hero = (Hero) newTowerOrHero;
+            //hero = (Hero) newTowerOrHero;
             return true;
         }
         return false;
