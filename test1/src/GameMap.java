@@ -105,9 +105,13 @@ public class GameMap {
     }
     public void towerAttackLoop()
     {
-        for (Tower i: towers)
+        try {
+            for (Tower i : towers) {
+                i.attack();
+            }
+        }catch (ConcurrentModificationException cme)
         {
-            i.attack();
+
         }
     }
     public void heroAttackLoop()
@@ -185,6 +189,18 @@ public class GameMap {
     }
     public boolean addTower(Tower newTower)
     {
+        //TODO: Solve index out of bounds error
+        int tileXLocation = (int)newTower.getX()/tileEdge;
+        int tileYLocation = (int)newTower.getY()/tileEdge;
+        /*if (tileXLocation >= mapWidth)
+            tileXLocation--;
+        if (tileYLocation >= mapHeight)
+            tileYLocation++;*/
+        if ( tiles[tileYLocation][tileXLocation].getType() != 1 )
+        {
+            System.out.println("Cannot add tower tile type is "  + tiles[tileXLocation][tileYLocation].getType());
+            return false;
+        }
         for (Iterator<Tower> it = towers.iterator(); it.hasNext();) {
             Tower tow = it.next();
             if (tow.getX() == newTower.getX() && tow.getY() == newTower.getY()) {

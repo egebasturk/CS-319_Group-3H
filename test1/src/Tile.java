@@ -97,4 +97,8 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
     public double getY() {
         return yPos;
     }
+    public int getType()
+	{
+		return this.type;
+	}
 }
