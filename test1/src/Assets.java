@@ -14,5 +14,7 @@ public class Assets
     public static String rock = "src/main/resources/rock.png";
     public static String closed = "src/main/resources/closed.png";
     public static String open = "src/main/resources/open.png";
+    public static String grass = "src/main/resources/grass.png";
+    public static String rocktile = "src/main/resources/rocktile.png";
 }
 
