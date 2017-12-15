@@ -88,7 +88,13 @@ public class GameMap {
         if ( level == 1)
             return new FactoryLevel1();
         else if ( level == 2)
-            return new FactoryLevel1();
+            return new FactoryLevel2();
+        else if ( level == 3)
+            return new FactoryLevel3();
+        else if ( level == 4)
+            return new FactoryLevel4();
+        else if ( level == 5)
+            return new FactoryLevel5();
         return null;
     }
     /**

@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FactoryLevel1 extends AbstractFactory {
+public class FactoryLevel3 extends AbstractFactory {
     private Tile[][] tiles;
     private Attacker[] attackers;
     private int level;
@@ -11,12 +11,12 @@ public class FactoryLevel1 extends AbstractFactory {
     public static int tileEdge = 40;
     private int[][] typeMatrix;
 
-    FactoryLevel1( )
+    FactoryLevel3( )
     {
-        this.level = 1;
+        this.level = 2;
         typeMatrix = new int[mapHeight][mapWidth];
         // TODO: implement an algorithm to calculate
-        attackers = new Attacker[15];
+        attackers = new Attacker[40];
 
         endColumn = mapWidth - 1;
         for ( int i = 0; i < mapHeight; i++ )
