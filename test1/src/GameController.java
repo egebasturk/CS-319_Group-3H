@@ -223,7 +223,7 @@ public class GameController implements Runnable{
 
 	// Currently this is implemented by checking the ArrayIndexOutOfBounds Exception, which is thrown when an attacker finishes the path.
 	private boolean isGameOver() {
-		if (gameMap.getAttackers().isEmpty())
+		if (gameMap.getAttackers().isEmpty() || gameMap.base.getHealth() <= 0)
 		    return true;
 		return false;
 	}

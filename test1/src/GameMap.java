@@ -23,8 +23,8 @@ public class GameMap {
     //public static Attacker[] attackers;
     public static ArrayList<Attacker> attackers;
     public static LinkedList<Tower> towers;
-   // public static Hero hero;
-    protected static Base base;
+    public static Hero hero;
+    public Base base;
     public static Obstacle obstacle;
     public static LinkedList<Particle> particles;
     // TODO This will be passed from the InputController
@@ -146,18 +146,17 @@ public class GameMap {
     }
     public void heroAttackLoop()
     {
-
         //hero.attack();
-       // hero.move();
+        //hero.move();
 
         // Somehow if (null) check does not always work.
         // It may be due to concurrent modification. Written try-catch when it goes wrong
-       /* try {
+        try {
             if (hero != null) {
                 hero.attack();
                 hero.move(); 
             }
-        } catch (NullPointerException ne) */
+        } catch (NullPointerException ne)
         {
 
         }
@@ -197,12 +196,10 @@ public class GameMap {
         {
             i.draw(g);
         }
-
-        //hero.draw(g);
+        if ( hero != null)
+            hero.draw(g);
         base.draw(g);
 
-     //   if ( hero != null)
-           // hero.draw(g);
 
        // obstacle.draw(g);
         try {
@@ -241,7 +238,7 @@ public class GameMap {
         }
         if ( object instanceof Hero )
         {
-           // hero = null;
+            hero = null;
         }
     }
     public boolean addTowerOrHero(GameObject newTowerOrHero)
@@ -261,7 +258,7 @@ public class GameMap {
         }
         else if ( newTowerOrHero instanceof Hero )
         {
-            //hero = (Hero) newTowerOrHero;
+            hero = (Hero) newTowerOrHero;
             return true;
         }
         return false;
