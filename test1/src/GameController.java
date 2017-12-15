@@ -15,6 +15,7 @@ public class GameController implements Runnable{
 
     enum ThreadFunctionality {ONE, TWO, THREE};
     private Thread thread = new Thread(this);
+    private int playerGold;
     /*private ThreadMethod threadMethod1 = new ThreadMethod( this, this, ThreadFunctionality.ONE);
     private ThreadMethod threadMethod2 = new ThreadMethod( this, this, ThreadFunctionality.TWO);
     private ThreadMethod threadMethod3 = new ThreadMethod( this, this, ThreadFunctionality.THREE);*/
@@ -69,10 +70,11 @@ public class GameController implements Runnable{
 
 
 	public GameController() {
+        level = 1; // TODO: Properly implement this
+        playerGold = level * 100;
 	    currentSelectedTowerFromTheList = selectedTowerFromTheList.None;
         gameMap = new GameMap();
         setGameMaps();
-	    level = 1; // TODO: Properly implement this
         frame = new Frame();
         frame.setLayout(new BorderLayout());
         gamePanel = new GamePanel(gameMap);
@@ -147,7 +149,20 @@ public class GameController implements Runnable{
 
     public void addTower(Tower newTower)
     {
-        gameMap.addTower(newTower);
+        // The loop finds the selected tower
+        int i;
+        for (i = 0; i < selectedTowerFromTheList.values().length; i++)
+        {
+            if ( selectedTowerFromTheList.values()[i] == currentSelectedTowerFromTheList )
+                break;
+        }
+        System.out.println("Player gold is: " + playerGold);
+        // Add only if the player has enough gold
+        if ( towerListController.getTowerCost(i) <= playerGold)
+        {
+            playerGold = playerGold - towerListController.getTowerCost(i);
+            gameMap.addTower(newTower);
+        }
     }
 
 	public void updateTime() {
