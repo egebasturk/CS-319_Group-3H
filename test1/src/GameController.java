@@ -97,6 +97,7 @@ public class GameController implements Runnable{
         threadMethod2.start();
         threadMethod3.start();*/
 	}
+	// Sets game map references of the attackers. They need it to notify the controller when they die.
 	private void setGameMaps()
     {
         for (Attacker i: gameMap.getAttackers())

@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Tower extends GameObject {
-
+    AttackBehaviour currentAttackBehaviour;
+    protected Attacker currentTarget;
 	protected double damage;
 	protected double rateOfFire;
 	protected int range;

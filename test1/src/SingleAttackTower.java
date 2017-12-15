@@ -16,7 +16,6 @@ import java.util.NoSuchElementException;
 import java.util.Queue;
 
 public class SingleAttackTower extends Tower {
-    protected Attacker currentTarget;
 
 
     public void attack(int attackerID, double damage) {
@@ -26,6 +25,7 @@ public class SingleAttackTower extends Tower {
 
     public SingleAttackTower(GameMap currentGameMap, int xPos, int yPos) {
         super(currentGameMap, xPos, yPos);
+        currentAttackBehaviour = new SingleAttack();
         damage = 5;
         currentTarget = null;
         rateOfFire = 300;
@@ -40,46 +40,11 @@ public class SingleAttackTower extends Tower {
             e.printStackTrace();
         }
     }
+
     @Override
     public void attack()
     {
-        if (currentAttackCooldown >= rateOfFire )
-        {
-            currentAttackCooldown = 0;
-            if (currentTarget == null) {
-                Queue attackersInRange = this.getAttackersInRange();
-                // If List is empty catch the exception and set target to null to pass
-                try {
-                    currentTarget = (Attacker) attackersInRange.remove();
-                    while ( currentTarget.isKilled() || !currentTarget.isAlive())
-                        currentTarget = (Attacker) attackersInRange.remove();
-                }catch (NoSuchElementException e) {
-                    currentTarget = null;
-                    currentAttackCooldown = 20;
-                }
-            }
-            if (currentTarget != null)
-            {
-                //System.out.println("Target is not null");
-                //System.out.println(currentTarget.getHealth());
-                // Check condition if it is in range
-                if ( super.getDistanceBetweenTowerAndTarget(this, currentTarget) > this.range)
-                {
-                    currentTarget = null;
-                }
-                else// Attack
-                {
-                    //Graphics g;
-                    //g.drawLine((int)this.getX(), (int)this.getY(), (int)currentTarget.getX(), (int)currentTarget.getY());
-                    currentGameMap.addParticle( new Particle(this.xPos, this.yPos, currentTarget.getX(),currentTarget.getY(),currentGameMap));
-                    currentTarget.setHealth(currentTarget.getHealth() - damage);
-                    if (currentTarget.getHealth() <= 0)
-                        currentTarget = null;
-                }
-            }
-        }
-        else
-            currentAttackCooldown++;
+        currentAttackBehaviour.singleAttack(this);
     }
     public void draw( int xPosition, int yPosition, Graphics g, int width, int height) {
         //panel.paintComponent( g );
