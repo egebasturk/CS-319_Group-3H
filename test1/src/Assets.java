@@ -12,4 +12,7 @@ public class Assets
     public static String kapow = "src/main/resources/kapow.png";
     public static String kapow2 = "src/main/resources/kapow2.png";
     public static String rock = "src/main/resources/rock.png";
+    public static String closed = "src/main/resources/closed.png";
+    public static String open = "src/main/resources/open.png";
 }
+
