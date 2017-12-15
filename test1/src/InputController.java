@@ -65,6 +65,7 @@ public class InputController implements MouseMotionListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
+	    // First is: When clicked on the TowerList
 	    if ( mouseEvent.getComponent() == currentTowerListPanel)
         {
             int index = currentTowerListPanel.getElementIndexFromTheList(mouseEvent.getX(), mouseEvent.getY());
@@ -75,14 +76,24 @@ public class InputController implements MouseMotionListener, MouseListener {
                 System.out.println("Selected tower: " + index);
             }
         }
+        // Second is: if clicked on the main game panel
 	    else if ( mouseEvent.getComponent() == currentGamePanel )
         {
             System.out.println("Clicked on: " + mouseEvent.getX() + " " + mouseEvent.getY());
+            // If there is a previous selection, continue else if none, don't do anything
             if ( currentGameController.getCurrentSelectedTowerFromTheList() != GameController.selectedTowerFromTheList.None)
             {
                 Point clickPoint = getTileLocationOfClick( mouseEvent );
-                currentGameController.addTower(new SingleAttackTower(currentGameController.gameMap,
-                        (int)clickPoint.getX(), (int)clickPoint.getY()));
+                if ( currentGameController.getCurrentSelectedTowerFromTheList() != GameController.selectedTowerFromTheList.tower1 )
+                {
+                    currentGameController.addTower(new SingleAttackTower(currentGameController.gameMap,
+                            (int) clickPoint.getX(), (int) clickPoint.getY()));
+                }
+                else if (currentGameController.getCurrentSelectedTowerFromTheList() != GameController.selectedTowerFromTheList.tower2 )
+                {
+                    currentGameController.addTower(new AreaAttackTower(currentGameController.gameMap,
+                            (int) clickPoint.getX(), (int) clickPoint.getY()));
+                }
                 currentGameController.setCurrentSelectedTowerFromTheList(GameController.selectedTowerFromTheList.None);
             }
 
