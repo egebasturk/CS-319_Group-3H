@@ -5,12 +5,12 @@ import java.io.IOException;
 public class mapMatrixReader
 {
 
-    public static Tile[][] readMapFromMatrix( int mapHeight, int mapWidth, int tileEdge)
+    public static Tile[][] readMapFromMatrix( int mapHeight, int mapWidth, int tileEdge, int level)
     {
         int[][] typeMatrix = new int[mapHeight][mapWidth];
         Tile[][] tiles = new Tile[mapHeight][mapWidth];
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/map1.mat"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/map" + level + ".mat"));
             // Reads according to octaves output format
             // May directly read rows and columns from the file.
             for ( int i = 0; i < 5 ; i++) {
