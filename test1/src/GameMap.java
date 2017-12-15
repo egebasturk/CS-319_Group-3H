@@ -24,6 +24,7 @@ public class GameMap {
     public static ArrayList<Attacker> attackers;
     public static LinkedList<Tower> towers;
     public static Hero hero;
+    public Base base;
     public static Obstacle obstacle;
     public static LinkedList<Particle> particles;
     // TODO This will be passed from the InputController
@@ -46,7 +47,12 @@ public class GameMap {
         attackers = new ArrayList<>(Arrays.asList(factory.createAttackers()));
         towers = new LinkedList<>();
         //towers.add(new AreaAttackTower(this, 8*tileEdge,8*tileEdge));
+
+       // hero = new HeroType1(this, 9,18);
+        base = new Base( this, 9, 19);
+
         //hero = new HeroType1(this, 9,18);
+
         //obstacle = new Obstacle(this,11,9);
         /*
         typeMatrix = new int[mapHeight][mapWidth];
@@ -140,17 +146,21 @@ public class GameMap {
     }
     public void heroAttackLoop()
     {
+        //hero.attack();
+        //hero.move();
+
         // Somehow if (null) check does not always work.
         // It may be due to concurrent modification. Written try-catch when it goes wrong
         try {
             if (hero != null) {
                 hero.attack();
-                hero.move();
+                hero.move(); 
             }
         } catch (NullPointerException ne)
         {
 
         }
+
        // obstacle.stopList();
     }
 	/**
@@ -188,6 +198,9 @@ public class GameMap {
         }
         if ( hero != null)
             hero.draw(g);
+        base.draw(g);
+
+
        // obstacle.draw(g);
         try {
             for (Particle i: particles)

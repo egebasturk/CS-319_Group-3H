@@ -22,7 +22,10 @@ public class Attacker extends GameObject
 	protected enum direction { right, left, up, down}
 	protected direction currentDirection = direction.right;
 	protected int locationTrackerInTile = 0;
-
+    protected int currentAttackCooldown;
+    protected int rateOfFire;
+    protected int damage;
+    private AttackBehaviour currentAttackBehavior;
 	// Health related values
     protected double currentHealth;
     protected double maxHealth = 100;
@@ -63,6 +66,10 @@ public class Attacker extends GameObject
         // Starts y from the entry row
         this.yPos = entryRow * GameMap.tileEdge;
         this.yPosTile = entryRow;
+        rateOfFire = 30;
+        currentAttackCooldown = 0;
+        damage = 5;
+        currentAttackBehavior = new AttackerAttack();
         //this.alive = true;
         try {
             image = ImageIO.read(new File(Assets.attacker2));
@@ -187,9 +194,14 @@ public class Attacker extends GameObject
         }catch (ArrayIndexOutOfBoundsException e)
         {
             // TODO: Implement a proper exit strategy
-            System.out.println("Game has finished. This is primitive end. Work in progress");
+           /* System.out.println("Game has finished. This is primitive end. Work in progress");
             JOptionPane.showMessageDialog(null, "Game Has Finished");
-            System.exit(0);
+            System.exit(0); */
+         /*  currentGameMap.base.setHealth((currentGameMap.base.getHealth())- damage);
+
+           System.out.println("attacker out of array"); */
+            currentAttackBehavior.attackerAttack(this);
+
         }
 	}
 	public void setHealth(double health)

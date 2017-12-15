@@ -3,4 +3,5 @@ public interface AttackBehaviour {
     void singleAttack( Tower attackSource);
     void areaAttack( Tower attackSource);
     boolean heroAttack( Hero attackSource );
+    void attackerAttack( Attacker attackSource );
 }
