@@ -15,7 +15,7 @@ public class Hero extends GameObject {
     protected int location = 0;
     protected direction currentDirection = Hero.direction.left;
     protected double damage;
-    //protected double health;
+    //protected double currentHealth;
     protected double rateOfAttack;
     protected BufferedImage image;
     protected int heroType;

@@ -9,7 +9,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -20,13 +19,22 @@ public class Attacker extends GameObject
 	protected double speed = 1.0;
 	protected double currentMoveCounter = 0;
 	protected int moveThreshold = 30;
-	protected double health = 100;
 	protected enum direction { right, left, up, down}
 	protected direction currentDirection = direction.right;
 	protected int locationTrackerInTile = 0;
 
+	// Health related values
+    protected double currentHealth;
+    protected double maxHealth = 100;
+
+    // Health Bar related values
+    protected final int heightOfHealthBar = 5;
+    protected final int widthOfHealthBar = 20;
+    protected final int paddingTopOfHealthBar = 5;
+    protected final int paddingLeftOfHealthBar = 10;
+
 	//protected BufferedImage image;
-	protected int bounty = 0;
+	protected int bounty = 5;
 	protected int attackerType = 0;
 	protected int boxEdge = 50;
 	// Boolean vals
@@ -48,6 +56,7 @@ public class Attacker extends GameObject
 	public Attacker(int entryRow)
     {
         super();
+        currentHealth = maxHealth;
         // 0 - boxEdge, to start off the map
         this.xPos = 0;
         this.xPosTile = 0;
@@ -185,13 +194,13 @@ public class Attacker extends GameObject
 	}
 	public void setHealth(double health)
     {
-	    this.health = health;
-	    if (this.health <= 0)
+	    this.currentHealth = health;
+	    if (this.currentHealth <= 0)
 	        initializeDeath();
     }
     public double getHealth()
     {
-        return health;
+        return currentHealth;
     }
 	public void setCurrentGameMap(GameMap gameMap)
     {
@@ -202,12 +211,17 @@ public class Attacker extends GameObject
 		killed = true;
 		currentGameMap.notifyDeath(this);
 	}
-
+    int tmp; // Stores result of temporary calculation
 	public void draw(Graphics g)
     {
 
         if (alive || !killed) {
             g.drawImage(image,xPos, yPos, boxEdge, boxEdge,null,null);
+            g.setColor(Color.blue);
+            tmp = (int)(currentHealth * widthOfHealthBar / maxHealth);
+            g.fillRect(xPos + paddingLeftOfHealthBar,yPos - paddingTopOfHealthBar, tmp, heightOfHealthBar);
+            g.setColor(Color.red);
+            g.fillRect(xPos + tmp + paddingLeftOfHealthBar,yPos - paddingTopOfHealthBar, widthOfHealthBar - tmp, heightOfHealthBar);
         }
     }
 
