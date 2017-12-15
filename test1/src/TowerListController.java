@@ -23,6 +23,7 @@ public class TowerListController extends JPanel{
 	private int paddingLeft = 20;
 	private int paddingTop = 40;
 	private int paddingAmongBoxes = 10;
+	private int playerGold;
 	private int[] towerCosts = {0,10,15, 40, 50};
 
 	private Rectangle[] towers = new Rectangle[towerNumber];
@@ -47,30 +48,13 @@ public class TowerListController extends JPanel{
             towers[i] = new Rectangle( paddingLeft, paddingTop + i * boxEdge + paddingAmongBoxes, boxEdge, boxEdge - paddingAmongBoxes);
         }
     }
-    // TODO:Might be unnecessary, remove if not used
-	public TowerListController(int gamePanelWidth, int gamePanelHeight)
-    {
-        towerImages = new BufferedImage[2];
-		for ( int i = 0; i < towers.length; i++)
-        {
-            towers[i] = new Rectangle( paddingLeft, paddingTop + i * boxEdge + paddingAmongBoxes, boxEdge, boxEdge - paddingAmongBoxes);
-        }
-        try {
-            towerImages[0] = ImageIO.read(new File(Assets.tower1));
-            towerImages[1] = ImageIO.read(new File(Assets.tower2));
-            towerImages[2] = ImageIO.read(new File(Assets.hero1));
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
     public void paintComponent( Graphics g )
     {
         // TODO: Draw Borders. This is not working
         g.setColor(Color.gray);
         g.fillRect(this.getX(),this.getY(),this.getWidth(),this.getHeight());
-
-        for ( int i = 0; i < towers.length; i++)
+        int i;
+        for ( i = 0; i < towers.length; i++)
         {
             if ( isInRectangle(GameController.mouseX, GameController.mouseY, towers[i]) )
                 g.setColor(Color.RED);
@@ -80,6 +64,12 @@ public class TowerListController extends JPanel{
             g.fillRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
             g.drawImage(towerImages[i],towers[i].x, towers[i].y, boxEdge, boxEdge,null,null);
         }
+        //g.fillRect(towers[i].x, paddingTop + i * boxEdge + paddingAmongBoxes, boxEdge, boxEdge - paddingAmongBoxes);
+        g.setColor(Color.gray);
+        g.fillRect(paddingLeft,paddingTop - 15,30,20);
+        g.setColor(Color.yellow);
+        //g.drawString(playerGold +"",towers[i].x, paddingTop + i * boxEdge + paddingAmongBoxes + paddingAmongBoxes);
+        g.drawString(playerGold + "", paddingLeft, paddingTop);
     }
 
     public boolean isInRectangle(int x, int y, Rectangle rectangle)
@@ -107,5 +97,9 @@ public class TowerListController extends JPanel{
     public int getTowerCost( int index )
     {
         return towerCosts[index];
+    }
+    public void setPlayerGold(int playerGold)
+    {
+        this.playerGold = playerGold;
     }
 }
