@@ -38,7 +38,7 @@ public class FactoryLevel1 extends AbstractFactory {
     {
         typeMatrix = new int[mapHeight][mapWidth];
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/map1.mat"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/map1.mat"));
             // Reads according to octaves output format
             // May directly read rows and columns from the file.
             for ( int i = 0; i < 5 ; i++) {
@@ -56,6 +56,7 @@ public class FactoryLevel1 extends AbstractFactory {
         {
             e.printStackTrace();
             System.out.println("Error loading map");
+            System.exit(-1);
         }
 
         for ( int y = 0; y < mapHeight; y++)
