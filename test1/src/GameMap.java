@@ -183,10 +183,18 @@ public class GameMap {
             }
         }
     }
-    public void addTower(Tower newTower)
+    public boolean addTower(Tower newTower)
     {
-        System.out.println("Tower added");
+        for (Iterator<Tower> it = towers.iterator(); it.hasNext();) {
+            Tower tow = it.next();
+            if (tow.getX() == newTower.getX() && tow.getY() == newTower.getY()) {
+                System.out.println("Cannot add tower");
+                return false;
+            }
+        }
         towers.addLast(newTower);
+        System.out.println("Tower added");
+        return true;
     }
     public void addParticle(Particle particle)
     {

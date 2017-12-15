@@ -160,8 +160,8 @@ public class GameController implements Runnable{
         // Add only if the player has enough gold
         if ( towerListController.getTowerCost(i) <= playerGold)
         {
-            playerGold = playerGold - towerListController.getTowerCost(i);
-            gameMap.addTower(newTower);
+            if ( gameMap.addTower(newTower) )
+                playerGold = playerGold - towerListController.getTowerCost(i);
         }
     }
 
