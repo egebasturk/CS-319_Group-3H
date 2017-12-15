@@ -60,7 +60,7 @@ public class Tower extends GameObject {
 
             //System.out.println("Distance: " + distanceArray[i] +" Tower place: " + this.getX() + " " + this.getY());
             // If in range add attacker to the list
-            if ( distanceArray[i] <= range && (!attackers.get(i).isKilled() && attackers.get(i).isAlive() ))
+            if ( distanceArray[i] <= range / 2 && (!attackers.get(i).isKilled() && attackers.get(i).isAlive() ))
             {
                 listOfAttackersInRange.add(attackers.get(i));
             }
