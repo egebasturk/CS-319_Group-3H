@@ -23,7 +23,7 @@ public class TowerListController extends JPanel{
 	private int paddingLeft = 20;
 	private int paddingTop = 40;
 	private int paddingAmongBoxes = 10;
-	private int[] towerCosts = {10,15};
+	private int[] towerCosts = {0,10,15};
 
 	private Rectangle[] towers = new Rectangle[towerNumber];
 	public static int panelWidth = 20;
@@ -101,5 +101,9 @@ public class TowerListController extends JPanel{
                 return i;
         }
         return -1;
+    }
+    public int getTowerCost( int index )
+    {
+        return towerCosts[index];
     }
 }
