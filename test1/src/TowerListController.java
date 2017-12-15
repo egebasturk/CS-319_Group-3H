@@ -4,6 +4,9 @@
  * near the game map, which player can click and deploy towers.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
+ *   version2 13.12.2017
+ *   version3 14.12.2017
+ *   version4 15.12.2017
  */
 // TODO: Current implementation is primitive
 

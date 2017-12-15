@@ -1,6 +1,9 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+/**
+ * Factory Level5 Class
+ * Factory that implements creation methods for level 5
+ * @ author Alp Ege Basturk
+ * @ version 15.12.2017
+ */
 
 public class FactoryLevel5 extends AbstractFactory {
     private Tile[][] tiles;

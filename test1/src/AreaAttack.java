@@ -1,4 +1,9 @@
-
+/**
+ * Area Attack implementation
+ * Implements area attack
+ * @ author Alp Ege Basturk
+ * @ version 15.12.2017
+ */
 
 public class AreaAttack implements AttackBehaviour {
     @Override

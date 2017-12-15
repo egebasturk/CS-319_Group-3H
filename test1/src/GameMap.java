@@ -1,9 +1,12 @@
 /**
  * Game Map Class
- * Model.GameMap stores the objects that will be drawn on the map such as tiles, attackers etc.
+ * GameMap stores the objects that will be drawn on the map such as tiles, attackers etc.
  * Calls their draw methods.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
+ *   version2 13.12.2017
+ *   version3 14.12.2017
+ *   version4 15.12.2017
  */
 
 import sun.rmi.runtime.Log;

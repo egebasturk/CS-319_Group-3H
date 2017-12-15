@@ -1,7 +1,10 @@
 /**
  * Hero Type 1 Class
+ * Implements the first type of hero
  * @ author Emre Gürçay
  * @ version 14.12.2017
+ * @ author Alp Ege Basturk
+ * @ version2 15.12.2017
  */
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

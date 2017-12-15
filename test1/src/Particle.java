@@ -1,3 +1,10 @@
+/**
+ * Particle implementation
+ * Implements particle objects which are stored in a list to be drawn
+ * @ author Alp Ege Basturk
+ * @ version 14.12.2017
+ *   version2 15.12.2017
+ */
 import java.awt.*;
 
 public class Particle extends GameObject

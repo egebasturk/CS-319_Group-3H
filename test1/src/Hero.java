@@ -2,6 +2,8 @@
  * Hero Class
  * @ author Emre Gürçay
  * @ version 14.12.2017
+ * @ author Alp Ege Basturk
+ * @ version 15.12.2017
  */
 import java.awt.*;
 import java.awt.image.BufferedImage;
