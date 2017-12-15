@@ -73,7 +73,7 @@ public class GameController implements Runnable{
         level = selectedLevel; // TODO: Properly implement this
         playerGold = level * 100;
 	    currentSelectedTowerFromTheList = selectedTowerFromTheList.None;
-        gameMap = new GameMap(selectedLevel);
+        gameMap = new GameMap(selectedLevel, this);
         setGameMaps();
         frame = new Frame();
         frame.setLayout(new BorderLayout());
@@ -87,6 +87,7 @@ public class GameController implements Runnable{
         towerListController.setPreferredSize( new Dimension(80,80));
         towerListController.addMouseMotionListener(inputController);
         towerListController.addMouseListener(inputController);
+        towerListController.setPlayerGold(playerGold);
 
 		frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
 		frame.getContentPane().add(towerListController, BorderLayout.EAST);
@@ -131,6 +132,11 @@ public class GameController implements Runnable{
 			//currentGameMap.draw(g);
             gamePanel.repaint();
 			towerListController.repaint();
+			// TODO: Do save operations to txt
+			if ( isGameOver() )
+            {
+                break;
+            }
             //System.out.println(mouseX + " " + mouseY);
 
 			try {
@@ -161,11 +167,23 @@ public class GameController implements Runnable{
         if ( towerListController.getTowerCost(i) <= playerGold)
         {
             if ( gameMap.addTowerOrHero(newTowerOrHero) )
-                playerGold = playerGold - towerListController.getTowerCost(i);
+            {
+                setPlayerGold(playerGold - towerListController.getTowerCost(i));
+            }
         }
     }
+    public void setPlayerGold( int playerGold )
+    {
+        this.playerGold = playerGold;
+        // Update the view when this changes
+        towerListController.setPlayerGold(playerGold);
+    }
 
-	public void updateTime() {
+    public int getPlayerGold() {
+        return playerGold;
+    }
+
+    public void updateTime() {
 		// TODO - implement GameController.updateTime
 		throw new UnsupportedOperationException();
 	}
@@ -205,8 +223,9 @@ public class GameController implements Runnable{
 
 	// Currently this is implemented by checking the ArrayIndexOutOfBounds Exception, which is thrown when an attacker finishes the path.
 	private boolean isGameOver() {
-		// TODO - implement GameController.isGameOver
-		throw new UnsupportedOperationException();
+		if (gameMap.getAttackers().isEmpty())
+		    return true;
+		return false;
 	}
 
 	private void saveScore() {

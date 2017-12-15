@@ -32,8 +32,11 @@ public class GameMap {
     public int endRow;
     public int endColumn;
 
-	public GameMap( int selectedLevel )
+    GameController currentGameController;
+
+	public GameMap( int selectedLevel, GameController currentGameController )
     {
+        this.currentGameController = currentGameController;
         endColumn = 18;
         endRow = 9;
 	    particles = new LinkedList<>();
@@ -200,6 +203,7 @@ public class GameMap {
             for (Iterator<Attacker> it = attackers.iterator(); it.hasNext();) {
                 Attacker at = it.next();
                 if (at ==object) {
+                    currentGameController.setPlayerGold(at.getBounty() + currentGameController.getPlayerGold());
                     it.remove();
                 }
             }
