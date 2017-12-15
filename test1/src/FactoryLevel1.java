@@ -17,6 +17,8 @@ public class FactoryLevel1 extends AbstractFactory {
         // TODO: implement an algorithm to calculate
         attackers = new Attacker[15];
         tiles = new Tile[mapHeight][mapWidth];
+
+        endColumn = mapWidth - 1;
     }
     @Override
     public Attacker[] createAttackers()
@@ -67,5 +69,15 @@ public class FactoryLevel1 extends AbstractFactory {
         }
         System.out.println("Tiles Created");
         return tiles;
+    }
+
+    @Override
+    int getEndRow() {
+        return endRow;
+    }
+
+    @Override
+    int getEndColumn() {
+        return endColumn;
     }
 }
