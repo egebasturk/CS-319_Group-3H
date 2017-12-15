@@ -42,7 +42,7 @@ public class Tower extends GameObject {
 
 
 
-	public LinkedList getAttackersInRange()
+	public LinkedList<Attacker> getAttackersInRange()
     {
         //Attacker[] attackers = currentGameMap.getAttackers();
         ArrayList<Attacker> attackers = currentGameMap.getAttackers();

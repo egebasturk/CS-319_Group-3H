@@ -1,4 +1,5 @@
 public interface AttackBehaviour {
-    public void attack();
-    public void singleAttack( Tower attackSource);
+    void attack();
+    void singleAttack( Tower attackSource);
+    void areaAttack( Tower attackSource);
 }

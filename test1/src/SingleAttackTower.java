@@ -46,10 +46,6 @@ public class SingleAttackTower extends Tower {
     {
         currentAttackBehaviour.singleAttack(this);
     }
-    public void draw( int xPosition, int yPosition, Graphics g, int width, int height) {
-        //panel.paintComponent( g );
-        g.drawImage( image, xPosition, yPosition, width, height, null, null);
-    }
     @Override
     public void draw(Graphics g)
     {

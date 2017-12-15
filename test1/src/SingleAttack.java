@@ -39,7 +39,8 @@ public class SingleAttack implements AttackBehaviour {
                     //Graphics g;
                     //g.drawLine((int)this.getX(), (int)this.getY(), (int)currentTarget.getX(), (int)currentTarget.getY());
                     attackSource.currentGameMap.addParticle( new Particle(attackSource.xPos, attackSource.yPos,
-                            attackSource.currentTarget.getX(),attackSource.currentTarget.getY(), attackSource.currentGameMap));
+                            attackSource.currentTarget.getX(),attackSource.currentTarget.getY(), attackSource.currentGameMap,
+                            Particle.ParticleTypes.line, attackSource.range));
                     attackSource.currentTarget.setHealth(attackSource.currentTarget.getHealth() - attackSource.damage);
                     if (attackSource.currentTarget.getHealth() <= 0)
                         attackSource.currentTarget = null;
@@ -48,5 +49,10 @@ public class SingleAttack implements AttackBehaviour {
         }
         else
             attackSource.currentAttackCooldown++;
+    }
+
+    @Override
+    public void areaAttack(Tower attackSource) {
+
     }
 }
