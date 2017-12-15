@@ -11,7 +11,7 @@ import java.io.IOException;
 
 
 public class HeroType1 extends Hero{
-    protected Attacker target;
+    //protected Attacker target;
     protected BufferedImage kapowImage;
     private boolean fight = false;
     private int waitTime = 0;
@@ -19,9 +19,10 @@ public class HeroType1 extends Hero{
     public HeroType1(GameMap gameMap, int endRow, int endColumn){
         super(gameMap,endRow,endColumn);
         damage = 5;
-     //   rateOfAttack = 300;
-        target = null;
+        //target = null;
 
+        xPos = endColumn * GameMap.tileEdge;
+        yPos = endRow * GameMap.tileEdge;
         try
         {
             image = ImageIO.read(new File(Assets.hero1));
@@ -32,8 +33,10 @@ public class HeroType1 extends Hero{
         }
     }
     @Override
-    public void attack() {
-
+    public void attack()
+    {
+        currentAttackBehaviour.heroAttack( this );
+        /*
         if (target == null) {
             target = killList();
         }
@@ -66,7 +69,7 @@ public class HeroType1 extends Hero{
         {
             waitTime++;
         }
-
+        */
     }
     public void draw( int xPosition, int yPosition, Graphics g, int width, int height) {
         //panel.paintComponent( g );
@@ -76,11 +79,11 @@ public class HeroType1 extends Hero{
     public void draw(Graphics g)
     {
        // System.out.println("Graphics :" + x);
-        g.drawImage(image,x, y, 50, 50,null,null);
+        g.drawImage(image,xPos, yPos, 50, 50,null,null);
         if(fight)
         {
             //System.out.println("kapoww");
-            g.drawImage(kapowImage,x- GameMap.tileEdge/2, y-GameMap.tileEdge/2, 75, 75,null,null);
+            g.drawImage(kapowImage,xPos- GameMap.tileEdge/2, yPos-GameMap.tileEdge/2, 75, 75,null,null);
         }
     }
 }

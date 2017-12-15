@@ -232,4 +232,29 @@ public class Attacker extends GameObject
     public boolean isKilled() {
         return killed;
     }
+
+    public void setX( double newX )
+    {
+        this.xPos = (int)newX;
+    }
+    public void setY( double newY)
+    {
+        this.yPos = (int)newY;
+    }
+    public void setxPosTile( double newXPosTile)
+    {
+        this.xPosTile = (int)newXPosTile;
+    }
+    public void setyPosTile( double newYPosTile)
+    {
+        this.yPosTile = (int)newYPosTile;
+    }
+    public int getxPosTile()
+    {
+        return this.xPosTile;
+    }
+    public int getyPosTile()
+    {
+        return this.yPosTile;
+    }
 }

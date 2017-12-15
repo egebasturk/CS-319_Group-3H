@@ -18,8 +18,8 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
 	private int type;
 	protected BufferedImage closedGateImage;
 	protected BufferedImage openGateImage;
-	protected BufferedImage grassImage;
-	protected BufferedImage tileImage;
+	//protected BufferedImage grassImage;
+	//protected BufferedImage tileImage;
 	private int xPos = 0;
     private int yPos = 0;
     private int width = 10;
@@ -58,8 +58,8 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
 		{
 			closedGateImage = ImageIO.read(new File(Assets.closed));
 			openGateImage = ImageIO.read(new File(Assets.open));
-			grassImage = ImageIO.read(new File(Assets.grass));
-			tileImage = ImageIO.read(new File(Assets.rocktile));
+			//grassImage = ImageIO.read(new File(Assets.grass));
+			//tileImage = ImageIO.read(new File(Assets.rocktile));
 		}
 		catch (IOException e){
 			e.printStackTrace();
@@ -94,14 +94,14 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
         //System.out.println("Model.Tile draw called");
         g.drawRect( xPos, yPos, width, height );
         if (type == 0 || type == 2) {
-			g.drawImage(tileImage,x, y, 50, 50,null,null);
-          //  g.setColor(Color.GRAY);
-          //  g.fillRect(xPos, yPos, width, height);
+			//g.drawImage(tileImage,x, y, 50, 50,null,null);
+            g.setColor(Color.GRAY);
+            g.fillRect(xPos, yPos, width, height);
         }
         else if ( type == 1) {
-			g.drawImage(grassImage,x, y, 50, 50,null,null);
-          //  g.setColor(Color.GREEN);
-          //  g.fillRect(xPos, yPos, width, height);
+			//g.drawImage(grassImage,x, y, 50, 50,null,null);
+            g.setColor(Color.GREEN);
+            g.fillRect(xPos, yPos, width, height);
         }
 
         else if (type==3) {
@@ -141,8 +141,4 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
     public double getY() {
         return yPos;
     }
-    public int getType()
-	{
-		return this.type;
-	}
 }

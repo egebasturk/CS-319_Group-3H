@@ -25,20 +25,20 @@ public class GamePanel extends JPanel
     public GamePanel(GameMap gameMap)
     {
         System.out.print("GamePanel Created");
-        //gameMap = new GameMap();
+        //currentGameMap = new GameMap();
         this.gameMap = gameMap;
     }
     public GamePanel(InputController inputController)
     {
         System.out.print("GamePanel Created");
-        //gameMap = new GameMap();
+        //currentGameMap = new GameMap();
         this.addMouseListener(inputController);
         this.addMouseMotionListener(inputController);
     }
     public void paintComponent( Graphics g )
     {
         g.clearRect(0,0,getWidth(),getHeight());
-        // Call the draw method of the gameMap
+        // Call the draw method of the currentGameMap
         gameMap.draw(g);
     }
 

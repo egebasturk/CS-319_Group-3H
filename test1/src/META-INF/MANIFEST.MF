@@ -1,3 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: View.MainPage
+Class-Path: src/
+Main-Class: MainPage
 

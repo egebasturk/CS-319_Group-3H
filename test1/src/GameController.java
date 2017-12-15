@@ -128,7 +128,7 @@ public class GameController implements Runnable{
             gameMap.heroAttackLoop();
 			//gamePanel.repaint();
 			//g = gamePanel.getGraphics();
-			//gameMap.draw(g);
+			//currentGameMap.draw(g);
             gamePanel.repaint();
 			towerListController.repaint();
             //System.out.println(mouseX + " " + mouseY);

@@ -6,9 +6,9 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Hero extends GameObject {
-
     protected double speed = 1.0;
     protected int currentMoveCounter = 0;
     protected enum direction { right, left, up, down}
@@ -16,15 +16,16 @@ public class Hero extends GameObject {
     protected direction currentDirection = Hero.direction.left;
     protected double damage;
     //protected double currentHealth;
-    protected double rateOfAttack;
     protected BufferedImage image;
     protected int heroType;
-    GameMap gameMap;
-    protected int x;
-    protected int y;
+
+    GameMap currentGameMap;
+    AttackBehaviour currentAttackBehaviour;
+    protected double rateOfFire;
+    protected double range;
+    protected double currentAttackCooldown;
 
     protected int entry;
-
     protected int xPosTile;
     protected int yPosTile;
 
@@ -32,15 +33,21 @@ public class Hero extends GameObject {
 
     protected boolean alive = false;
 
-    public Hero(GameMap gameMap ,int endRow, int endColumn){
+    public Hero(GameMap gameMap ,int endRow, int endColumn)
+    {
+        super();
+        this.currentGameMap = gameMap;
+        currentAttackBehaviour = new HeroAttack();
+        currentAttackCooldown = 0;
+        rateOfFire = 20;
+        range = 20;
 
         xPosTile = endColumn;
         yPosTile = endRow;
         //System.out.println("y tile is: " +  yPosTile + " x tile is: " +  xPosTile );
-        this.x = endColumn * GameMap.tileEdge;
-        this.gameMap = gameMap;
+        xPos = endColumn * GameMap.tileEdge;
         entry  =  endRow * GameMap.tileEdge;
-        this.y = entry;
+        yPos = entry;
 
     }
     public void attack()
@@ -48,8 +55,34 @@ public class Hero extends GameObject {
 
     }
 
-    public Attacker killList() {
-        ArrayList<Attacker> attackers = gameMap.getAttackers();
+    public LinkedList<Attacker> getAttackersInRange()
+    {
+        //Attacker[] attackers = currentGameMap.getAttackers();
+        ArrayList<Attacker> attackers = currentGameMap.getAttackers();
+        // Will store calculated distances
+        double distanceArray[] = new double[attackers.size()];
+        LinkedList<Attacker> listOfAttackersInRange = new LinkedList<>();
+
+        // Calculate distance with sqrt((x1-x2)^2 + (y1-y2)^2)
+        for ( int i = 0; i < attackers.size(); i++)
+        {
+            distanceArray[i] = getDistanceBetweenTowerAndTarget(this, attackers.get(i));
+
+            //System.out.println("Distance: " + distanceArray[i] +" Tower place: " + this.getX() + " " + this.getY());
+            // If in range add attacker to the list
+            if ( distanceArray[i] <= range && (!attackers.get(i).isKilled() && attackers.get(i).isAlive() ))
+            {
+                listOfAttackersInRange.add(attackers.get(i));
+            }
+        }
+        return listOfAttackersInRange;
+    }
+    protected double getDistanceBetweenTowerAndTarget( Hero hero, Attacker attacker)
+    {
+        return Math.sqrt(Math.pow((attacker.getX() - hero.xPos), 2) + Math.pow((attacker.getY() - hero.yPos), 2));
+    }
+    /*public Attacker killList() {
+        ArrayList<Attacker> attackers = currentGameMap.getAttackers();
         for (int i = 0; i < attackers.size(); i++) {
             // System.out.println(attackers.get(i).xPosTile * GameMap.tileEdge);
          //   System.out.println(this.getX() + "and Y is: " + this.getY());
@@ -64,16 +97,17 @@ public class Hero extends GameObject {
         return null;
     }
     public void moveAttackers(){
-        ArrayList<Attacker> attackers2 = gameMap.getAttackers();
+        ArrayList<Attacker> attackers2 = currentGameMap.getAttackers();
 
         for(int i = 0; i < attackers2.size(); i++)
         {
             attackers2.get(i).speed = 1;
         }
-    }
+    }*/
     public void move()
     {
         //System.out.println(" x tile is: " +  xPosTile );
+        /*
         try{
             if(currentMoveCounter >= 700) {
                 location++;
@@ -83,7 +117,7 @@ public class Hero extends GameObject {
                 }
                 //System.out.println(GameMap.tiles[this.yPosTile][xPosTile - 1].heroPass());
                 if (GameMap.tiles[yPosTile][xPosTile - 1].heroPass()) {
-                    x -= speed;
+                    xPos -= speed;
                     xPosTile--;
                     speed = 0;
                     currentMoveCounter = 0;
@@ -99,7 +133,7 @@ public class Hero extends GameObject {
         catch (ArrayIndexOutOfBoundsException e)
         {
             //System.out.println("y tile is: " +  yPosTile + " x tile is: " +  xPosTile );
-        }
+        }*/
 
     }
 
@@ -112,17 +146,17 @@ public class Hero extends GameObject {
 
     public void initializeDeath(){
         alive =  false;
-        gameMap.notifyDeath(this);
+        currentGameMap.notifyDeath(this);
     }
 
     public void draw(Graphics g){ }
     public double getX()
     {
-        return this.x;
+        return this.xPos;
     }
     public double getY()
     {
-        return this.y;
+        return this.yPos;
     }
 
 }

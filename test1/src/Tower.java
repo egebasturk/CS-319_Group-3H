@@ -34,7 +34,7 @@ public class Tower extends GameObject {
 	    this.currentGameMap = currentGameMap;
 	    this.height = 50;
 	    this.width = 50;
-	    range = 1000;
+	    range = 500;
 	    rateOfFire = 20;
 	    currentAttackCooldown = 0;
 	    attackedFlag = false;
@@ -62,13 +62,6 @@ public class Tower extends GameObject {
                 listOfAttackersInRange.add(attackers.get(i));
             }
         }
-        /*
-        int p = 0;
-        for (Attacker i: listOfAttackersInRange)
-        {
-            System.out.print(p++ +" ");
-        }
-        System.out.println();*/
         return listOfAttackersInRange;
     }
     protected double getDistanceBetweenTowerAndTarget( Tower tower, Attacker attacker)
