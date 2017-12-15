@@ -79,6 +79,11 @@ public class InputController implements MouseMotionListener, MouseListener {
                     currentGameController.addTowerOrHero(new HeroType1(currentGameController.gameMap
                             , currentGameController.gameMap.endRow, currentGameController.gameMap.endColumn));
                 }
+                else if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.hero2)
+                {
+                    currentGameController.addTowerOrHero(new HeroType2(currentGameController.gameMap
+                            , currentGameController.gameMap.endRow, currentGameController.gameMap.endColumn));
+                }
             }
         }
         // Second is: if clicked on the main game panel
