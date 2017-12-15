@@ -36,4 +36,6 @@ public class HeroAttack implements AttackBehaviour {
         return flag;
     }
 
+    public void attackerAttack(Attacker attackSource){}
+
 }

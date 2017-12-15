@@ -60,4 +60,5 @@ public class SingleAttack implements AttackBehaviour {
     public boolean heroAttack(Hero attackSource) {
         return false;
     }
+    public void attackerAttack(Attacker attackSource){};
 }
