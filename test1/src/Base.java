@@ -23,7 +23,7 @@ public class Base extends GameObject{
         yPos = endRow * GameMap.tileEdge;
         currentHealth = maxHealth;
         try {
-            image = ImageIO.read(new File(Assets.closed));
+            image = ImageIO.read(new File(Assets.base));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -46,13 +46,13 @@ public class Base extends GameObject{
     int temp = 0;
     public void draw(Graphics g)
     {
-            g.drawImage(image,xPos, yPos, boxEdge, boxEdge,null,null);
+            g.drawImage(image,xPos - 15, yPos - GameMap.tileEdge, 2*GameMap.tileEdge, 2*GameMap.tileEdge,null,null);
             g.setColor(Color.magenta);
             temp = (int)(currentHealth * widthOfHealthBar / maxHealth);
-            g.fillRect(xPos + paddingLeftOfHealthBar,yPos - paddingTopOfHealthBar, temp, heightOfHealthBar);
+            g.fillRect(xPos + paddingLeftOfHealthBar,yPos - paddingTopOfHealthBar- GameMap.tileEdge, temp, heightOfHealthBar);
             if(standing) {
                 g.setColor(Color.red);
-                g.fillRect(xPos + temp + paddingLeftOfHealthBar, yPos - paddingTopOfHealthBar, widthOfHealthBar - temp, heightOfHealthBar);
+                g.fillRect(xPos + temp + paddingLeftOfHealthBar, yPos - paddingTopOfHealthBar - GameMap.tileEdge, widthOfHealthBar - temp, heightOfHealthBar);
             }
     }
 }
