@@ -1,3 +1,10 @@
+/**
+ * Base class
+ * Implements the object which player will be defending
+ * @ author Baris Eymur
+ * @ version 15.12.2017
+ */
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
@@ -15,7 +22,7 @@ public class Base extends GameObject{
     protected int boxEdge = 40;
 
     GameMap currentGameMap;
-
+    //TODO: GameMap already has the two ints, don't need to pass
     public Base(GameMap gameMap ,int endRow, int endColumn) {
         super();
         currentGameMap = gameMap;

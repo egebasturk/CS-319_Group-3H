@@ -1,3 +1,9 @@
+/**
+ * Hero Attack implementation
+ * Implements hero attack
+ * @ author Alp Ege Basturk
+ * @ version 15.12.2017
+ */
 public class HeroAttack implements AttackBehaviour {
     @Override
     public void attack() {

@@ -5,6 +5,7 @@
  * Also creates a frame which panels are added.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
+ *   version(last) 15.12.2017 (frequently updated)
  */
 
 

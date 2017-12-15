@@ -8,6 +8,7 @@ import java.awt.event.MouseMotionListener;
  * Takes inputs from user.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
+ *   version(last) 15.12.2017 (frequently updated)
  */
 
 

@@ -1,8 +1,10 @@
 /**
- * Model.GameObject class
+ * GameObject class
  * It is the parent of all drawable objects, such as attacker, tile etc.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
+ *   version2 14.12.2017
+ *   version3 15.12.2017
  */
 import java.awt.*;
 import java.awt.image.BufferedImage;

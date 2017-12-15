@@ -1,8 +1,10 @@
 /**
- * Model.AreaAttackTower class
- * A tower type
+ * AreaAttackTower class
+ * A tower type which attacks all targets in its range
  * @ Barış Eymür
  * @ version 04.11.2017
+ * @ author Alp Ege Basturk
+ *   version2 15.12.2017
  */
 
 import javax.imageio.ImageIO;

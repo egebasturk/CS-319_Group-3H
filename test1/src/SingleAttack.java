@@ -1,3 +1,9 @@
+/**
+ * Single Attack implementation
+ * Implements single attack method for attack behaviour
+ * @ author Alp Ege Basturk
+ * @ version 15.12.2017
+ */
 import java.util.NoSuchElementException;
 import java.util.Queue;
 
