@@ -63,10 +63,6 @@ public class TowerListController extends JPanel{
             e.printStackTrace();
         }
 	}
-
-    /**
-     * paints rectangles(later they will be tower images) list.
-     */
     public void paintComponent( Graphics g )
     {
         // TODO: Draw Borders. This is not working
