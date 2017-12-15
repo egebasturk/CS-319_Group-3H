@@ -22,6 +22,8 @@ public class HeroType2 extends Hero{
         //   rateOfAttack = 300;
         target = null;
 
+        xPos = endColumn * GameMap.tileEdge;
+        yPos = endRow * GameMap.tileEdge;
         try
         {
             image = ImageIO.read(new File(Assets.hero2));
@@ -34,7 +36,7 @@ public class HeroType2 extends Hero{
     @Override
     public void attack()
     {
-        currentAttackBehaviour.heroAttack( this );
+        fight = currentAttackBehaviour.heroAttack( this );
         /*
         if (target == null) {
             target = killList();
@@ -83,6 +85,7 @@ public class HeroType2 extends Hero{
         {
             //System.out.println("kapoww");
             g.drawImage(kapowImage,xPos- GameMap.tileEdge/2, yPos-GameMap.tileEdge/2, 75, 75,null,null);
+            fight = false;
         }
     }
 }

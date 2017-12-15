@@ -32,7 +32,7 @@ public class AreaAttack implements AttackBehaviour {
     }
 
     @Override
-    public void heroAttack(Hero attackSource) {
-
+    public boolean heroAttack(Hero attackSource) {
+        return false;
     }
 }
