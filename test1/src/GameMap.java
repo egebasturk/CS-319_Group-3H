@@ -36,7 +36,7 @@ public class GameMap {
         tiles = factory.createTiles();//new Model.Tile[mapHeight][mapWidth];
         attackers = new ArrayList<>(Arrays.asList(factory.createAttackers()));//new Model.Attacker[7 ];
         towers = new LinkedList<>();
-        towers.add(new SingleAttackTower(this, 8*tileEdge,8*tileEdge));
+        towers.add(new AreaAttackTower(this, 8*tileEdge,8*tileEdge));
         hero = new HeroType2(this, 9,21);
         //obstacle = new Obstacle(this,11,9);
         /*

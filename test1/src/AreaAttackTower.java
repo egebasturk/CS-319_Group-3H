@@ -17,17 +17,30 @@ public class AreaAttackTower extends Tower {
 
     public AreaAttackTower(GameMap currentGameMap, int xPos, int yPos) {
         super(currentGameMap, xPos, yPos);
+        currentAttackBehaviour = new AreaAttack();
+        damage = 5;
+        currentTarget = null;
+        rateOfFire = 300;
+        currentAttackCooldown = 0;
+        range = 350;
+
         try {
+            // TODO: Implement better resource loading methods
             image = ImageIO.read(new File(Assets.tower1));
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    public void draw( int xPosition, int yPosition, Graphics g, int width, int height) {
-        //panel.paintComponent( g );
-        g.drawImage( image, xPosition, yPosition, width, height, null, null);
+    @Override
+    public void attack()
+    {
+        currentAttackBehaviour.areaAttack(this);
+    }
+    @Override
+    public void draw(Graphics g)
+    {
+        g.drawImage(image,xPos, yPos, height, width,null,null);
     }
 
 }
