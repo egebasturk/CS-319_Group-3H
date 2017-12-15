@@ -1,3 +1,9 @@
+/**
+ * Map Matrix Reader
+ * Provides static method to read map from the matrix
+ * @ author Alp Ege Basturk
+ * @ version 15.12.2017
+ */
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

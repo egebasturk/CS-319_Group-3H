@@ -1,3 +1,9 @@
+/**
+ * Obstacle
+ * Implements obstacle
+ * @ author Emre Gurcay
+ * @ version 15.12.2017
+ */
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;

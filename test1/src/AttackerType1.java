@@ -1,5 +1,5 @@
 /**
- * Model.Attacker Class
+ * Attacker Type 1Class
  * An attacker. Unused currently
  * These are the things which attack the objective and must be destroyed.
  * @ author Alp Ege Basturk

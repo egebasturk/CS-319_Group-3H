@@ -1,13 +1,15 @@
 /**
- * Model.Attacker Class
- * Parent of all attacker. Currently it is the only attacker.
+ * Attacker Class
+ * Parent of all attackers. Currently it is the only attacker.
  * These are the things which attack the objective and must be destroyed.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
+ *   version2 13.12.2017
+ *   version3 14.12.2017
+ *   version4 15.12.2017
  */
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;

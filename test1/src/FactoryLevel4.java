@@ -1,6 +1,10 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+/**
+ * Factory Level4 Class
+ * Factory that implements creation methods for level 4
+ * @ author Alp Ege Basturk
+ * @ version 15.12.2017
+ */
+
 
 public class FactoryLevel4 extends AbstractFactory {
     private Tile[][] tiles;

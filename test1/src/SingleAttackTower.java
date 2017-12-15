@@ -1,8 +1,11 @@
 /**
- * Model.SingleAttackTower Class
- * Type of Model.Tower
- * @ author Barış Eymür
+ * SingleAttackTower Class
+ * Type of Tower
+ * @ author Baris Eymur
  * @ version 04.11.2017
+ * @ author Alp Ege Basturk
+ * @ version 13.12.2017
+ *   version2 15.12.2017
  */
 
 import com.sun.org.apache.regexp.internal.RE;
@@ -11,9 +14,6 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.*;
 import java.io.IOException;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Queue;
 
 public class SingleAttackTower extends Tower {
 

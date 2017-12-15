@@ -1,7 +1,9 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
+/**
+ * Factory Level1 Class
+ * Factory that implements creation methods for level 1
+ * @ author Alp Ege Basturk
+ * @ version 22.11.2017
+ */
 public class FactoryLevel1 extends AbstractFactory {
     private Tile[][] tiles;
     private Attacker[] attackers;

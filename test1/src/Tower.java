@@ -1,8 +1,11 @@
 /**
- * Model.Tower Class
+ * Tower Class
  * Parent class of towers.
  * @ author Barış Eymür
  * @ version 04.11.2017
+ * @ author Alp Ege Basturk
+ * @ version 04.11.2017
+ *   version 15.12.2017
  */
 
 import java.awt.*;

@@ -1,6 +1,6 @@
 /**
- * Model.Tile Class
- * Model.Tile will be used to fill the map. Also they will be used to store information
+ * Tile Class
+ * Tile will be used to fill the map. Also they will be used to store information
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
  */
