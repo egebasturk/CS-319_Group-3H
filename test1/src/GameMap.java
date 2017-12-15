@@ -29,9 +29,9 @@ public class GameMap {
     // TODO This will be passed from the InputController
     private int[][] typeMatrix;
 
-	public GameMap() {
+	public GameMap( int selectedLevel ) {
 	    particles = new LinkedList<>();
-	    AbstractFactory factory = new FactoryLevel1();
+	    AbstractFactory factory = factorySelector(selectedLevel);
 	    // TODO Input controller will read when it is implemented
         tiles = factory.createTiles();
         attackers = new ArrayList<>(Arrays.asList(factory.createAttackers()));
@@ -71,6 +71,17 @@ public class GameMap {
         System.out.println("Tiles Created");
         createAttackers();*/
 	}
+	/**
+     * Returns a factory instance according to level
+     * */
+	private AbstractFactory factorySelector(int level)
+    {
+        if ( level == 1)
+            return new FactoryLevel1();
+        else if ( level == 2)
+            return new FactoryLevel1();
+        return null;
+    }
     /**
      * Iterates over the list of attackers and checks if they entered or killed.
      * Spawns if they have not entered the game so far.

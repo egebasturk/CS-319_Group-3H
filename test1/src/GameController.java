@@ -69,11 +69,11 @@ public class GameController implements Runnable{
     public static int gamePanelWidth = 800, gamePanelHeight = 600;
 
 
-	public GameController() {
-        level = 1; // TODO: Properly implement this
+	public GameController(int selectedLevel) {
+        level = selectedLevel; // TODO: Properly implement this
         playerGold = level * 100;
 	    currentSelectedTowerFromTheList = selectedTowerFromTheList.None;
-        gameMap = new GameMap();
+        gameMap = new GameMap(selectedLevel);
         setGameMaps();
         frame = new Frame();
         frame.setLayout(new BorderLayout());
