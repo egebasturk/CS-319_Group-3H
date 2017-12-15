@@ -30,16 +30,29 @@ public class GameMap {
     // TODO This will be passed from the InputController
     private int[][] typeMatrix;
 
-	public GameMap() {
+    public int endRow;
+    public int endColumn;
+
+    GameController currentGameController;
+
+	public GameMap( int selectedLevel, GameController currentGameController )
+    {
+        this.currentGameController = currentGameController;
 	    particles = new LinkedList<>();
-	    AbstractFactory factory = new FactoryLevel1();
+	    AbstractFactory factory = factorySelector(selectedLevel);
+        endColumn = 18;
+        endRow = 9;
 	    // TODO Input controller will read when it is implemented
         tiles = factory.createTiles();
         attackers = new ArrayList<>(Arrays.asList(factory.createAttackers()));
         towers = new LinkedList<>();
         //towers.add(new AreaAttackTower(this, 8*tileEdge,8*tileEdge));
+<<<<<<< HEAD
        // hero = new HeroType1(this, 9,18);
         base = new Base( this, 9, 19);
+=======
+        //hero = new HeroType1(this, 9,18);
+>>>>>>> f8e80aa156aec8b9223757a1a78537088f90316b
         //obstacle = new Obstacle(this,11,9);
         /*
         typeMatrix = new int[mapHeight][mapWidth];
@@ -73,6 +86,23 @@ public class GameMap {
         System.out.println("Tiles Created");
         createAttackers();*/
 	}
+	/**
+     * Returns a factory instance according to level
+     * */
+	private AbstractFactory factorySelector(int level)
+    {
+        if ( level == 1)
+            return new FactoryLevel1();
+        else if ( level == 2)
+            return new FactoryLevel2();
+        else if ( level == 3)
+            return new FactoryLevel3();
+        else if ( level == 4)
+            return new FactoryLevel4();
+        else if ( level == 5)
+            return new FactoryLevel5();
+        return null;
+    }
     /**
      * Iterates over the list of attackers and checks if they entered or killed.
      * Spawns if they have not entered the game so far.
@@ -116,8 +146,22 @@ public class GameMap {
     }
     public void heroAttackLoop()
     {
+<<<<<<< HEAD
         //hero.attack();
        // hero.move();
+=======
+        // Somehow if (null) check does not always work.
+        // It may be due to concurrent modification. Written try-catch when it goes wrong
+        try {
+            if (hero != null) {
+                hero.attack();
+                hero.move();
+            }
+        } catch (NullPointerException ne)
+        {
+
+        }
+>>>>>>> f8e80aa156aec8b9223757a1a78537088f90316b
        // obstacle.stopList();
     }
 	/**
@@ -153,8 +197,13 @@ public class GameMap {
         {
             i.draw(g);
         }
+<<<<<<< HEAD
         //hero.draw(g);
         base.draw(g);
+=======
+        if ( hero != null)
+            hero.draw(g);
+>>>>>>> f8e80aa156aec8b9223757a1a78537088f90316b
        // obstacle.draw(g);
         try {
             for (Particle i: particles)
@@ -176,6 +225,7 @@ public class GameMap {
             for (Iterator<Attacker> it = attackers.iterator(); it.hasNext();) {
                 Attacker at = it.next();
                 if (at ==object) {
+                    currentGameController.setPlayerGold(at.getBounty() + currentGameController.getPlayerGold());
                     it.remove();
                 }
             }
@@ -189,19 +239,32 @@ public class GameMap {
                 }
             }
         }
-    }
-    public boolean addTower(Tower newTower)
-    {
-        for (Iterator<Tower> it = towers.iterator(); it.hasNext();) {
-            Tower tow = it.next();
-            if (tow.getX() == newTower.getX() && tow.getY() == newTower.getY()) {
-                System.out.println("Cannot add tower");
-                return false;
-            }
+        if ( object instanceof Hero )
+        {
+            hero = null;
         }
-        towers.addLast(newTower);
-        System.out.println("Tower added");
-        return true;
+    }
+    public boolean addTowerOrHero(GameObject newTowerOrHero)
+    {
+        if ( newTowerOrHero instanceof Tower )
+        {
+            for (Iterator<Tower> it = towers.iterator(); it.hasNext(); ) {
+                Tower tow = it.next();
+                if (tow.getX() == newTowerOrHero.getX() && tow.getY() == newTowerOrHero.getY()) {
+                    System.out.println("Cannot add tower");
+                    return false;
+                }
+            }
+            towers.addLast((Tower) newTowerOrHero);
+            System.out.println("Tower added");
+            return true;
+        }
+        else if ( newTowerOrHero instanceof Hero )
+        {
+            hero = (Hero) newTowerOrHero;
+            return true;
+        }
+        return false;
     }
     public void addParticle(Particle particle)
     {

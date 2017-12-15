@@ -59,7 +59,7 @@ public class GameController implements Runnable{
 	private TowerListController towerListController;
 	private InputController inputController;
 	public GameMap gameMap;
-	public enum selectedTowerFromTheList { None, tower1, tower2};
+	public enum selectedTowerFromTheList { None, tower1, tower2, hero1, hero2}
 	public selectedTowerFromTheList currentSelectedTowerFromTheList;
 	public Graphics g;
 
@@ -69,11 +69,11 @@ public class GameController implements Runnable{
     public static int gamePanelWidth = 800, gamePanelHeight = 600;
 
 
-	public GameController() {
-        level = 1; // TODO: Properly implement this
+	public GameController(int selectedLevel) {
+        level = selectedLevel; // TODO: Properly implement this
         playerGold = level * 100;
 	    currentSelectedTowerFromTheList = selectedTowerFromTheList.None;
-        gameMap = new GameMap();
+        gameMap = new GameMap(selectedLevel, this);
         setGameMaps();
         frame = new Frame();
         frame.setLayout(new BorderLayout());
@@ -87,6 +87,7 @@ public class GameController implements Runnable{
         towerListController.setPreferredSize( new Dimension(80,80));
         towerListController.addMouseMotionListener(inputController);
         towerListController.addMouseListener(inputController);
+        towerListController.setPlayerGold(playerGold);
 
 		frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
 		frame.getContentPane().add(towerListController, BorderLayout.EAST);
@@ -131,6 +132,11 @@ public class GameController implements Runnable{
 			//currentGameMap.draw(g);
             gamePanel.repaint();
 			towerListController.repaint();
+			// TODO: Do save operations to txt
+			if ( isGameOver() )
+            {
+                break;
+            }
             //System.out.println(mouseX + " " + mouseY);
 
 			try {
@@ -147,7 +153,7 @@ public class GameController implements Runnable{
         return currentSelectedTowerFromTheList;
     }
 
-    public void addTower(Tower newTower)
+    public void addTowerOrHero(GameObject newTowerOrHero)
     {
         // The loop finds the selected tower
         int i;
@@ -160,12 +166,24 @@ public class GameController implements Runnable{
         // Add only if the player has enough gold
         if ( towerListController.getTowerCost(i) <= playerGold)
         {
-            if ( gameMap.addTower(newTower) )
-                playerGold = playerGold - towerListController.getTowerCost(i);
+            if ( gameMap.addTowerOrHero(newTowerOrHero) )
+            {
+                setPlayerGold(playerGold - towerListController.getTowerCost(i));
+            }
         }
     }
+    public void setPlayerGold( int playerGold )
+    {
+        this.playerGold = playerGold;
+        // Update the view when this changes
+        towerListController.setPlayerGold(playerGold);
+    }
 
-	public void updateTime() {
+    public int getPlayerGold() {
+        return playerGold;
+    }
+
+    public void updateTime() {
 		// TODO - implement GameController.updateTime
 		throw new UnsupportedOperationException();
 	}
@@ -205,8 +223,9 @@ public class GameController implements Runnable{
 
 	// Currently this is implemented by checking the ArrayIndexOutOfBounds Exception, which is thrown when an attacker finishes the path.
 	private boolean isGameOver() {
-		// TODO - implement GameController.isGameOver
-		throw new UnsupportedOperationException();
+		if (gameMap.getAttackers().isEmpty())
+		    return true;
+		return false;
 	}
 
 	private void saveScore() {

@@ -405,10 +405,9 @@ public class MainPageFrame extends JPanel {
         //İstenilen bölüm oynanıcak
     }
 
-
-
-
-
+    public int getLevelNumber() {
+        return levelNumber;
+    }
 }
 
 

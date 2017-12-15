@@ -269,4 +269,8 @@ public class Attacker extends GameObject
     {
         return this.yPosTile;
     }
+
+    public int getBounty() {
+        return bounty;
+    }
 }
