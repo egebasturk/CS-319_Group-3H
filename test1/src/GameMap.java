@@ -114,8 +114,17 @@ public class GameMap {
     }
     public void heroAttackLoop()
     {
-        hero.attack();
-        hero.move();
+        // Somehow if (null) check does not always work.
+        // It may be due to concurrent modification. Written try-catch when it goes wrong
+        try {
+            if (hero != null) {
+                hero.attack();
+                hero.move();
+            }
+        } catch (NullPointerException ne)
+        {
+
+        }
        // obstacle.stopList();
     }
 	/**
@@ -151,7 +160,8 @@ public class GameMap {
         {
             i.draw(g);
         }
-        hero.draw(g);
+        if ( hero != null)
+            hero.draw(g);
        // obstacle.draw(g);
         try {
             for (Particle i: particles)
@@ -185,6 +195,10 @@ public class GameMap {
                     it.remove();
                 }
             }
+        }
+        if ( object instanceof Hero )
+        {
+            hero = null;
         }
     }
     public boolean addTower(Tower newTower)

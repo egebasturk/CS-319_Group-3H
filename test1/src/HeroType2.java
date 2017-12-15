@@ -18,7 +18,8 @@ public class HeroType2 extends Hero{
 
     public HeroType2(GameMap gameMap, int endRow, int endColumn){
         super(gameMap,endRow,endColumn);
-        damage = 15;
+        damage = 30;
+        maxNumberOfAttacks = 25;
         //   rateOfAttack = 300;
         target = null;
 
@@ -37,6 +38,12 @@ public class HeroType2 extends Hero{
     public void attack()
     {
         fight = currentAttackBehaviour.heroAttack( this );
+        if (fight)
+        {
+            numberOfAttacks++;
+            if (numberOfAttacks > maxNumberOfAttacks)
+                initializeDeath();
+        }
         /*
         if (target == null) {
             target = killList();
