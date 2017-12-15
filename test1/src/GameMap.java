@@ -24,6 +24,7 @@ public class GameMap {
     public static ArrayList<Attacker> attackers;
     public static LinkedList<Tower> towers;
     public static Hero hero;
+    public static Obstacle obstacle;
     public static LinkedList<Particle> particles;
     // TODO This will be passed from the InputController
     private int[][] typeMatrix;
@@ -36,7 +37,8 @@ public class GameMap {
         attackers = new ArrayList<>(Arrays.asList(factory.createAttackers()));//new Model.Attacker[7 ];
         towers = new LinkedList<>();
         towers.add(new AreaAttackTower(this, 8*tileEdge,8*tileEdge));
-        hero = new HeroType2(this, 9,21);
+        hero = new HeroType2(this, 9,20);
+        //obstacle = new Obstacle(this,11,9);
         /*
         typeMatrix = new int[mapHeight][mapWidth];
         try {
@@ -114,6 +116,7 @@ public class GameMap {
     {
         hero.attack();
         hero.move();
+       // obstacle.stopList();
     }
 	/**
 	 *
@@ -149,6 +152,7 @@ public class GameMap {
             i.draw(g);
         }
         hero.draw(g);
+       // obstacle.draw(g);
         try {
             for (Particle i: particles)
             {
