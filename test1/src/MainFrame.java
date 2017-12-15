@@ -40,8 +40,7 @@ public class MainFrame extends JFrame {
         main.play.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                gameController = new GameController();
+                gameController = new GameController(main.getLevelNumber());
                 setVisible(false);
             }
         });

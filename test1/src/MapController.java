@@ -1,6 +1,6 @@
 /**
  * Map Controller Class
- * Currently Obsolete
+ * Obsolete. Don't need to read it.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
  */

@@ -18,12 +18,12 @@ public class TowerListController extends JPanel{
 
     // TODO deal with the magic numbers
 	private BufferedImage[] towerImages;
-	private int towerNumber = 3;
+	private int towerNumber = 4;
 	private int boxEdge = 50;
 	private int paddingLeft = 20;
 	private int paddingTop = 40;
 	private int paddingAmongBoxes = 10;
-	private int[] towerCosts = {0,10,15};
+	private int[] towerCosts = {0,10,15, 40, 50};
 
 	private Rectangle[] towers = new Rectangle[towerNumber];
 	public static int panelWidth = 20;
@@ -32,11 +32,12 @@ public class TowerListController extends JPanel{
 
     public TowerListController()
     {
-        towerImages = new BufferedImage[3];
+        towerImages = new BufferedImage[towerNumber];
         try {
             towerImages[0] = ImageIO.read(new File(Assets.tower1));
             towerImages[1] = ImageIO.read(new File(Assets.tower2));
             towerImages[2] = ImageIO.read(new File(Assets.hero1));
+            towerImages[3] = ImageIO.read(new File(Assets.hero2));
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -66,15 +67,16 @@ public class TowerListController extends JPanel{
     public void paintComponent( Graphics g )
     {
         // TODO: Draw Borders. This is not working
-        g.drawRect(this.getX(),this.getY(),this.getWidth(),this.getHeight());
+        g.setColor(Color.gray);
+        g.fillRect(this.getX(),this.getY(),this.getWidth(),this.getHeight());
 
         for ( int i = 0; i < towers.length; i++)
         {
             if ( isInRectangle(GameController.mouseX, GameController.mouseY, towers[i]) )
                 g.setColor(Color.RED);
             else
-                g.setColor(Color.YELLOW);
-            g.drawRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
+                g.setColor(Color.CYAN);
+            //g.drawRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
             g.fillRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
             g.drawImage(towerImages[i],towers[i].x, towers[i].y, boxEdge, boxEdge,null,null);
         }

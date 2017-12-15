@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -74,6 +73,17 @@ public class InputController implements MouseMotionListener, MouseListener {
                 // +1 because element zero is none
                 currentGameController.setCurrentSelectedTowerFromTheList( GameController.selectedTowerFromTheList.values()[index + 1]);
                 System.out.println("Selected tower: " + index);
+
+                if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.hero1)
+                {
+                    currentGameController.addTowerOrHero(new HeroType1(currentGameController.gameMap
+                            , currentGameController.gameMap.endRow, currentGameController.gameMap.endColumn));
+                }
+                else if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.hero2)
+                {
+                    currentGameController.addTowerOrHero(new HeroType2(currentGameController.gameMap
+                            , currentGameController.gameMap.endRow, currentGameController.gameMap.endColumn));
+                }
             }
         }
         // Second is: if clicked on the main game panel
@@ -84,14 +94,14 @@ public class InputController implements MouseMotionListener, MouseListener {
             if ( currentGameController.getCurrentSelectedTowerFromTheList() != GameController.selectedTowerFromTheList.None)
             {
                 Point clickPoint = getTileLocationOfClick( mouseEvent );
-                if ( currentGameController.getCurrentSelectedTowerFromTheList() != GameController.selectedTowerFromTheList.tower1 )
+                if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.tower1 )
                 {
-                    currentGameController.addTower(new SingleAttackTower(currentGameController.gameMap,
+                    currentGameController.addTowerOrHero(new AreaAttackTower(currentGameController.gameMap,
                             (int) clickPoint.getX(), (int) clickPoint.getY()));
                 }
-                else if (currentGameController.getCurrentSelectedTowerFromTheList() != GameController.selectedTowerFromTheList.tower2 )
+                else if (currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.tower2 )
                 {
-                    currentGameController.addTower(new AreaAttackTower(currentGameController.gameMap,
+                    currentGameController.addTowerOrHero(new SingleAttackTower(currentGameController.gameMap,
                             (int) clickPoint.getX(), (int) clickPoint.getY()));
                 }
                 currentGameController.setCurrentSelectedTowerFromTheList(GameController.selectedTowerFromTheList.None);
