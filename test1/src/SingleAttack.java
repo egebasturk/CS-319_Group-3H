@@ -55,4 +55,9 @@ public class SingleAttack implements AttackBehaviour {
     public void areaAttack(Tower attackSource) {
 
     }
+
+    @Override
+    public void heroAttack(Hero attackSource) {
+
+    }
 }

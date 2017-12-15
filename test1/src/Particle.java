@@ -45,7 +45,7 @@ public class Particle extends GameObject
             else if ( particleType == ParticleTypes.circle)
             {
                 g.setColor(Color.red);
-                g.drawOval((int) (sourceXPos - range / 2), (int) (sourceYPos -range / 2),
+                g.drawOval((int) (sourceXPos - range / 2) + sourcePadding, (int) (sourceYPos - range / 2) +sourcePadding,
                         (int)range, (int) range);
             }
             timer--;

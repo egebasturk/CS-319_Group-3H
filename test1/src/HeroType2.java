@@ -32,8 +32,10 @@ public class HeroType2 extends Hero{
         }
     }
     @Override
-    public void attack() {
-
+    public void attack()
+    {
+        currentAttackBehaviour.heroAttack( this );
+        /*
         if (target == null) {
             target = killList();
         }
@@ -66,7 +68,7 @@ public class HeroType2 extends Hero{
         {
             waitTime++;
         }
-
+        */
     }
     public void draw(int xPosition, int yPosition, Graphics g, int width, int height) {
         //panel.paintComponent( g );
@@ -76,11 +78,11 @@ public class HeroType2 extends Hero{
     public void draw(Graphics g)
     {
         // System.out.println("Graphics :" + x);
-        g.drawImage(image,x, y, 50, 50,null,null);
+        g.drawImage(image,xPos, yPos, 50, 50,null,null);
         if(fight)
         {
             //System.out.println("kapoww");
-            g.drawImage(kapowImage,x- GameMap.tileEdge/2, y-GameMap.tileEdge/2, 75, 75,null,null);
+            g.drawImage(kapowImage,xPos- GameMap.tileEdge/2, yPos-GameMap.tileEdge/2, 75, 75,null,null);
         }
     }
 }

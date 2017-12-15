@@ -33,11 +33,11 @@ public class GameMap {
 	    particles = new LinkedList<>();
 	    AbstractFactory factory = new FactoryLevel1();
 	    // TODO Input controller will read when it is implemented
-        tiles = factory.createTiles();//new Model.Tile[mapHeight][mapWidth];
-        attackers = new ArrayList<>(Arrays.asList(factory.createAttackers()));//new Model.Attacker[7 ];
+        tiles = factory.createTiles();
+        attackers = new ArrayList<>(Arrays.asList(factory.createAttackers()));
         towers = new LinkedList<>();
-        towers.add(new AreaAttackTower(this, 8*tileEdge,8*tileEdge));
-        hero = new HeroType2(this, 9,20);
+        //towers.add(new AreaAttackTower(this, 8*tileEdge,8*tileEdge));
+        hero = new HeroType1(this, 9,18);
         //obstacle = new Obstacle(this,11,9);
         /*
         typeMatrix = new int[mapHeight][mapWidth];

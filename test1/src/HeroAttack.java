@@ -1,6 +1,4 @@
-
-
-public class AreaAttack implements AttackBehaviour {
+public class HeroAttack implements AttackBehaviour {
     @Override
     public void attack() {
 
@@ -12,7 +10,12 @@ public class AreaAttack implements AttackBehaviour {
     }
 
     @Override
-    public void areaAttack(Tower attackSource)
+    public void areaAttack(Tower attackSource) {
+
+    }
+
+    @Override
+    public void heroAttack(Hero attackSource)
     {
         if (attackSource.currentAttackCooldown >= attackSource.rateOfFire )
         {
@@ -20,19 +23,14 @@ public class AreaAttack implements AttackBehaviour {
             for (Attacker at:attackSource.getAttackersInRange())
             {
                 //attackSource.currentGameMap.addParticle( new Particle(attackSource.xPos, attackSource.yPos,
-                  //      attackSource.currentTarget.getX(),attackSource.currentTarget.getY(), attackSource.currentGameMap));
+                //      attackSource.currentTarget.getX(),attackSource.currentTarget.getY(), attackSource.currentGameMap));
+                at.setxPosTile( at.getxPosTile() - 1);
+                at.setX(at.getX() - 20);
                 at.setHealth(at.getHealth() - attackSource.damage);
             }
-            attackSource.currentGameMap.addParticle( new Particle(attackSource.xPos, attackSource.yPos,
-                    0,0, attackSource.currentGameMap,
-                    Particle.ParticleTypes.circle, attackSource.range));
         }
         else
             attackSource.currentAttackCooldown++;
     }
 
-    @Override
-    public void heroAttack(Hero attackSource) {
-
-    }
 }
