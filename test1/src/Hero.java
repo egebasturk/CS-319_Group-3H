@@ -30,12 +30,15 @@ public class Hero extends GameObject {
     protected int yPosTile;
 
     protected int time = 0;
+    protected int numberOfAttacks;
+    protected int maxNumberOfAttacks;
 
     protected boolean alive = false;
 
     public Hero(GameMap gameMap ,int endRow, int endColumn)
     {
         super();
+        numberOfAttacks = 0;
         this.currentGameMap = gameMap;
         currentAttackBehaviour = new HeroAttack();
         currentAttackCooldown = 0;
@@ -141,7 +144,7 @@ public class Hero extends GameObject {
 
     public void notifyDeath(){
         if(time  == 20)
-        initializeDeath();
+            initializeDeath();
     }
 
     public void initializeDeath(){
