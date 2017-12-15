@@ -37,10 +37,10 @@ public class GameMap {
 	public GameMap( int selectedLevel, GameController currentGameController )
     {
         this.currentGameController = currentGameController;
-        endColumn = 18;
-        endRow = 9;
 	    particles = new LinkedList<>();
 	    AbstractFactory factory = factorySelector(selectedLevel);
+        endColumn = 18;
+        endRow = 9;
 	    // TODO Input controller will read when it is implemented
         tiles = factory.createTiles();
         attackers = new ArrayList<>(Arrays.asList(factory.createAttackers()));
