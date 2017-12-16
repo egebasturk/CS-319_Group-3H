@@ -18,5 +18,6 @@ public class Assets
     public static String rocktile = "src/main/resources/rocktile.png";
     public static String base = "src/main/resources/base.png";
     public static String dollar = "src/main/resources/dollar.png";
+    public static String upgrade = "src/main/resources/upgrade.png";
 }
 
