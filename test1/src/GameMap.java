@@ -270,4 +270,33 @@ public class GameMap {
     {
         particles.addLast(particle);
     }
+    public GameController.selectedTowerFromTheList upgradeTower( Point clickPoint )
+    {
+        for (Tower i: towers)
+        {
+            if ( i.getX() == clickPoint.getX() && i.getY() == clickPoint.getY() )
+            {
+                if ( i instanceof SingleAttackTower )
+                {
+                    ((SingleAttackTower)i).currentAttackBehaviour = new SingleAttackUpgraded1();
+                    return GameController.selectedTowerFromTheList.tower2;
+                }
+            }
+        }
+        return GameController.selectedTowerFromTheList.None;
+    }
+    public GameController.selectedTowerFromTheList getSelectionFromTheMap ( Point clickPoint )
+    {
+        for (Tower i: towers)
+        {
+            if ( i.getX() == clickPoint.getX() && i.getY() == clickPoint.getY() )
+            {
+                if ( i instanceof SingleAttackTower )
+                {
+                    return GameController.selectedTowerFromTheList.tower2;
+                }
+            }
+        }
+        return GameController.selectedTowerFromTheList.None;
+    }
 }

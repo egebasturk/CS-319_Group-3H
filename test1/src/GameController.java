@@ -21,6 +21,7 @@ public class GameController implements Runnable{
     private ThreadMethod threadMethod2 = new ThreadMethod( this, this, ThreadFunctionality.TWO);
     private ThreadMethod threadMethod3 = new ThreadMethod( this, this, ThreadFunctionality.THREE);*/
 
+    // Thread is not used currently. Cannot control concurrent errors.
     class ThreadMethod extends Thread{
         GameController gameController;
         GameController.ThreadFunctionality threadFunctionality;
@@ -60,7 +61,7 @@ public class GameController implements Runnable{
 	private TowerListController towerListController;
 	private InputController inputController;
 	public GameMap gameMap;
-	public enum selectedTowerFromTheList { None, tower1, tower2, hero1, hero2}
+	public enum selectedTowerFromTheList { None, tower1, tower2, hero1, hero2, upgrade, sell}
 	public selectedTowerFromTheList currentSelectedTowerFromTheList;
 	public Graphics g;
 
@@ -171,6 +172,20 @@ public class GameController implements Runnable{
             {
                 setPlayerGold(playerGold - towerListController.getTowerCost(i));
             }
+        }
+    }
+    public void upgradeTower( Point clickPoint )
+    {
+        selectedTowerFromTheList selectionOnTheMap = gameMap.getSelectionFromTheMap( clickPoint );
+        int i;
+        for ( i = 0; i < selectedTowerFromTheList.values().length; i++)
+        {
+            if ( selectedTowerFromTheList.values()[i] == selectionOnTheMap )
+                break;;
+        }
+        if ( towerListController.getTowerCost(i) <= playerGold )
+        {
+            gameMap.upgradeTower( clickPoint );
         }
     }
     public void setPlayerGold( int playerGold )
