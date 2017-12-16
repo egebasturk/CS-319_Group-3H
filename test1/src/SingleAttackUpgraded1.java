@@ -44,7 +44,8 @@ public class SingleAttackUpgraded1 implements AttackBehaviour
             {
                 for ( int i = 0; i < 2 && !currentTargets.isEmpty(); i++)
                 {
-                    // If one of the attackers die while this is trying to attack it, this would cause Index out of bounds exception
+                    // If one of the attackers die because of another reason while this is trying to attack it,
+                    // this would cause Index out of bounds exception
                     try {
                         // Check condition if it is in range
                         if (attackSource.getDistanceBetweenTowerAndTarget(attackSource, currentTargets.get(i)) > attackSource.range) {
@@ -60,7 +61,7 @@ public class SingleAttackUpgraded1 implements AttackBehaviour
                         }
                     }catch (IndexOutOfBoundsException ie)
                     {
-
+                        // Skip the problematic attack
                     }
 
                 }

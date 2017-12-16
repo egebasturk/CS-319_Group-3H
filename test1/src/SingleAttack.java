@@ -3,6 +3,7 @@
  * Implements single attack method for attack behaviour
  * @ author Alp Ege Basturk
  * @ version 15.12.2017
+ *   version 16.12.2017
  */
 import java.util.NoSuchElementException;
 import java.util.Queue;
@@ -19,26 +20,24 @@ public class SingleAttack implements AttackBehaviour {
         if (attackSource.currentAttackCooldown >= attackSource.rateOfFire )
         {
             attackSource.currentAttackCooldown = 0;
+            Queue attackersInRange = attackSource.getAttackersInRange();
             if (attackSource.currentTarget == null) {
-                Queue attackersInRange = attackSource.getAttackersInRange();
-                // If List is empty catch the exception and set target to null to pass
+                // If List is empty catch the exception and set target to null to pass.
                 try {
                     attackSource.currentTarget = (Attacker) attackersInRange.remove();
-                    while ( attackSource.currentTarget.isKilled() || !attackSource.currentTarget.isAlive())
-                        attackSource.currentTarget = (Attacker) attackersInRange.remove();
+                    /*while ( attackSource.currentTarget.isKilled() || !attackSource.currentTarget.isAlive())
+                        attackSource.currentTarget = (Attacker) attackersInRange.remove();*/
                 }catch (NoSuchElementException e) {
                     attackSource.currentTarget = null;
                     attackSource.currentAttackCooldown = 20;
                 }
             }
-            if (attackSource.currentTarget != null)
+            if (attackSource.currentTarget != null) // Why this is always true ??
             {
-                //System.out.println("Target is not null");
-                //System.out.println(currentTarget.getHealth());
                 // Check condition if it is in range
                 if ( attackSource.getDistanceBetweenTowerAndTarget(attackSource, attackSource.currentTarget) > attackSource.range)
                 {
-                    attackSource.currentTarget = null;
+
                 }
                 else// Attack
                 {
@@ -48,9 +47,10 @@ public class SingleAttack implements AttackBehaviour {
                             attackSource.currentTarget.getX(),attackSource.currentTarget.getY(), attackSource.currentGameMap,
                             Particle.ParticleTypes.line, attackSource.range));
                     attackSource.currentTarget.setHealth(attackSource.currentTarget.getHealth() - attackSource.damage);
-                    if (attackSource.currentTarget.getHealth() <= 0)
-                        attackSource.currentTarget = null;
+                    /*if (attackSource.currentTarget.getHealth() <= 0)
+                        attackSource.currentTarget = null;*/
                 }
+                attackSource.currentTarget = null;
             }
         }
         else
