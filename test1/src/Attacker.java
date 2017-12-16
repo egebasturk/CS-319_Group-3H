@@ -178,7 +178,7 @@ public class Attacker extends GameObject
                                 <= GameMap.tiles[yPosTile + 1][xPosTile].getY() &&
                         GameMap.tiles[yPosTile + 1][xPosTile].isBlocking())
                 {
-                    // check right if it is also blocking, change direction to left
+                    // check right if it is also blocking, change direction to down
                     if (this.xPos + GameMap.tileEdge + speed
                             >= GameMap.tiles[yPosTile][xPosTile + 1].getX() &&
                             GameMap.tiles[yPosTile][xPosTile + 1].isBlocking())
