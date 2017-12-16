@@ -37,7 +37,7 @@ public class Tower extends GameObject {
 	    this.currentGameMap = currentGameMap;
 	    this.height = 50;
 	    this.width = 50;
-	    range = 300;
+	    range = 500;
 	    rateOfFire = 20;
 	    currentAttackCooldown = 0;
 	    attackedFlag = false;
