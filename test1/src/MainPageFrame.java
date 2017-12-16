@@ -126,7 +126,7 @@ public class MainPageFrame extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 1;
                 createStars(levelNumber);
-                repaint();
+
             }
         });
 
@@ -135,7 +135,7 @@ public class MainPageFrame extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 2;
                 createStars(levelNumber);
-                repaint();
+
             }
         });
         level3.addActionListener(new ActionListener() {
@@ -143,7 +143,7 @@ public class MainPageFrame extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 3;
                 createStars(levelNumber);
-                repaint();
+
             }
         });
         level4.addActionListener(new ActionListener() {
@@ -151,7 +151,7 @@ public class MainPageFrame extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 4;
                 createStars(levelNumber);
-                repaint();
+
             }
         });
         level5.addActionListener(new ActionListener() {
@@ -159,7 +159,7 @@ public class MainPageFrame extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 5;
                 createStars(levelNumber);
-                repaint();
+
             }
         });
         play.addActionListener(new ActionListener() {
@@ -171,12 +171,13 @@ public class MainPageFrame extends JPanel {
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
             }
         });
         credits.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
 
+            public void actionPerformed(ActionEvent e) {
 
             }
         });
@@ -186,18 +187,22 @@ public class MainPageFrame extends JPanel {
             public void mouseEntered(MouseEvent evt)
             {
                 credits.setForeground(new Color(0, 117, 191));
+                repaint();
             }
             public void mouseExited(MouseEvent evt)
             {
                 credits.setForeground(Color.BLACK);
+                repaint();
             }
             public void mousePressed(MouseEvent evt)
             {
                 credits.setBackground(new Color(0, 117, 191));
+                repaint();
             }
             public void mouseReleased(MouseEvent evt)
             {
                 credits.setBackground(Color.BLACK);
+                repaint();
             }
         });
 
@@ -206,18 +211,22 @@ public class MainPageFrame extends JPanel {
             public void mouseEntered(MouseEvent evt)
             {
                 help.setForeground(new Color(0, 117, 191));
+                repaint();
             }
             public void mouseExited(MouseEvent evt)
             {
                 help.setForeground(Color.BLACK);
+                repaint();
             }
             public void mousePressed(MouseEvent evt)
             {
                 help.setBackground(new Color(0, 117, 191));
+                repaint();
             }
             public void mouseReleased(MouseEvent evt)
             {
                 help.setBackground(Color.BLACK);
+                repaint();
             }
         });
         play.addMouseListener(new MouseAdapter()
@@ -225,10 +234,12 @@ public class MainPageFrame extends JPanel {
             public void mouseEntered(MouseEvent evt)
             {
                 play.setForeground(Color.red);
+                repaint();
             }
             public void mouseExited(MouseEvent evt)
             {
                 play.setForeground(Color.BLACK);
+                repaint();
             }
 
         });
@@ -237,18 +248,22 @@ public class MainPageFrame extends JPanel {
             public void mouseEntered(MouseEvent evt)
             {
                 level1.setForeground(new Color(0, 117, 191));
+                repaint();
             }
             public void mouseExited(MouseEvent evt)
             {
                 level1.setForeground(Color.BLACK);
+                repaint();
             }
             public void mousePressed(MouseEvent evt)
             {
                 level1.setBackground(new Color(0, 117, 191));
+                repaint();
             }
             public void mouseReleased(MouseEvent evt)
             {
                 level1.setBackground(Color.BLACK);
+                repaint();
             }
         });
         if(level2.isEnabled() == true) {
@@ -257,18 +272,22 @@ public class MainPageFrame extends JPanel {
                 public void mouseEntered(MouseEvent evt) {
 
                     level2.setForeground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseExited(MouseEvent evt) {
                     level2.setForeground(Color.BLACK);
+                    repaint();
                 }
 
                 public void mousePressed(MouseEvent evt) {
                     level2.setBackground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseReleased(MouseEvent evt) {
                     level2.setBackground(Color.BLACK);
+                    repaint();
                 }
             });
         }
@@ -276,18 +295,22 @@ public class MainPageFrame extends JPanel {
             level3.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent evt) {
                     level3.setForeground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseExited(MouseEvent evt) {
                     level3.setForeground(Color.BLACK);
+                    repaint();
                 }
 
                 public void mousePressed(MouseEvent evt) {
                     level3.setBackground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseReleased(MouseEvent evt) {
                     level3.setBackground(Color.BLACK);
+                    repaint();
                 }
             });
         }
@@ -295,18 +318,22 @@ public class MainPageFrame extends JPanel {
             level4.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent evt) {
                     level4.setForeground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseExited(MouseEvent evt) {
                     level4.setForeground(Color.BLACK);
+                    repaint();
                 }
 
                 public void mousePressed(MouseEvent evt) {
                     level4.setBackground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseReleased(MouseEvent evt) {
                     level4.setBackground(Color.BLACK);
+                    repaint();
                 }
             });
         }
@@ -314,18 +341,22 @@ public class MainPageFrame extends JPanel {
             level5.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent evt) {
                     level5.setForeground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseExited(MouseEvent evt) {
                     level5.setForeground(Color.BLACK);
+                    repaint();
                 }
 
                 public void mousePressed(MouseEvent evt) {
                     level5.setBackground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseReleased(MouseEvent evt) {
                     level5.setBackground(Color.BLACK);
+                    repaint();
                 }
             });
         }
