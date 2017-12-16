@@ -13,6 +13,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.io.*;
 
 public class GameController implements Runnable{
 
@@ -60,6 +61,10 @@ public class GameController implements Runnable{
 	protected boolean isRunning = true;
 	private boolean isPaused = false;
 
+    private int score;
+    private int star;
+    private String textFileContent;
+    private String textFileString;
 	protected GamePanel gamePanel;
 	private Frame frame;
 	private TowerListController towerListController;
@@ -79,6 +84,9 @@ public class GameController implements Runnable{
         level = selectedLevel; // TODO: Properly implement this
         playerGold = level * 100;
 	    currentSelectedTowerFromTheList = selectedTowerFromTheList.None;
+        score = 0;
+        star = 0;
+        textFileContent = "";
         gameMap = new GameMap(selectedLevel, this);
         setGameMaps();
         frame = new Frame();
@@ -143,6 +151,8 @@ public class GameController implements Runnable{
                 // TODO: Do save operations to txt
                 if (gameMap.getAttackers().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Game Has Finished. You are victorious");
+                    score = ((int)gameMap.base.getHealth() );
+                    saveScore();
                     System.exit(0);
                     break;
                 } else if (gameMap.base.getHealth() <= 0) {
@@ -255,7 +265,51 @@ public class GameController implements Runnable{
 
 	private void saveScore() {
 		// TODO - implement GameController.saveScore
-		throw new UnsupportedOperationException();
+        int levelStar = 0;
+        if( score >= 4 )
+            star = 3;
+        else if( score >= 2)
+            star = 2;
+        else
+            star = 1;
+        try {
+            FileReader fileReader =
+                    new FileReader(Assets.starTxt);
+
+            BufferedReader bufferedReader =
+                    new BufferedReader(fileReader);
+            if((textFileString = bufferedReader.readLine()) != null) {
+                levelStar = Integer.parseInt(textFileString.valueOf(textFileString.charAt(level -1)));
+                textFileContent = textFileString;
+            }
+
+            bufferedReader.close();
+        }
+        catch(IOException ex) {
+
+        }
+
+        if( star > levelStar ){
+            try {
+                FileWriter fileWriter =
+                        new FileWriter(Assets.starTxt);
+                BufferedWriter bufferedWriter =
+                        new BufferedWriter(fileWriter);
+                char starChar = (char)star;
+                char toBeChanged = textFileContent.charAt(level-1);
+                textFileContent = ( textFileContent.substring(0,level-1) + star + textFileContent.substring(level) );
+                System.out.println(textFileContent);
+                bufferedWriter.write( textFileContent );
+                bufferedWriter.close();
+            }
+            catch( FileNotFoundException e ){
+                e.printStackTrace();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+
+        }
 	}
 
     public void pauseGame() {

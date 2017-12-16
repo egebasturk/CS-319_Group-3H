@@ -408,6 +408,7 @@ public class MainPageFrame extends JPanel {
     public int getLevelNumber() {
         return levelNumber;
     }
+
 }
 
 
