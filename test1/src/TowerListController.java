@@ -22,7 +22,7 @@ public class TowerListController extends JPanel{
 
     // TODO deal with the magic numbers
 	private BufferedImage[] towerImages;
-	private int towerNumber = 4;
+	private int towerNumber = 6;
 	private int boxEdge = 50;
 	private int paddingLeft = 20;
 	private int paddingTop = 40;
@@ -30,7 +30,7 @@ public class TowerListController extends JPanel{
 	private int playerGold;
 	private int[] towerCosts = {0,10,15, 40, 50};
 
-	private Rectangle[] towers = new Rectangle[towerNumber + 2]; // +2 for upgrade and sell
+	private Rectangle[] towers = new Rectangle[towerNumber];
 	public static int panelWidth = 20;
 	public static int panelHeight = 40;
 	//private JPanel listBox;
@@ -43,6 +43,7 @@ public class TowerListController extends JPanel{
             towerImages[1] = ImageIO.read(new File(Assets.tower2));
             towerImages[2] = ImageIO.read(new File(Assets.hero1));
             towerImages[3] = ImageIO.read(new File(Assets.hero2));
+            towerImages[4] = ImageIO.read(new File(Assets.dollar));
         }
         catch (IOException e) {
             e.printStackTrace();
