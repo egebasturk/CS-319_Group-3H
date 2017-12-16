@@ -94,14 +94,14 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
         //System.out.println("Model.Tile draw called");
         g.drawRect( xPos, yPos, width, height );
         if (type == 0 || type == 2) {
-			g.drawImage(tileImage,x, y, 50, 50,null,null);
-            //g.setColor(Color.GRAY);
-            //g.fillRect(xPos, yPos, width, height);
+			//g.drawImage(tileImage,x, y, 50, 50,null,null);
+            g.setColor(Color.GRAY);
+            g.fillRect(xPos, yPos, width, height);
         }
         else if ( type == 1) {
-			g.drawImage(grassImage,x, y, width, height,null,null);
-           // g.setColor(Color.GREEN);
-           // g.fillRect(xPos, yPos, width, height);
+			//g.drawImage(grassImage,x, y, width, height,null,null);
+            g.setColor(Color.GREEN);
+            g.fillRect(xPos, yPos, width, height);
         }
 
         else if (type==3) {
