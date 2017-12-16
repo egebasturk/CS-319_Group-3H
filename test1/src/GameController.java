@@ -122,10 +122,8 @@ public class GameController implements Runnable{
 	@Override
 	public void run()
 	{
-		while( isRunning )
+		while( isRunning ) // isRunning is redundant
 		{
-
-
             if(!isPaused) {
                 elapsedTime++;
             /*
@@ -156,6 +154,13 @@ public class GameController implements Runnable{
 
                 try {
                     Thread.sleep(1);
+                } catch (Exception e) {
+                }
+            }
+            else
+            {
+                try {
+                    Thread.sleep(10);
                 } catch (Exception e) {
                 }
             }
@@ -256,7 +261,9 @@ public class GameController implements Runnable{
     public void pauseGame() {
         isPaused = true;
         gamePanel.setVisible(false);
-        System.out.println("Pause added");
+        pause.setVisible(true);
+        pause.repaint();
+        System.out.println("Pause");
         frame.getContentPane().add(pause, BorderLayout.CENTER);
     }
 
@@ -264,11 +271,7 @@ public class GameController implements Runnable{
         isPaused = false;
         pause.setVisible(false);
         gamePanel.setVisible(true);
-        System.out.println("resume added");
-        //frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
-        //run(); //bu commenti açınca oyun arkada çalışıyor ama görüntü yok
+        gamePanel.repaint();
+        System.out.println("resume");
 	}
-
-      //  frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
-
 }
