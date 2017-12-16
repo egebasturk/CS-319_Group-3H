@@ -13,9 +13,9 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class Tile extends GameObject// extends Model.GameObject { TODO: commented out for debugging
+public class Tile extends GameObject
 {
-    private int id; // TODO gamebojects will have such id. Try to use it instead
+    private int id; // TODO: not used. May be removed
 	private int type;
 	private BufferedImage closedGateImage;
 	private BufferedImage openGateImage;

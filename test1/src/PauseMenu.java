@@ -14,13 +14,13 @@ import java.awt.event.MouseEvent;
 
 public class PauseMenu extends JPanel {
 
-    public JButton resumeButton;
-    public JButton mainMenuButton;
-    public JPanel buttonContainer;
-    public JPanel nameContainer;
-    public JLabel gameName;
-    public JLabel paused;
-    public JPanel centerPanel;
+    private JButton resumeButton;
+    private JButton mainMenuButton;
+    private JPanel buttonContainer;
+    private JPanel nameContainer;
+    private JLabel gameName;
+    private JLabel paused;
+    private JPanel centerPanel;
     private GameController game;
     public PauseMenu(GameController game) {
 
@@ -124,7 +124,7 @@ public class PauseMenu extends JPanel {
     }
 
 
-    public void resume() {
+    private void resume() {
         game.resumeGame();
     }
 

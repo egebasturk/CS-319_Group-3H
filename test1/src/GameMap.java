@@ -24,8 +24,8 @@ public class GameMap {
     private int spawnTimer = 0;
     public static Tile[][] tiles;
     //public static Attacker[] attackers;
-    public static ArrayList<Attacker> attackers;
-    public static LinkedList<Tower> towers;
+    public static ArrayList<Attacker> attackers; // TODO: not all accesses use the getter
+    private static LinkedList<Tower> towers;
     public static Hero hero;
     public Base base;
     public static Obstacle obstacle;

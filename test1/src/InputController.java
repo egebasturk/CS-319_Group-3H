@@ -17,9 +17,9 @@ public class InputController implements MouseMotionListener, MouseListener {
     // TODO: Will be implemented
 	private boolean mouseClicked;
 	private int xPos, yPos;
-	GamePanel currentGamePanel;
-	TowerListController currentTowerListPanel;
-	GameController currentGameController;
+	private GamePanel currentGamePanel;
+	private TowerListController currentTowerListPanel;
+	private GameController currentGameController;
 
 	public InputController( GamePanel currentGamePanel, TowerListController currentTowerListPanel, GameController currentGameController) {
 	    this.currentGamePanel = currentGamePanel;

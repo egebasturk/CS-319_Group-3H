@@ -16,10 +16,6 @@ public class GamePanel extends JPanel
 {
     public GameMap gameMap;
 
-    public GamePanel()
-    {
-        System.out.print("GamePanel Created");
-    }
     public GamePanel(GameMap gameMap)
     {
         System.out.print("GamePanel Created");

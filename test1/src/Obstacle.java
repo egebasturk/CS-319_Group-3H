@@ -21,15 +21,15 @@ public class Obstacle extends GameObject {
     protected BufferedImage image;
 
     GameMap gameMap;
-    protected int x;
-    protected int y;
+    private int x;
+    private int y;
 
-    protected int xPosTile;
-    protected int yPosTile;
+    private int xPosTile;
+    private int yPosTile;
 
-    protected int time = 0;
+    private int time = 0;
 
-    protected boolean alive = false;
+    private boolean alive = false;
 
     public Obstacle(GameMap gameMap ,int x, int y) {
 

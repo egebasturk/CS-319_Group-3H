@@ -10,15 +10,15 @@ import java.awt.*;
 public class Particle extends GameObject
 {
     enum ParticleTypes {line, circle};
-    double sourceXPos, sourceYPos, targetXPos, targetYPos;
+    private double sourceXPos, sourceYPos, targetXPos, targetYPos;
     //double velocity; Planned to use for more complex animations
-    int timer;
-    final int baseTimer = 100;
-    final int targetPadding = 20;
-    final int sourcePadding = 20;
+    private int timer;
+    private final int baseTimer = 100;
+    private final int targetPadding = 20;
+    private final int sourcePadding = 20;
     GameMap currentGameMap;
     ParticleTypes particleType;
-    double range;
+    private double range;
     public Particle( double sourceXPos, double sourceYPos, double targetXPos, double targetYPos, GameMap currentGameMap,
                      ParticleTypes particleType, double range)
     {

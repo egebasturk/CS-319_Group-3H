@@ -15,9 +15,8 @@ import java.io.IOException;
 
 public class HeroType1 extends Hero{
     //protected Attacker target;
-    protected BufferedImage kapowImage;
+    private BufferedImage kapowImage;
     private boolean fight = false;
-    private int waitTime = 0;
 
     public HeroType1(GameMap gameMap, int endRow, int endColumn){
         super(gameMap,endRow,endColumn);

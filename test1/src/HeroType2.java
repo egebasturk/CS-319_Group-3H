@@ -14,8 +14,8 @@ import java.io.IOException;
 
 
 public class HeroType2 extends Hero{
-    protected Attacker target;
-    protected BufferedImage kapowImage;
+    private Attacker target;
+    private BufferedImage kapowImage;
     private boolean fight = false;
     private int waitTime = 0;
 
