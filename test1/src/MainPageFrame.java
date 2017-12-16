@@ -383,7 +383,6 @@ public class MainPageFrame extends JPanel {
             g.drawImage(starImage, 430, 250, 75,70,null);
 
         }
-        repaint();
     }
 
 
