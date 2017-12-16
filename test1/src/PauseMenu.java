@@ -22,7 +22,10 @@ public class PauseMenu extends JPanel {
     private JLabel paused;
     private JPanel centerPanel;
     private GameController game;
+    public Image img = new ImageIcon(Assets.background).getImage();
+
     public PauseMenu(GameController game) {
+
 
         this.game = game;
         setLayout(new BorderLayout());
@@ -126,6 +129,10 @@ public class PauseMenu extends JPanel {
 
     private void resume() {
         game.resumeGame();
+    }
+
+    public void paintComponent(Graphics g) {
+        g.drawImage(img, 0, 0, null);
     }
 
 
