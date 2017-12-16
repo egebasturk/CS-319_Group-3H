@@ -45,7 +45,7 @@ public class TowerListController extends JPanel{
             towerImages[3] = ImageIO.read(new File(Assets.hero2));
             towerImages[4] = ImageIO.read(new File(Assets.upgrade));
             towerImages[5] = ImageIO.read(new File(Assets.dollar));
-            towerImages[6] = ImageIO.read(new File(Assets.kapow));
+            towerImages[6] = ImageIO.read(new File(Assets.pause));
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -66,7 +66,7 @@ public class TowerListController extends JPanel{
             if ( isInRectangle(GameController.mouseX, GameController.mouseY, towers[i]) )
                 g.setColor(Color.RED);
             else
-                g.setColor(Color.CYAN);
+               // g.setColor(Color.CYAN);
             //g.drawRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
             g.fillRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
             if ( i < towerNumber )

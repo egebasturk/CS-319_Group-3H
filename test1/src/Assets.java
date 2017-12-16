@@ -19,5 +19,6 @@ public class Assets
     public static String base = "src/main/resources/base.png";
     public static String dollar = "src/main/resources/dollar.png";
     public static String upgrade = "src/main/resources/upgrade.png";
+    public static String pause = "src/main/resources/pause.png";
 }
 
