@@ -43,7 +43,8 @@ public class TowerListController extends JPanel{
             towerImages[1] = ImageIO.read(new File(Assets.tower2));
             towerImages[2] = ImageIO.read(new File(Assets.hero1));
             towerImages[3] = ImageIO.read(new File(Assets.hero2));
-            towerImages[4] = ImageIO.read(new File(Assets.dollar));
+            towerImages[4] = ImageIO.read(new File(Assets.upgrade));
+            towerImages[5] = ImageIO.read(new File(Assets.dollar));
         }
         catch (IOException e) {
             e.printStackTrace();
