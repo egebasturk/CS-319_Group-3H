@@ -60,7 +60,7 @@ public class SingleAttackUpgraded1 implements AttackBehaviour
                         }
                     }catch (IndexOutOfBoundsException ie)
                     {
-
+                        // Skip that one
                     }
 
                 }

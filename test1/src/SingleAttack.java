@@ -39,6 +39,7 @@ public class SingleAttack implements AttackBehaviour {
                 if ( attackSource.getDistanceBetweenTowerAndTarget(attackSource, attackSource.currentTarget) > attackSource.range)
                 {
                     attackSource.currentTarget = null;
+                    attackSource.currentAttackCooldown = 20;
                 }
                 else// Attack
                 {
