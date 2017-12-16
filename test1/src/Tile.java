@@ -99,6 +99,7 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
             g.fillRect(xPos, yPos, width, height);
         }
         else if ( type == 1) {
+			//g.drawImage(grassImage,x, y, width, height,null,null);
 			//g.drawImage(grassImage,x, y, 50, 50,null,null);
             g.setColor(Color.GREEN);
             g.fillRect(xPos, yPos, width, height);
