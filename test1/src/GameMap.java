@@ -257,6 +257,23 @@ public class GameMap {
     {
         if ( newTowerOrHero instanceof Tower )
         {
+            //TODO: Solve index out of bounds error
+            int tileXLocation = (int)newTowerOrHero.getX()/tileEdge;
+            int tileYLocation = (int)newTowerOrHero.getY()/tileEdge;
+            /*if (tileXLocation >= mapWidth)
+                tileXLocation--;
+            if (tileYLocation >= mapHeight)
+                tileYLocation++;*/
+            try {
+                if ( tiles[tileYLocation][tileXLocation].getType() != 1 )
+                {
+                    System.out.println("Cannot add tower tile type is "  + tiles[tileXLocation][tileYLocation].getType());
+                    return false;
+                }
+            } catch (IndexOutOfBoundsException ie)
+            {
+                return false;
+            }
             for (Iterator<Tower> it = towers.iterator(); it.hasNext(); ) {
                 Tower tow = it.next();
                 if (tow.getX() == newTowerOrHero.getX() && tow.getY() == newTowerOrHero.getY()) {
