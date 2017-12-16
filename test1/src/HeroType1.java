@@ -15,9 +15,8 @@ import java.io.IOException;
 
 public class HeroType1 extends Hero{
     //protected Attacker target;
-    protected BufferedImage kapowImage;
+    private BufferedImage kapowImage;
     private boolean fight = false;
-    private int waitTime = 0;
 
     public HeroType1(GameMap gameMap, int endRow, int endColumn){
         super(gameMap,endRow,endColumn);
@@ -46,40 +45,6 @@ public class HeroType1 extends Hero{
             if (numberOfAttacks > maxNumberOfAttacks)
                 initializeDeath();
         }
-        /*
-        if (target == null) {
-            target = killList();
-        }
-        if (waitTime >= 250) {
-            waitTime = 0;
-            //System.out.println("attacker null");
-            if (target != null) {
-                if ((this.getY() - target.yPosTile * GameMap.tileEdge) > 40 || (this.getX() - target.xPosTile * GameMap.tileEdge) > 40)
-                {
-                    target = null;
-                    System.out.println("attacker is null null");
-                }
-                else
-                {
-                    target.setHealth(target.getHealth() - damage);
-                    fight = true;
-                    System.out.println("attacking");
-                    System.out.println(target.getHealth());
-                    if (target.getHealth() <= 0) {
-                        target = null;
-                        System.out.println("target is dead");
-                        fight = false;
-                        moveAttackers();
-                    }
-
-                }
-            }
-        }
-        else
-        {
-            waitTime++;
-        }
-        */
     }
     public void draw( int xPosition, int yPosition, Graphics g, int width, int height) {
         //panel.paintComponent( g );

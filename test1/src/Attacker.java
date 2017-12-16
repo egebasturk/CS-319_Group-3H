@@ -217,6 +217,7 @@ public class Attacker extends GameObject
            System.out.println("attacker out of array"); */
         }
 	}
+	// Sets health. Initializes death if new health is below threshold
 	public void setHealth(double health)
     {
 	    this.currentHealth = health;
@@ -232,6 +233,8 @@ public class Attacker extends GameObject
         currentGameMap = gameMap;
     }
 
+    // Like observer pattern
+    // Notifies the game map when it dies. Game map will remove it from its list.
 	public void initializeDeath() {
 		killed = true;
 		currentGameMap.notifyDeath(this);

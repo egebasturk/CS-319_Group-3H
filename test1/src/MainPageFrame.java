@@ -19,11 +19,11 @@ public class MainPageFrame extends JPanel {
     protected JButton help;
     protected JButton credits;
     protected JButton play;
-    protected JButton level1;
-    protected JButton level2;
-    protected JButton level3;
-    protected JButton level4;
-    protected JButton level5;
+    private JButton level1;
+    private JButton level2;
+    private JButton level3;
+    private JButton level4;
+    private JButton level5;
     private JPanel levelContainer;
     private JPanel buttonContainer;
     private JPanel playButtonContainer;
@@ -31,8 +31,8 @@ public class MainPageFrame extends JPanel {
     private BufferedImage starImage;
     private JLabel gameName;
     private int levelNumber;
-    protected int levelStar;
-    protected String txtFileString;
+    private int levelStar;
+    private String txtFileString;
     private boolean playClicked;
 
 

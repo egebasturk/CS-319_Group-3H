@@ -13,7 +13,9 @@ public class SingleAttack implements AttackBehaviour {
     public void attack() {
 
     }
-
+    // This implementation gets the list of attackers as a linked list
+    // Processes the linked list as a queue. Takes the first element
+    // this results in attacking the first tower in the list
     @Override
     public void singleAttack(Tower attackSource)
     {
@@ -37,7 +39,7 @@ public class SingleAttack implements AttackBehaviour {
                 // Check condition if it is in range
                 if ( attackSource.getDistanceBetweenTowerAndTarget(attackSource, attackSource.currentTarget) > attackSource.range)
                 {
-
+                    // Skip
                 }
                 else// Attack
                 {

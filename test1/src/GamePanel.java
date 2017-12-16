@@ -14,14 +14,8 @@ import java.awt.*;
 
 public class GamePanel extends JPanel
 {
-    //private int spawnCooldown = 1000;
-    //private int spawnTimer = 0;
     public GameMap gameMap;
 
-    public GamePanel()
-    {
-        System.out.print("GamePanel Created");
-    }
     public GamePanel(GameMap gameMap)
     {
         System.out.print("GamePanel Created");

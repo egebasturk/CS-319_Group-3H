@@ -17,9 +17,9 @@ public class InputController implements MouseMotionListener, MouseListener {
     // TODO: Will be implemented
 	private boolean mouseClicked;
 	private int xPos, yPos;
-	GamePanel currentGamePanel;
-	TowerListController currentTowerListPanel;
-	GameController currentGameController;
+	private GamePanel currentGamePanel;
+	private TowerListController currentTowerListPanel;
+	private GameController currentGameController;
 
 	public InputController( GamePanel currentGamePanel, TowerListController currentTowerListPanel, GameController currentGameController) {
 	    this.currentGamePanel = currentGamePanel;
@@ -69,23 +69,27 @@ public class InputController implements MouseMotionListener, MouseListener {
 	    // First is: When clicked on the TowerList
 	    if ( mouseEvent.getComponent() == currentTowerListPanel)
         {
+            // Returns -1 when it is not in  the list
             int index = currentTowerListPanel.getElementIndexFromTheList(mouseEvent.getX(), mouseEvent.getY());
             if ( index != -1)
             {
                 // +1 because element zero is none
+                // Sets selection in the GameController to use in later operations
                 currentGameController.setCurrentSelectedTowerFromTheList( GameController.selectedTowerFromTheList.values()[index + 1]);
                 System.out.println("Selected tower: " + index);
-
+                // Hero 1
                 if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.hero1)
                 {
                     currentGameController.addTowerOrHero(new HeroType1(currentGameController.gameMap
                             , currentGameController.gameMap.endRow, currentGameController.gameMap.endColumn));
                 }
+                // Hero2
                 else if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.hero2)
                 {
                     currentGameController.addTowerOrHero(new HeroType2(currentGameController.gameMap
                             , currentGameController.gameMap.endRow, currentGameController.gameMap.endColumn));
                 }
+                // Pause
                 else if(currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.pause)
                 {
                     System.out.println("Pause game method called");
@@ -94,37 +98,40 @@ public class InputController implements MouseMotionListener, MouseListener {
             }
         }
         // Second is: if clicked on the main game panel
+        // Operations below require position selection on the map. Thus they are a separate group
 	    else if ( mouseEvent.getComponent() == currentGamePanel )
         {
             System.out.println("Clicked on: " + mouseEvent.getX() + " " + mouseEvent.getY());
             // If there is a previous selection, continue else if none, don't do anything
             if ( currentGameController.getCurrentSelectedTowerFromTheList() != GameController.selectedTowerFromTheList.None)
             {
+                // Get the location on the map
                 Point clickPoint = getTileLocationOfClick( mouseEvent );
+                // Tower1
                 if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.tower1 )
                 {
                     currentGameController.addTowerOrHero(new AreaAttackTower(currentGameController.gameMap,
                             (int) clickPoint.getX(), (int) clickPoint.getY()));
                 }
+                // Tower2
                 else if (currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.tower2 )
                 {
                     currentGameController.addTowerOrHero(new SingleAttackTower(currentGameController.gameMap,
                             (int) clickPoint.getX(), (int) clickPoint.getY()));
                 }
+                // Tower upgrade
                 else if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.upgrade)
                 {
                     currentGameController.upgradeTower( clickPoint );
                 }
+                // Tower sell
                 else if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.sell)
                 {
-
                     currentGameController.sellTower( clickPoint );
-                    System.out.println("sellTower game method called");
                 }
-
+                // Reset back to none
                 currentGameController.setCurrentSelectedTowerFromTheList(GameController.selectedTowerFromTheList.None);
             }
-
         }
 	    else
 	        System.out.println("Failed to detect main panel");

@@ -80,7 +80,7 @@ public class TowerListController extends JPanel{
         g.drawString(playerGold + "", paddingLeft, paddingTop);
     }
 
-    public boolean isInRectangle(int x, int y, Rectangle rectangle)
+    private boolean isInRectangle(int x, int y, Rectangle rectangle)
     {
         /*
         System.out.println("Check bounds");
