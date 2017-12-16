@@ -10,6 +10,7 @@
  */
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -100,7 +101,6 @@ public class Attacker extends GameObject
      * Object moves in a direction, checks map in the path. If it cannot move,
      * then it changes its direction accordingly.
      * */
-    // TODO: This part is Buggy. Direction change works but position update is problematic.
 	public void move()
     {
         try {
@@ -130,11 +130,13 @@ public class Attacker extends GameObject
                 if (currentDirection == direction.right &&
                         this.xPos + boxEdge + speed
                                 >= GameMap.tiles[yPosTile][xPosTile + 1].getX() &&
-                        GameMap.tiles[yPosTile][xPosTile + 1].isBlocking()) {
+                        GameMap.tiles[yPosTile][xPosTile + 1].isBlocking())
+                {
                     // check top if it is also blocking, change direction to up or down
                     if (this.yPos - speed
                             <= GameMap.tiles[yPosTile - 1][xPosTile].getY() + boxEdge &&
-                            GameMap.tiles[yPosTile - 1][xPosTile].isBlocking()) {
+                            GameMap.tiles[yPosTile - 1][xPosTile].isBlocking())
+                    {
                         currentDirection = direction.down;
                     } else
                         currentDirection = direction.up;
@@ -143,11 +145,13 @@ public class Attacker extends GameObject
                 else if (currentDirection == direction.left &&
                         this.xPos - speed
                                 <= GameMap.tiles[yPosTile][xPosTile - 1].getBounds().getX() &&
-                        GameMap.tiles[yPosTile][xPosTile - 1].isBlocking()) {
+                        GameMap.tiles[yPosTile][xPosTile - 1].isBlocking())
+                {
                     // check top if it is also blocking, change direction to down
                     if (this.yPos - 1
                             <= GameMap.tiles[yPosTile - 1][xPosTile].getBounds().getY() + boxEdge &&
-                            GameMap.tiles[yPosTile - 1][xPosTile].isBlocking()) {
+                            GameMap.tiles[yPosTile - 1][xPosTile].isBlocking())
+                    {
                         currentDirection = direction.down;
                     } else
                         currentDirection = direction.up;
@@ -156,11 +160,13 @@ public class Attacker extends GameObject
                 else if (currentDirection == direction.up &&
                         this.yPos - speed - GameMap.tileEdge
                                 <= GameMap.tiles[yPosTile - 1][xPosTile].getY() &&
-                        GameMap.tiles[yPosTile - 1][xPosTile].isBlocking()) {
+                        GameMap.tiles[yPosTile - 1][xPosTile].isBlocking())
+                {
                     // check right if it is also blocking, change direction to right or left
                     if (this.xPos + boxEdge + speed
                             >= GameMap.tiles[yPosTile][xPosTile + 1].getBounds().getX() + boxEdge &&
-                            GameMap.tiles[yPosTile][xPosTile + 1].isBlocking()) {
+                            GameMap.tiles[yPosTile][xPosTile + 1].isBlocking())
+                    {
                         currentDirection = direction.left;
                     } else
                         currentDirection = direction.right;
@@ -169,11 +175,13 @@ public class Attacker extends GameObject
                 else if (currentDirection == direction.down &&
                         this.yPos - GameMap.tileEdge - speed
                                 <= GameMap.tiles[yPosTile + 1][xPosTile].getY() &&
-                        GameMap.tiles[yPosTile + 1][xPosTile].isBlocking()) {
+                        GameMap.tiles[yPosTile + 1][xPosTile].isBlocking())
+                {
                     // check right if it is also blocking, change direction to down
                     if (this.xPos + boxEdge + speed
                             >= GameMap.tiles[yPosTile][xPosTile + 1].getBounds().getX() + boxEdge &&
-                            GameMap.tiles[yPosTile][xPosTile + 1].isBlocking()) {
+                            GameMap.tiles[yPosTile][xPosTile + 1].isBlocking())
+                    {
                         currentDirection = direction.left;
                     } else
                         currentDirection = direction.right;
@@ -189,6 +197,11 @@ public class Attacker extends GameObject
                     yPos += speed;
                 }
                 currentMoveCounter = 0;
+                // If it's at the end column start reducing health of the base
+                if ( this.xPosTile == currentGameMap.endColumn )
+                {
+                    currentAttackBehavior.attackerAttack(this);
+                }
 
             } else {
                 currentMoveCounter += speed;
@@ -196,14 +209,12 @@ public class Attacker extends GameObject
         }catch (ArrayIndexOutOfBoundsException e)
         {
             // TODO: Implement a proper exit strategy
-           /* System.out.println("Game has finished. This is primitive end. Work in progress");
+            System.out.println("Game has finished. This is primitive end. Work in progress");
             JOptionPane.showMessageDialog(null, "Game Has Finished");
-            System.exit(0); */
+            System.exit(0);
          /*  currentGameMap.base.setHealth((currentGameMap.base.getHealth())- damage);
 
            System.out.println("attacker out of array"); */
-            currentAttackBehavior.attackerAttack(this);
-
         }
 	}
 	public void setHealth(double health)

@@ -3,6 +3,8 @@
  * Implements the object which player will be defending
  * @ author Baris Eymur
  * @ version 15.12.2017
+ * @ author Alp Ege Basturk
+ * @ version 16.12.2017
  */
 
 import javax.imageio.ImageIO;
@@ -13,7 +15,7 @@ import java.io.IOException;
 public class Base extends GameObject{
     // attributes
     protected double currentHealth;
-    protected double maxHealth = 100;
+    protected double maxHealth = 5;
     protected final int heightOfHealthBar = 10;
     protected final int widthOfHealthBar = 40;
     protected final int paddingTopOfHealthBar = 15;
