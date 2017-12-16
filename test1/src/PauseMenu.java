@@ -21,8 +21,10 @@ public class PauseMenu extends JPanel {
     public JLabel gameName;
     public JLabel paused;
     public JPanel centerPanel;
-    public PauseMenu() {
+    private GameController game;
+    public PauseMenu(GameController game) {
 
+        this.game = game;
         setLayout(new BorderLayout());
         setOpaque(false);
         setLayout(new BorderLayout(120,120));
@@ -70,6 +72,7 @@ public class PauseMenu extends JPanel {
 
         resumeButton.addActionListener(new ActionListener() {
             @Override
+
             public void actionPerformed(ActionEvent e) {
                 resume();
             }
@@ -114,13 +117,12 @@ public class PauseMenu extends JPanel {
         add(nameContainer,BorderLayout.NORTH);
         add(centerPanel,BorderLayout.CENTER);
         setVisible(true);
-        setSize(1280,720);
+        setSize(GameMap.mapWidth,GameMap.mapHeight);
     }
 
 
     public void resume() {
-
-        throw new UnsupportedOperationException();
+        game.resumeGame();
     }
 
 

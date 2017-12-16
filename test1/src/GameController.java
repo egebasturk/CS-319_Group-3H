@@ -22,7 +22,7 @@ public class GameController implements Runnable{
     /*private ThreadMethod threadMethod1 = new ThreadMethod( this, this, ThreadFunctionality.ONE);
     private ThreadMethod threadMethod2 = new ThreadMethod( this, this, ThreadFunctionality.TWO);
     private ThreadMethod threadMethod3 = new ThreadMethod( this, this, ThreadFunctionality.THREE);*/
-
+    protected PauseMenu pause = new PauseMenu(this);
     // Thread is not used currently. Cannot control concurrent errors.
     class ThreadMethod extends Thread{
         GameController gameController;
@@ -36,6 +36,8 @@ public class GameController implements Runnable{
         public void run()
         {
             while ( isRunning) {
+
+
                 if (threadFunctionality == ThreadFunctionality.ONE)
                     gameController.gameMap.towerAttackLoop();
                 else if (threadFunctionality == ThreadFunctionality.TWO)
@@ -55,15 +57,15 @@ public class GameController implements Runnable{
 	public long elapsedTime = 0; // TODO: Will be used for resource calculations
 	public static int level; // TODO: Will be used for the attacker list calculations
     // States
-	private boolean isRunning = true;
-	private boolean isPaused;
+	protected boolean isRunning = true;
+	private boolean isPaused = false;
 
-	private GamePanel gamePanel;
+	protected GamePanel gamePanel;
 	private Frame frame;
 	private TowerListController towerListController;
 	private InputController inputController;
 	public GameMap gameMap;
-	public enum selectedTowerFromTheList { None, tower1, tower2, hero1, hero2, upgrade, sell}
+	public enum selectedTowerFromTheList { None, tower1, tower2, hero1, hero2, upgrade, sell,pause}
 	public selectedTowerFromTheList currentSelectedTowerFromTheList;
 	public Graphics g;
 
@@ -93,6 +95,7 @@ public class GameController implements Runnable{
         towerListController.addMouseListener(inputController);
         towerListController.setPlayerGold(playerGold);
 
+
 		frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
 		frame.getContentPane().add(towerListController, BorderLayout.EAST);
         frame.pack();
@@ -121,39 +124,41 @@ public class GameController implements Runnable{
 	{
 		while( isRunning )
 		{
-            elapsedTime++;
+
+
+            if(!isPaused) {
+                elapsedTime++;
             /*
 			gamePanel.spawnAttackers();
 			gamePanel.motion();
 			*/
 
-            gameMap.attackerMotionLoop();
-            gameMap.attackerSpawnLoop();
-            gameMap.towerAttackLoop();
-            gameMap.heroAttackLoop();
-			//gamePanel.repaint();
-			//g = gamePanel.getGraphics();
-			//currentGameMap.draw(g);
-            gamePanel.repaint();
-			towerListController.repaint();
-			// TODO: Do save operations to txt
-            if (gameMap.getAttackers().isEmpty())
-            {
-                JOptionPane.showMessageDialog(null, "Game Has Finished. You are victorious");
-                System.exit(0);
-                break;
-            }
-            else if (gameMap.base.getHealth() <= 0)
-            {
-                JOptionPane.showMessageDialog(null, "Game Has Finished. You were defeated");
-                System.exit(0);
-                break;
-            }
-            //System.out.println(mouseX + " " + mouseY);
+                gameMap.attackerMotionLoop();
+                gameMap.attackerSpawnLoop();
+                gameMap.towerAttackLoop();
+                gameMap.heroAttackLoop();
+                //gamePanel.repaint();
+                //g = gamePanel.getGraphics();
+                //currentGameMap.draw(g);
+                gamePanel.repaint();
+                towerListController.repaint();
+                // TODO: Do save operations to txt
+                if (gameMap.getAttackers().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Game Has Finished. You are victorious");
+                    System.exit(0);
+                    break;
+                } else if (gameMap.base.getHealth() <= 0) {
+                    JOptionPane.showMessageDialog(null, "Game Has Finished. You were defeated");
+                    System.exit(0);
+                    break;
+                }
+                //System.out.println(mouseX + " " + mouseY);
 
-			try {
-				Thread.sleep(1);
-			} catch (Exception e){}
+                try {
+                    Thread.sleep(1);
+                } catch (Exception e) {
+                }
+            }
 		}
 	}
 	public void setCurrentSelectedTowerFromTheList( selectedTowerFromTheList selectedTower)
@@ -247,5 +252,23 @@ public class GameController implements Runnable{
 		// TODO - implement GameController.saveScore
 		throw new UnsupportedOperationException();
 	}
+
+    public void pauseGame() {
+        isPaused = true;
+        gamePanel.setVisible(false);
+        System.out.println("Pause added");
+        frame.getContentPane().add(pause, BorderLayout.CENTER);
+    }
+
+   public void resumeGame() {
+        isPaused = false;
+        pause.setVisible(false);
+        gamePanel.setVisible(true);
+        System.out.println("resume added");
+        //frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
+        //run(); //bu commenti açınca oyun arkada çalışıyor ama görüntü yok
+	}
+
+      //  frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
 
 }

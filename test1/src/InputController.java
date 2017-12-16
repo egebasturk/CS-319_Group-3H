@@ -86,6 +86,11 @@ public class InputController implements MouseMotionListener, MouseListener {
                     currentGameController.addTowerOrHero(new HeroType2(currentGameController.gameMap
                             , currentGameController.gameMap.endRow, currentGameController.gameMap.endColumn));
                 }
+                else if(currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.pause)
+                {
+                    System.out.println("Pause game method called");
+                    currentGameController.pauseGame();
+                }
             }
         }
         // Second is: if clicked on the main game panel
@@ -112,8 +117,11 @@ public class InputController implements MouseMotionListener, MouseListener {
                 }
                 else if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.sell)
                 {
+
                     currentGameController.sellTower( clickPoint );
+                    System.out.println("sellTower game method called");
                 }
+
                 currentGameController.setCurrentSelectedTowerFromTheList(GameController.selectedTowerFromTheList.None);
             }
 
