@@ -39,7 +39,7 @@ public class FactoryLevel3 extends AbstractFactory {
         for ( int i = 0; i < attackers.length; i++)
         {
             // TODO: Get rid of magic numbers
-            attackers[i] = new Attacker(9);
+            attackers[i] = new AttackerType2(9);
         }
 
         return attackers;
