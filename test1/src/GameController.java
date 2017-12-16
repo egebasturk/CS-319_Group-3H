@@ -5,10 +5,12 @@
  * Also creates a frame which panels are added.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
- *   version(last) 15.12.2017 (frequently updated)
+ *   version(last - 1) 15.12.2017
+ *   version(last) 16.12.2017 (frequently updated)
  */
 
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -135,8 +137,16 @@ public class GameController implements Runnable{
             gamePanel.repaint();
 			towerListController.repaint();
 			// TODO: Do save operations to txt
-			if ( isGameOver() )
+            if (gameMap.getAttackers().isEmpty())
             {
+                JOptionPane.showMessageDialog(null, "Game Has Finished. You are victorious");
+                System.exit(0);
+                break;
+            }
+            else if (gameMap.base.getHealth() <= 0)
+            {
+                JOptionPane.showMessageDialog(null, "Game Has Finished. You were defeated");
+                System.exit(0);
                 break;
             }
             //System.out.println(mouseX + " " + mouseY);
@@ -220,38 +230,16 @@ public class GameController implements Runnable{
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * 
-	 * @param strategy
-	 */
-	public GameController(BufferStrategy strategy) {
-		// TODO - implement GameController.GameController
-		throw new UnsupportedOperationException();
-	}
 
 	private void updateBaseHealth() {
 		// TODO - implement GameController.updateBaseHealth
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * 
-	 * @param level
-	 */
-	public void startGame(int level) {
-		// TODO - implement GameController.startGame
-		throw new UnsupportedOperationException();
-	}
-
-	private void decreaseBaseHealth() {
-		// TODO - implement GameController.decreaseBaseHealth
-		throw new UnsupportedOperationException();
-	}
 
 	// Currently this is implemented by checking the ArrayIndexOutOfBounds Exception, which is thrown when an attacker finishes the path.
 	private boolean isGameOver() {
-		if (gameMap.getAttackers().isEmpty() || gameMap.base.getHealth() <= 0)
-		    return true;
+
 		return false;
 	}
 
