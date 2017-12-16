@@ -120,15 +120,13 @@ public class MainPageFrame extends JPanel {
 
         }
 
-
-
-
         levelNumber = 0;
         level1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 1;
                 createStars(levelNumber);
+                repaint();
             }
         });
 
@@ -136,7 +134,8 @@ public class MainPageFrame extends JPanel {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 2;
-                createStars(levelNumber);;
+                createStars(levelNumber);
+                repaint();
             }
         });
         level3.addActionListener(new ActionListener() {
@@ -144,6 +143,7 @@ public class MainPageFrame extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 3;
                 createStars(levelNumber);
+                repaint();
             }
         });
         level4.addActionListener(new ActionListener() {
@@ -151,6 +151,7 @@ public class MainPageFrame extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 4;
                 createStars(levelNumber);
+                repaint();
             }
         });
         level5.addActionListener(new ActionListener() {
@@ -158,6 +159,7 @@ public class MainPageFrame extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 5;
                 createStars(levelNumber);
+                repaint();
             }
         });
         play.addActionListener(new ActionListener() {
@@ -344,11 +346,10 @@ public class MainPageFrame extends JPanel {
 
     }
 
-    public int createStars(int level){
+    private int createStars(int level){
         try {
             FileReader fileReader =
                     new FileReader(Assets.starTxt);
-
             BufferedReader bufferedReader =
                     new BufferedReader(fileReader);
             while((txtFileString = bufferedReader.readLine()) != null) {
@@ -368,7 +369,8 @@ public class MainPageFrame extends JPanel {
 
     public void paintComponent(Graphics g)
     {
-        if(levelStar == 3){
+        if(levelStar == 3)
+        {
             g.drawImage(starImage, 350, 250, 75,70,null);
             g.drawImage(starImage, 430, 250, 75,70,null);
             g.drawImage(starImage, 510, 250, 75,70,null);
@@ -384,7 +386,6 @@ public class MainPageFrame extends JPanel {
 
         }
     }
-
 
     public boolean checkLevelAvailable(int level)
     {
