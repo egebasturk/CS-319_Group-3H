@@ -50,7 +50,7 @@ public class FactoryLevel3 extends AbstractFactory {
     @Override
     public Tile[][] createTiles()
     {
-        return mapMatrixReader.readMapFromMatrix(mapHeight,mapWidth,tileEdge,level);
+        return MapMatrixReader.readMapFromMatrix(mapHeight,mapWidth,tileEdge,level);
     }
 
     @Override

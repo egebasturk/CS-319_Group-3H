@@ -8,7 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class mapMatrixReader
+public class MapMatrixReader
 {
 
     public static Tile[][] readMapFromMatrix( int mapHeight, int mapWidth, int tileEdge, int level)
