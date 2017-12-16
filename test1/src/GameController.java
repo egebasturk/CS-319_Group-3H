@@ -188,6 +188,17 @@ public class GameController implements Runnable{
             gameMap.upgradeTower( clickPoint );
         }
     }
+    public void sellTower( Point clickPoint )
+    {
+        selectedTowerFromTheList selectionOnTheMap = gameMap.sellTower(clickPoint);
+        int i;
+        for ( i = 0; i < selectedTowerFromTheList.values().length; i++)
+        {
+            if ( selectedTowerFromTheList.values()[i] == selectionOnTheMap )
+                break;
+        }
+        setPlayerGold( getPlayerGold() + towerListController.getTowerCost(i) / 3);
+    }
     public void setPlayerGold( int playerGold )
     {
         this.playerGold = playerGold;

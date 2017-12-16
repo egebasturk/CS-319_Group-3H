@@ -239,6 +239,15 @@ public class GameMap {
                 }
             }
         }
+        else if ( object instanceof Tower )
+        {
+            for (Iterator<Tower> it = towers.iterator(); it.hasNext();) {
+                Tower tow = it.next();
+                if (tow == object) {
+                    it.remove();
+                }
+            }
+        }
         if ( object instanceof Hero )
         {
             hero = null;
@@ -270,6 +279,7 @@ public class GameMap {
     {
         particles.addLast(particle);
     }
+    // TODO: Methods can be merged. But not a priority
     public GameController.selectedTowerFromTheList upgradeTower( Point clickPoint )
     {
         for (Tower i: towers)
@@ -278,6 +288,7 @@ public class GameMap {
             {
                 if ( i instanceof SingleAttackTower )
                 {
+                    // Switches implemented attack behaviour
                     ((SingleAttackTower)i).currentAttackBehaviour = new SingleAttackUpgraded1();
                     return GameController.selectedTowerFromTheList.tower2;
                 }
@@ -294,6 +305,25 @@ public class GameMap {
                 if ( i instanceof SingleAttackTower )
                 {
                     return GameController.selectedTowerFromTheList.tower2;
+                }
+            }
+        }
+        return GameController.selectedTowerFromTheList.None;
+    }
+    public GameController.selectedTowerFromTheList sellTower( Point clickPoint )
+    {
+        for (Tower i:towers )
+        {
+            if ( i.getX() == clickPoint.getX() && i.getY() == clickPoint.getY() )
+            {
+                notifyDeath(i);
+                if ( i instanceof SingleAttackTower )
+                {
+                    return GameController.selectedTowerFromTheList.tower2;
+                }
+                else if ( i instanceof AreaAttackTower )
+                {
+                    return GameController.selectedTowerFromTheList.tower1;
                 }
             }
         }
