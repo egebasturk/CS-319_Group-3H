@@ -218,6 +218,7 @@ public class GameController implements Runnable{
         if ( towerListController.getTowerCost(i) <= playerGold )
         {
             gameMap.upgradeTower( clickPoint );
+            setPlayerGold(playerGold - towerListController.getTowerCost(i));
         }
     }
     // Works similar to methods above.

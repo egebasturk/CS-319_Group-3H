@@ -28,7 +28,7 @@ public class TowerListController extends JPanel{
 	private int paddingTop = 40;
 	private int paddingAmongBoxes = 10;
 	private int playerGold;
-	private int[] towerCosts = {0,10,15, 40, 50};
+	private int[] towerCosts = {0,75,50, 75, 100};
 
 	private Rectangle[] towers = new Rectangle[towerNumber];
 	public static int panelWidth = 20;
