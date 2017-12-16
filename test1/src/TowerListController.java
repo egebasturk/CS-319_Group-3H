@@ -4,6 +4,10 @@
  * near the game map, which player can click and deploy towers.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
+ *   version2 13.12.2017
+ *   version3 14.12.2017
+ *   version4 15.12.2017
+ *   version5 16.12.2017
  */
 // TODO: Current implementation is primitive
 
@@ -18,12 +22,13 @@ public class TowerListController extends JPanel{
 
     // TODO deal with the magic numbers
 	private BufferedImage[] towerImages;
-	private int towerNumber = 2;
+	private int towerNumber = 7;
 	private int boxEdge = 50;
 	private int paddingLeft = 20;
 	private int paddingTop = 40;
 	private int paddingAmongBoxes = 10;
-	private int[] towerCosts = {10,15};
+	private int playerGold;
+	private int[] towerCosts = {0,75,50, 75, 100};
 
 	private Rectangle[] towers = new Rectangle[towerNumber];
 	public static int panelWidth = 20;
@@ -32,10 +37,15 @@ public class TowerListController extends JPanel{
 
     public TowerListController()
     {
-        towerImages = new BufferedImage[2];
+        towerImages = new BufferedImage[towerNumber];
         try {
             towerImages[0] = ImageIO.read(new File(Assets.tower1));
             towerImages[1] = ImageIO.read(new File(Assets.tower2));
+            towerImages[2] = ImageIO.read(new File(Assets.hero1));
+            towerImages[3] = ImageIO.read(new File(Assets.hero2));
+            towerImages[4] = ImageIO.read(new File(Assets.upgrade));
+            towerImages[5] = ImageIO.read(new File(Assets.dollar));
+            towerImages[6] = ImageIO.read(new File(Assets.pause));
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -45,53 +55,59 @@ public class TowerListController extends JPanel{
             towers[i] = new Rectangle( paddingLeft, paddingTop + i * boxEdge + paddingAmongBoxes, boxEdge, boxEdge - paddingAmongBoxes);
         }
     }
-    // TODO:Might be unnecessary, remove if not used
-	public TowerListController(int gamePanelWidth, int gamePanelHeight)
-    {
-        towerImages = new BufferedImage[2];
-		for ( int i = 0; i < towers.length; i++)
-        {
-            towers[i] = new Rectangle( paddingLeft, paddingTop + i * boxEdge + paddingAmongBoxes, boxEdge, boxEdge - paddingAmongBoxes);
-        }
-        try {
-            towerImages[0] = ImageIO.read(new File(Assets.tower1));
-            towerImages[1] = ImageIO.read(new File(Assets.tower2));
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
-
-    /**
-     * paints rectangles(later they will be tower images) list.
-     */
     public void paintComponent( Graphics g )
     {
         // TODO: Draw Borders. This is not working
-        g.drawRect(this.getX(),this.getY(),this.getWidth(),this.getHeight());
-
-        for ( int i = 0; i < towers.length; i++)
+        g.setColor(Color.gray);
+        g.fillRect(this.getX(),this.getY(),this.getWidth(),this.getHeight());
+        int i;
+        for ( i = 0; i < towers.length; i++)
         {
             if ( isInRectangle(GameController.mouseX, GameController.mouseY, towers[i]) )
                 g.setColor(Color.RED);
             else
-                g.setColor(Color.YELLOW);
-            g.drawRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
+                g.setColor(Color.gray);
+            //g.drawRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
             g.fillRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
-            g.drawImage(towerImages[i],towers[i].x, towers[i].y, boxEdge, boxEdge,null,null);
+            if ( i < towerNumber )
+                g.drawImage(towerImages[i],towers[i].x, towers[i].y, boxEdge, boxEdge,null,null);
         }
+        //g.fillRect(towers[i].x, paddingTop + i * boxEdge + paddingAmongBoxes, boxEdge, boxEdge - paddingAmongBoxes);
+        g.setColor(Color.gray);
+        g.fillRect(paddingLeft,paddingTop - 15,30,20);
+        g.setColor(Color.yellow);
+        //g.drawString(playerGold +"",towers[i].x, paddingTop + i * boxEdge + paddingAmongBoxes + paddingAmongBoxes);
+        g.drawString(playerGold + "", paddingLeft, paddingTop);
     }
 
-    public boolean isInRectangle(int x, int y, Rectangle rectangle)
+    private boolean isInRectangle(int x, int y, Rectangle rectangle)
     {
+        /*
         System.out.println("Check bounds");
         System.out.println(rectangle.getX());
-        System.out.println(rectangle.getY());
+        System.out.println(rectangle.getY());*/
         if (x >= rectangle.getX() &&
                 x <= rectangle.getX() + rectangle.getWidth() &&
                 y >= rectangle.getY() &&
                 y <= rectangle.getY() + rectangle.getHeight())
             return true;
         return false;
+    }
+    public int getElementIndexFromTheList( double xPos, double yPos)
+    {
+        for ( int i = 0; i < towers.length; i++)
+        {
+            if ( isInRectangle(GameController.mouseX, GameController.mouseY, towers[i]) )
+                return i;
+        }
+        return -1;
+    }
+    public int getTowerCost( int index )
+    {
+        return towerCosts[index];
+    }
+    public void setPlayerGold(int playerGold)
+    {
+        this.playerGold = playerGold;
     }
 }

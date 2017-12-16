@@ -1,7 +1,9 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
+/**
+ * Factory Level1 Class
+ * Factory that implements creation methods for level 1
+ * @ author Alp Ege Basturk
+ * @ version 22.11.2017
+ */
 public class FactoryLevel1 extends AbstractFactory {
     private Tile[][] tiles;
     private Attacker[] attackers;
@@ -14,9 +16,16 @@ public class FactoryLevel1 extends AbstractFactory {
     FactoryLevel1( )
     {
         this.level = 1;
+        typeMatrix = new int[mapHeight][mapWidth];
         // TODO: implement an algorithm to calculate
-        attackers = new Attacker[7];
-        tiles = new Tile[mapHeight][mapWidth];
+        attackers = new Attacker[15];
+
+        endColumn = mapWidth - 1;
+        for ( int i = 0; i < mapHeight; i++ )
+        {
+            if ( typeMatrix[i][endColumn] == 0)
+                endRow = i;
+        }
     }
     @Override
     public Attacker[] createAttackers()
@@ -28,7 +37,7 @@ public class FactoryLevel1 extends AbstractFactory {
         for ( int i = 0; i < attackers.length; i++)
         {
             // TODO: Get rid of magic numbers
-            attackers[i] = new Attacker(9);
+            attackers[i] = new AttackerType2(9);
         }
 
         return attackers;
@@ -36,35 +45,16 @@ public class FactoryLevel1 extends AbstractFactory {
     @Override
     public Tile[][] createTiles()
     {
-        typeMatrix = new int[mapHeight][mapWidth];
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/map1.mat"));
-            // Reads according to octaves output format
-            // May directly read rows and columns from the file.
-            for ( int i = 0; i < 5 ; i++) {
-                String tmpLine = bufferedReader.readLine();
-                System.out.println(tmpLine);
-            }
-            for (int y = 0; y < mapHeight; y++)
-            {
-                String []row = bufferedReader.readLine().trim().split(" ");
-                for (int x = 0; x < mapWidth; x++) {
-                    typeMatrix[y][x] = Integer.parseInt(row[x]);
-                }
-            }
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-            System.out.println("Error loading map");
-        }
+        return MapMatrixReader.readMapFromMatrix(mapHeight,mapWidth,tileEdge,level);
+    }
 
-        for ( int y = 0; y < mapHeight; y++)
-        {
-            for ( int x = 0; x < mapWidth;x++)
-                tiles[y][x] = new Tile(x * tileEdge, y * tileEdge,
-                        tileEdge, tileEdge, 0, typeMatrix[y][x]);
-        }
-        System.out.println("Tiles Created");
-        return tiles;
+    @Override
+    int getEndRow() {
+        return endRow;
+    }
+
+    @Override
+    int getEndColumn() {
+        return endColumn;
     }
 }

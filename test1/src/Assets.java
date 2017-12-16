@@ -4,6 +4,21 @@ public class Assets
     public static String star = "src/main/resources/star.png";
     public static String tower1 = "src/main/resources/tower1.png";
     public static String tower2 = "src/main/resources/tower2.png";
+    public static String attacker1 = "src/main/resources/attacker1.png";
     public static String attacker2 = "src/main/resources/attacker2.png";
     public static String starTxt = "src/main/resources/starTxt.txt";
+    public static String hero1 = "src/main/resources/hero1.png";
+    public static String hero2 = "src/main/resources/hero2.png";
+    public static String kapow = "src/main/resources/kapow.png";
+    public static String kapow2 = "src/main/resources/kapow2.png";
+    public static String rock = "src/main/resources/rock.png";
+    public static String closed = "src/main/resources/closed.png";
+    public static String open = "src/main/resources/open.png";
+    public static String grass = "src/main/resources/grass.png";
+    public static String rocktile = "src/main/resources/rocktile.png";
+    public static String base = "src/main/resources/base.png";
+    public static String dollar = "src/main/resources/dollar.png";
+    public static String upgrade = "src/main/resources/upgrade.png";
+    public static String pause = "src/main/resources/pause.png";
 }
+

@@ -19,11 +19,11 @@ public class MainPageFrame extends JPanel {
     protected JButton help;
     protected JButton credits;
     protected JButton play;
-    protected JButton level1;
-    protected JButton level2;
-    protected JButton level3;
-    protected JButton level4;
-    protected JButton level5;
+    private JButton level1;
+    private JButton level2;
+    private JButton level3;
+    private JButton level4;
+    private JButton level5;
     private JPanel levelContainer;
     private JPanel buttonContainer;
     private JPanel playButtonContainer;
@@ -31,8 +31,8 @@ public class MainPageFrame extends JPanel {
     private BufferedImage starImage;
     private JLabel gameName;
     private int levelNumber;
-    protected int levelStar;
-    protected String txtFileString;
+    private int levelStar;
+    private String txtFileString;
     private boolean playClicked;
 
 
@@ -120,15 +120,13 @@ public class MainPageFrame extends JPanel {
 
         }
 
-
-
-
         levelNumber = 0;
         level1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 1;
                 createStars(levelNumber);
+
             }
         });
 
@@ -136,7 +134,8 @@ public class MainPageFrame extends JPanel {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 2;
-                createStars(levelNumber);;
+                createStars(levelNumber);
+
             }
         });
         level3.addActionListener(new ActionListener() {
@@ -144,6 +143,7 @@ public class MainPageFrame extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 3;
                 createStars(levelNumber);
+
             }
         });
         level4.addActionListener(new ActionListener() {
@@ -151,6 +151,7 @@ public class MainPageFrame extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 4;
                 createStars(levelNumber);
+
             }
         });
         level5.addActionListener(new ActionListener() {
@@ -158,6 +159,7 @@ public class MainPageFrame extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 levelNumber = 5;
                 createStars(levelNumber);
+
             }
         });
         play.addActionListener(new ActionListener() {
@@ -169,12 +171,13 @@ public class MainPageFrame extends JPanel {
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
             }
         });
         credits.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
 
+            public void actionPerformed(ActionEvent e) {
 
             }
         });
@@ -184,18 +187,22 @@ public class MainPageFrame extends JPanel {
             public void mouseEntered(MouseEvent evt)
             {
                 credits.setForeground(new Color(0, 117, 191));
+                repaint();
             }
             public void mouseExited(MouseEvent evt)
             {
                 credits.setForeground(Color.BLACK);
+                repaint();
             }
             public void mousePressed(MouseEvent evt)
             {
                 credits.setBackground(new Color(0, 117, 191));
+                repaint();
             }
             public void mouseReleased(MouseEvent evt)
             {
                 credits.setBackground(Color.BLACK);
+                repaint();
             }
         });
 
@@ -204,18 +211,22 @@ public class MainPageFrame extends JPanel {
             public void mouseEntered(MouseEvent evt)
             {
                 help.setForeground(new Color(0, 117, 191));
+                repaint();
             }
             public void mouseExited(MouseEvent evt)
             {
                 help.setForeground(Color.BLACK);
+                repaint();
             }
             public void mousePressed(MouseEvent evt)
             {
                 help.setBackground(new Color(0, 117, 191));
+                repaint();
             }
             public void mouseReleased(MouseEvent evt)
             {
                 help.setBackground(Color.BLACK);
+                repaint();
             }
         });
         play.addMouseListener(new MouseAdapter()
@@ -223,10 +234,12 @@ public class MainPageFrame extends JPanel {
             public void mouseEntered(MouseEvent evt)
             {
                 play.setForeground(Color.red);
+                repaint();
             }
             public void mouseExited(MouseEvent evt)
             {
                 play.setForeground(Color.BLACK);
+                repaint();
             }
 
         });
@@ -235,18 +248,22 @@ public class MainPageFrame extends JPanel {
             public void mouseEntered(MouseEvent evt)
             {
                 level1.setForeground(new Color(0, 117, 191));
+                repaint();
             }
             public void mouseExited(MouseEvent evt)
             {
                 level1.setForeground(Color.BLACK);
+                repaint();
             }
             public void mousePressed(MouseEvent evt)
             {
                 level1.setBackground(new Color(0, 117, 191));
+                repaint();
             }
             public void mouseReleased(MouseEvent evt)
             {
                 level1.setBackground(Color.BLACK);
+                repaint();
             }
         });
         if(level2.isEnabled() == true) {
@@ -255,18 +272,22 @@ public class MainPageFrame extends JPanel {
                 public void mouseEntered(MouseEvent evt) {
 
                     level2.setForeground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseExited(MouseEvent evt) {
                     level2.setForeground(Color.BLACK);
+                    repaint();
                 }
 
                 public void mousePressed(MouseEvent evt) {
                     level2.setBackground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseReleased(MouseEvent evt) {
                     level2.setBackground(Color.BLACK);
+                    repaint();
                 }
             });
         }
@@ -274,18 +295,22 @@ public class MainPageFrame extends JPanel {
             level3.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent evt) {
                     level3.setForeground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseExited(MouseEvent evt) {
                     level3.setForeground(Color.BLACK);
+                    repaint();
                 }
 
                 public void mousePressed(MouseEvent evt) {
                     level3.setBackground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseReleased(MouseEvent evt) {
                     level3.setBackground(Color.BLACK);
+                    repaint();
                 }
             });
         }
@@ -293,18 +318,22 @@ public class MainPageFrame extends JPanel {
             level4.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent evt) {
                     level4.setForeground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseExited(MouseEvent evt) {
                     level4.setForeground(Color.BLACK);
+                    repaint();
                 }
 
                 public void mousePressed(MouseEvent evt) {
                     level4.setBackground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseReleased(MouseEvent evt) {
                     level4.setBackground(Color.BLACK);
+                    repaint();
                 }
             });
         }
@@ -312,18 +341,22 @@ public class MainPageFrame extends JPanel {
             level5.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent evt) {
                     level5.setForeground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseExited(MouseEvent evt) {
                     level5.setForeground(Color.BLACK);
+                    repaint();
                 }
 
                 public void mousePressed(MouseEvent evt) {
                     level5.setBackground(new Color(0, 117, 191));
+                    repaint();
                 }
 
                 public void mouseReleased(MouseEvent evt) {
                     level5.setBackground(Color.BLACK);
+                    repaint();
                 }
             });
         }
@@ -344,11 +377,10 @@ public class MainPageFrame extends JPanel {
 
     }
 
-    public int createStars(int level){
+    private int createStars(int level){
         try {
             FileReader fileReader =
                     new FileReader(Assets.starTxt);
-
             BufferedReader bufferedReader =
                     new BufferedReader(fileReader);
             while((txtFileString = bufferedReader.readLine()) != null) {
@@ -368,7 +400,8 @@ public class MainPageFrame extends JPanel {
 
     public void paintComponent(Graphics g)
     {
-        if(levelStar == 3){
+        if(levelStar == 3)
+        {
             g.drawImage(starImage, 350, 250, 75,70,null);
             g.drawImage(starImage, 430, 250, 75,70,null);
             g.drawImage(starImage, 510, 250, 75,70,null);
@@ -383,9 +416,7 @@ public class MainPageFrame extends JPanel {
             g.drawImage(starImage, 430, 250, 75,70,null);
 
         }
-        repaint();
     }
-
 
     public boolean checkLevelAvailable(int level)
     {
@@ -394,7 +425,7 @@ public class MainPageFrame extends JPanel {
             return true;
         }
         else {
-            if (createStars(level) == 0) {
+            if (createStars(level -1) == 0) {
                 return false;
             } else return true;
         }
@@ -405,9 +436,9 @@ public class MainPageFrame extends JPanel {
         //İstenilen bölüm oynanıcak
     }
 
-
-
-
+    public int getLevelNumber() {
+        return levelNumber;
+    }
 
 }
 

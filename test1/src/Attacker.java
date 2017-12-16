@@ -1,17 +1,17 @@
 /**
- * Model.Attacker Class
- * Parent of all attacker. Currently it is the only attacker.
+ * Attacker Class
+ * Parent of all attackers. Currently it is the only attacker.
  * These are the things which attack the objective and must be destroyed.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
+ *   version2 13.12.2017
+ *   version3 14.12.2017
+ *   version4 15.12.2017
+ *   version6 16.12.2017
  */
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class Attacker extends GameObject
 {
@@ -20,13 +20,25 @@ public class Attacker extends GameObject
 	protected double speed = 1.0;
 	protected double currentMoveCounter = 0;
 	protected int moveThreshold = 30;
-	protected double health = 100;
 	protected enum direction { right, left, up, down}
 	protected direction currentDirection = direction.right;
 	protected int locationTrackerInTile = 0;
+    protected int currentAttackCooldown;
+    protected int rateOfFire;
+    protected int damage;
+    private AttackBehaviour currentAttackBehavior;
+	// Health related values
+    protected double currentHealth;
+    protected double maxHealth = 100;
 
-	protected BufferedImage image;
-	protected int bounty = 0;
+    // Health Bar related values
+    protected final int heightOfHealthBar = 5;
+    protected final int widthOfHealthBar = 20;
+    protected final int paddingTopOfHealthBar = 5;
+    protected final int paddingLeftOfHealthBar = 10;
+
+	//protected BufferedImage image;
+	protected int bounty = 5;
 	protected int attackerType = 0;
 	protected int boxEdge = 50;
 	// Boolean vals
@@ -34,36 +46,43 @@ public class Attacker extends GameObject
 	protected boolean killed = false;
 
 	// Position vals
-	protected int xPos = 0;
-	protected int yPos = 0;
+	//protected int xPos = 0;
+	//protected int yPos = 0;
 	protected int xPosTile = 0;
 	protected int yPosTile = 0;
-	protected int attackerID;
+	//protected int attackerID;
 
+	protected GameMap currentGameMap;
 	public Attacker() {
 
 	}
 	// TODO: Attackers may find entry point themselves.
 	public Attacker(int entryRow)
     {
+        super();
+        currentHealth = maxHealth;
         // 0 - boxEdge, to start off the map
         this.xPos = 0;
         this.xPosTile = 0;
-        int entryPosition = entryRow * GameMap.tileEdge;
-        this.yPos = entryPosition;
+        // Starts y from the entry row
+        this.yPos = entryRow * GameMap.tileEdge;
         this.yPosTile = entryRow;
+        rateOfFire = 30;
+        currentAttackCooldown = 0;
+        damage = 5;
+        currentAttackBehavior = new AttackerAttack();
         //this.alive = true;
-        try {
+/*        try {
             image = ImageIO.read(new File(Assets.attacker2));
         }
         catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
+
     // Spawns in the given location
     public void spawn(int xPos, int yPos)
     {
-        //System.out.println("Model.Attacker spawned");
         this.alive = true;
         // x - boxEdge, to better transition from outside of the map to inside
         this.setBounds(xPos, yPos, boxEdge, boxEdge);
@@ -80,10 +99,11 @@ public class Attacker extends GameObject
      * Object moves in a direction, checks map in the path. If it cannot move,
      * then it changes its direction accordingly.
      * */
-    // TODO: This part is Buggy. Direction change works but position update is problematic.
 	public void move()
     {
         try {
+/*            if (this.getHealth() <= 0)
+                initializeDeath();*/
             if (currentMoveCounter >= moveThreshold) {
 
                 locationTrackerInTile++;
@@ -108,24 +128,29 @@ public class Attacker extends GameObject
                 if (currentDirection == direction.right &&
                         this.xPos + boxEdge + speed
                                 >= GameMap.tiles[yPosTile][xPosTile + 1].getX() &&
-                        GameMap.tiles[yPosTile][xPosTile + 1].isBlocking()) {
+                        GameMap.tiles[yPosTile][xPosTile + 1].isBlocking())
+                {
                     // check top if it is also blocking, change direction to up or down
-                    if (this.yPos - speed
+                    /*if (this.yPos - speed
                             <= GameMap.tiles[yPosTile - 1][xPosTile].getY() + boxEdge &&
-                            GameMap.tiles[yPosTile - 1][xPosTile].isBlocking()) {
+                            GameMap.tiles[yPosTile - 1][xPosTile].isBlocking())*/
+                    if ( GameMap.tiles[(int)(this.yPos - speed) / GameMap.tileEdge][this.xPosTile].isBlocking())
+                    {
                         currentDirection = direction.down;
                     } else
                         currentDirection = direction.up;
                 }
                 // Was moving left, hit sth from right
                 else if (currentDirection == direction.left &&
-                        this.xPos - speed
+                        this.xPos - speed - GameMap.tileEdge
                                 <= GameMap.tiles[yPosTile][xPosTile - 1].getBounds().getX() &&
-                        GameMap.tiles[yPosTile][xPosTile - 1].isBlocking()) {
+                        GameMap.tiles[yPosTile][xPosTile - 1].isBlocking())
+                {
                     // check top if it is also blocking, change direction to down
                     if (this.yPos - 1
                             <= GameMap.tiles[yPosTile - 1][xPosTile].getBounds().getY() + boxEdge &&
-                            GameMap.tiles[yPosTile - 1][xPosTile].isBlocking()) {
+                            GameMap.tiles[yPosTile - 1][xPosTile].isBlocking())
+                    {
                         currentDirection = direction.down;
                     } else
                         currentDirection = direction.up;
@@ -134,11 +159,15 @@ public class Attacker extends GameObject
                 else if (currentDirection == direction.up &&
                         this.yPos - speed - GameMap.tileEdge
                                 <= GameMap.tiles[yPosTile - 1][xPosTile].getY() &&
-                        GameMap.tiles[yPosTile - 1][xPosTile].isBlocking()) {
+                        GameMap.tiles[yPosTile - 1][xPosTile].isBlocking())
+                {
                     // check right if it is also blocking, change direction to right or left
-                    if (this.xPos + boxEdge + speed
-                            >= GameMap.tiles[yPosTile][xPosTile + 1].getBounds().getX() + boxEdge &&
-                            GameMap.tiles[yPosTile][xPosTile + 1].isBlocking()) {
+                    /*if (this.xPos + boxEdge + speed
+                            >= GameMap.tiles[yPosTile][xPosTile + 1].getX() + boxEdge &&
+                            GameMap.tiles[yPosTile][xPosTile + 1].isBlocking())*/
+                    if (this.xPos + speed + GameMap.tileEdge >= GameMap.tiles[yPosTile][xPosTile + 1].getX()
+                            && GameMap.tiles[yPosTile][xPosTile + 1].isBlocking())
+                    {
                         currentDirection = direction.left;
                     } else
                         currentDirection = direction.right;
@@ -147,11 +176,13 @@ public class Attacker extends GameObject
                 else if (currentDirection == direction.down &&
                         this.yPos - GameMap.tileEdge - speed
                                 <= GameMap.tiles[yPosTile + 1][xPosTile].getY() &&
-                        GameMap.tiles[yPosTile + 1][xPosTile].isBlocking()) {
+                        GameMap.tiles[yPosTile + 1][xPosTile].isBlocking())
+                {
                     // check right if it is also blocking, change direction to down
-                    if (this.xPos + boxEdge + speed
-                            >= GameMap.tiles[yPosTile][xPosTile + 1].getBounds().getX() + boxEdge &&
-                            GameMap.tiles[yPosTile][xPosTile + 1].isBlocking()) {
+                    if (this.xPos + GameMap.tileEdge + speed
+                            >= GameMap.tiles[yPosTile][xPosTile + 1].getX() &&
+                            GameMap.tiles[yPosTile][xPosTile + 1].isBlocking())
+                    {
                         currentDirection = direction.left;
                     } else
                         currentDirection = direction.right;
@@ -167,42 +198,58 @@ public class Attacker extends GameObject
                     yPos += speed;
                 }
                 currentMoveCounter = 0;
+                // If it's at the end column start reducing health of the base
+                if ( this.xPosTile == currentGameMap.endColumn )
+                {
+                    currentAttackBehavior.attackerAttack(this);
+                }
 
             } else {
                 currentMoveCounter += speed;
             }
         }catch (ArrayIndexOutOfBoundsException e)
         {
-            // TODO: Implement a proper exit strategy
             System.out.println("Game has finished. This is primitive end. Work in progress");
             JOptionPane.showMessageDialog(null, "Game Has Finished");
             System.exit(0);
+         /*  currentGameMap.base.setHealth((currentGameMap.base.getHealth())- damage);
+
+           System.out.println("attacker out of array"); */
         }
 	}
+	// Sets health. Initializes death if new health is below threshold
+	public void setHealth(double health)
+    {
+	    this.currentHealth = health;
+	    if (this.currentHealth <= 0)
+	        initializeDeath();
+    }
+    public double getHealth()
+    {
+        return currentHealth;
+    }
+	public void setCurrentGameMap(GameMap gameMap)
+    {
+        currentGameMap = gameMap;
+    }
 
-	public void notifyDeath() {
-		// TODO - implement Model.Attacker.notifyDeath
-        // Intention: Caller will know this and set reference to null.
-        // TODO: Should be implemented for this class and the caller
-        if (health <= 0)
-        {
-            alive = false;
-        }
-	}
-
+    // Like observer pattern
+    // Notifies the game map when it dies. Game map will remove it from its list.
 	public void initializeDeath() {
-		// TODO - implement Model.Attacker.initializeDeath
-		throw new UnsupportedOperationException();
+		killed = true;
+		currentGameMap.notifyDeath(this);
 	}
-
+    int tmp; // Stores result of temporary calculation
 	public void draw(Graphics g)
     {
 
         if (alive || !killed) {
             g.drawImage(image,xPos, yPos, boxEdge, boxEdge,null,null);
-            //g.drawRect(xPos, yPos, boxEdge, boxEdge);
-            //g.setColor(Color.BLACK);
-            //g.fillRect(xPos, yPos, boxEdge, boxEdge);
+            g.setColor(Color.blue);
+            tmp = (int)(currentHealth * widthOfHealthBar / maxHealth);
+            g.fillRect(xPos + paddingLeftOfHealthBar,yPos - paddingTopOfHealthBar, tmp, heightOfHealthBar);
+            g.setColor(Color.red);
+            g.fillRect(xPos + tmp + paddingLeftOfHealthBar,yPos - paddingTopOfHealthBar, widthOfHealthBar - tmp, heightOfHealthBar);
         }
     }
 
@@ -212,5 +259,34 @@ public class Attacker extends GameObject
 
     public boolean isKilled() {
         return killed;
+    }
+
+    public void setX( double newX )
+    {
+        this.xPos = (int)newX;
+    }
+    public void setY( double newY)
+    {
+        this.yPos = (int)newY;
+    }
+    public void setxPosTile( double newXPosTile)
+    {
+        this.xPosTile = (int)newXPosTile;
+    }
+    public void setyPosTile( double newYPosTile)
+    {
+        this.yPosTile = (int)newYPosTile;
+    }
+    public int getxPosTile()
+    {
+        return this.xPosTile;
+    }
+    public int getyPosTile()
+    {
+        return this.yPosTile;
+    }
+
+    public int getBounty() {
+        return bounty;
     }
 }
