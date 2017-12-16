@@ -17,7 +17,7 @@ public class FactoryLevel4 extends AbstractFactory {
 
     FactoryLevel4( )
     {
-        this.level = 2;
+        this.level = 4;
         typeMatrix = new int[mapHeight][mapWidth];
         // TODO: implement an algorithm to calculate
         attackers = new Attacker[50];
@@ -36,11 +36,13 @@ public class FactoryLevel4 extends AbstractFactory {
         * Creates attackers according to level.
         * TODO: This initializes only the parent Model.Attacker class.
         * */
-        for ( int i = 0; i < attackers.length; i++)
+        for ( int i = 0; i < attackers.length - 10; i++)
         {
             // TODO: Get rid of magic numbers
-            attackers[i] = new Attacker(9);
+            attackers[i] = new AttackerType2(9);
         }
+        for ( int i = attackers.length - 10; i < attackers.length; i++)
+            attackers[i] = new AttackerType2(9);
 
         return attackers;
     }

@@ -74,12 +74,12 @@ public class Attacker extends GameObject
         damage = 5;
         currentAttackBehavior = new AttackerAttack();
         //this.alive = true;
-        try {
+/*        try {
             image = ImageIO.read(new File(Assets.attacker2));
         }
         catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     // Spawns in the given location
@@ -208,7 +208,6 @@ public class Attacker extends GameObject
             }
         }catch (ArrayIndexOutOfBoundsException e)
         {
-            // TODO: Implement a proper exit strategy
             System.out.println("Game has finished. This is primitive end. Work in progress");
             JOptionPane.showMessageDialog(null, "Game Has Finished");
             System.exit(0);

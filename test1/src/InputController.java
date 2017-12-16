@@ -8,7 +8,8 @@ import java.awt.event.MouseMotionListener;
  * Takes inputs from user.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
- *   version(last) 15.12.2017 (frequently updated)
+ *   version(last - 1) 15.12.2017
+ *   version(last)     16.12.2017 (frequently updated)
  */
 
 
@@ -108,6 +109,10 @@ public class InputController implements MouseMotionListener, MouseListener {
                 else if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.upgrade)
                 {
                     currentGameController.upgradeTower( clickPoint );
+                }
+                else if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.sell)
+                {
+                    currentGameController.sellTower( clickPoint );
                 }
                 currentGameController.setCurrentSelectedTowerFromTheList(GameController.selectedTowerFromTheList.None);
             }
