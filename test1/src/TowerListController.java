@@ -66,7 +66,7 @@ public class TowerListController extends JPanel{
             if ( isInRectangle(GameController.mouseX, GameController.mouseY, towers[i]) )
                 g.setColor(Color.RED);
             else
-               // g.setColor(Color.CYAN);
+                g.setColor(Color.gray);
             //g.drawRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
             g.fillRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
             if ( i < towerNumber )
