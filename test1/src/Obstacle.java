@@ -1,6 +1,6 @@
 /**
  * Obstacle
- * Implements obstacle
+ * Implements obstacle. Not used yet.
  * @ author Emre Gurcay
  * @ version 15.12.2017
  */

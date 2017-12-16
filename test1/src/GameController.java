@@ -25,7 +25,7 @@ public class GameController implements Runnable{
     private ThreadMethod threadMethod3 = new ThreadMethod( this, this, ThreadFunctionality.THREE);*/
     protected PauseMenu pause = new PauseMenu(this);
     // Thread is not used currently. Cannot control concurrent errors.
-    class ThreadMethod extends Thread{
+    /*class ThreadMethod extends Thread{
         GameController gameController;
         GameController.ThreadFunctionality threadFunctionality;
         public ThreadMethod(Runnable runnable, GameController gameController, GameController.ThreadFunctionality threadFunctionality)
@@ -53,7 +53,7 @@ public class GameController implements Runnable{
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 
 	public long elapsedTime = 0; // TODO: Will be used for resource calculations
 	public static int level; // TODO: Will be used for the attacker list calculations
@@ -237,32 +237,14 @@ public class GameController implements Runnable{
         return playerGold;
     }
 
-    public void updateTime() {
-		// TODO - implement GameController.updateTime
-		throw new UnsupportedOperationException();
-	}
-
-	public void notifyDeath() {
-		// TODO - implement GameController.notifyDeath
-		throw new UnsupportedOperationException();
-	}
-
-
-	private void updateBaseHealth() {
-		// TODO - implement GameController.updateBaseHealth
-		throw new UnsupportedOperationException();
-	}
-
-
-	// Currently this is implemented by checking the ArrayIndexOutOfBounds Exception, which is thrown when an attacker finishes the path.
+	// Not used currently
 	private boolean isGameOver() {
 
 		return false;
 	}
 
-	private void saveScore() {
-
-		// TODO - implement GameController.saveScore
+	private void saveScore()
+    {
         String textFileContent = "";
         String textFileString = "";
         int levelStar = 0;
@@ -308,7 +290,6 @@ public class GameController implements Runnable{
             catch (IOException e){
                 e.printStackTrace();
             }
-
         }
 	}
 

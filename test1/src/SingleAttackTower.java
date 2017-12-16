@@ -8,8 +8,6 @@
  *   version2 15.12.2017
  */
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.*;

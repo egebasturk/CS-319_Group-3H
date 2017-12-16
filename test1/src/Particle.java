@@ -11,7 +11,7 @@ public class Particle extends GameObject
 {
     enum ParticleTypes {line, circle};
     double sourceXPos, sourceYPos, targetXPos, targetYPos;
-    double velocity;
+    //double velocity; Planned to use for more complex animations
     int timer;
     final int baseTimer = 100;
     final int targetPadding = 20;
