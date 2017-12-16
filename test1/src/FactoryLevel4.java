@@ -17,7 +17,7 @@ public class FactoryLevel4 extends AbstractFactory {
 
     FactoryLevel4( )
     {
-        this.level = 2;
+        this.level = 4;
         typeMatrix = new int[mapHeight][mapWidth];
         // TODO: implement an algorithm to calculate
         attackers = new Attacker[50];
