@@ -17,3 +17,7 @@ In this project we will be making a tower defense game. Tower Defense is a subge
 
 # Building & Running The Project
 IntelliJ is used for the project. Project folder is CS-319_Group-3H/test1/.
+
+# Video & Screenshots
+A sample gameplay video, DefendersOfTheKingdom_Level3_GamePlay.mp4, is in the branch.
+Screenshots of the game are in the folder "SS of the game"
