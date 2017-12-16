@@ -16,8 +16,9 @@ public class AttackerType2 extends Attacker {
     // TODO: Entry point is passed as parameter. May search for it in the future.
     public AttackerType2( int entryRow) {
         super(entryRow);
+        maxHealth = 100;
+        this.currentHealth = maxHealth;
         this.bounty = bounty = 5;
-        this.currentHealth = currentHealth = 100;
         try {
             image = ImageIO.read(new File(Assets.attacker2));
         }

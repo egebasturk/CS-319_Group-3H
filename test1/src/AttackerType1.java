@@ -18,7 +18,8 @@ public class AttackerType1 extends Attacker {
 	public AttackerType1( int entryRow) {
 	    super(entryRow);
 	    this.bounty = bounty = 10;
-	    this.currentHealth = currentHealth = 100;
+	    this.maxHealth = 250;
+	    this.currentHealth = maxHealth;
 		try {
 			image = ImageIO.read(new File(Assets.attacker1));
 		}
@@ -26,5 +27,4 @@ public class AttackerType1 extends Attacker {
 			e.printStackTrace();
 		}
 	}
-
 }
