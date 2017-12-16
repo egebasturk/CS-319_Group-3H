@@ -63,8 +63,6 @@ public class GameController implements Runnable{
 
     private int score;
     private int star;
-    private String textFileContent;
-    private String textFileString;
 	protected GamePanel gamePanel;
 	private Frame frame;
 	private TowerListController towerListController;
@@ -86,7 +84,6 @@ public class GameController implements Runnable{
 	    currentSelectedTowerFromTheList = selectedTowerFromTheList.None;
         score = 0;
         star = 0;
-        textFileContent = "";
         gameMap = new GameMap(selectedLevel, this);
         setGameMaps();
         frame = new Frame();
@@ -264,7 +261,10 @@ public class GameController implements Runnable{
 	}
 
 	private void saveScore() {
+
 		// TODO - implement GameController.saveScore
+        String textFileContent = "";
+        String textFileString = "";
         int levelStar = 0;
         if( score >= 4 )
             star = 3;
