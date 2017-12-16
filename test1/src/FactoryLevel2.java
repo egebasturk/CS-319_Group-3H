@@ -35,10 +35,14 @@ public class FactoryLevel2 extends AbstractFactory {
         * Creates attackers according to level.
         * TODO: This initializes only the parent Model.Attacker class.
         * */
-        for ( int i = 0; i < attackers.length; i++)
+        for ( int i = 0; i < attackers.length / 2; i++)
         {
             // TODO: Get rid of magic numbers
-            attackers[i] = new Attacker(9);
+            attackers[i] = new AttackerType2(9);
+        }
+        for ( int i = attackers.length / 2; i < attackers.length ; i++)
+        {
+            attackers[i] = new AttackerType1(9);
         }
 
         return attackers;

@@ -1,9 +1,14 @@
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+
 /**
- * Attacker Type 1Class
- * An attacker. Unused currently
+ * Attacker Type 1 Class
+ * An attacker.
  * These are the things which attack the objective and must be destroyed.
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
+ *   version2 16.12.2017
  */
 
 
@@ -13,8 +18,13 @@ public class AttackerType1 extends Attacker {
 	public AttackerType1( int entryRow) {
 	    super(entryRow);
 	    this.bounty = bounty = 10;
-	    this.speed = speed = 20;
 	    this.currentHealth = currentHealth = 100;
+		try {
+			image = ImageIO.read(new File(Assets.attacker1));
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
