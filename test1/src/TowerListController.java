@@ -7,6 +7,7 @@
  *   version2 13.12.2017
  *   version3 14.12.2017
  *   version4 15.12.2017
+ *   version5 16.12.2017
  */
 // TODO: Current implementation is primitive
 
@@ -29,7 +30,7 @@ public class TowerListController extends JPanel{
 	private int playerGold;
 	private int[] towerCosts = {0,10,15, 40, 50};
 
-	private Rectangle[] towers = new Rectangle[towerNumber];
+	private Rectangle[] towers = new Rectangle[towerNumber + 2]; // +2 for upgrade and sell
 	public static int panelWidth = 20;
 	public static int panelHeight = 40;
 	//private JPanel listBox;
@@ -65,7 +66,8 @@ public class TowerListController extends JPanel{
                 g.setColor(Color.CYAN);
             //g.drawRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
             g.fillRect(towers[i].x, towers[i].y, towers[i].width, towers[i].height);
-            g.drawImage(towerImages[i],towers[i].x, towers[i].y, boxEdge, boxEdge,null,null);
+            if ( i < towerNumber )
+                g.drawImage(towerImages[i],towers[i].x, towers[i].y, boxEdge, boxEdge,null,null);
         }
         //g.fillRect(towers[i].x, paddingTop + i * boxEdge + paddingAmongBoxes, boxEdge, boxEdge - paddingAmongBoxes);
         g.setColor(Color.gray);

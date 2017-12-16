@@ -105,6 +105,10 @@ public class InputController implements MouseMotionListener, MouseListener {
                     currentGameController.addTowerOrHero(new SingleAttackTower(currentGameController.gameMap,
                             (int) clickPoint.getX(), (int) clickPoint.getY()));
                 }
+                else if ( currentGameController.getCurrentSelectedTowerFromTheList() == GameController.selectedTowerFromTheList.upgrade)
+                {
+                    currentGameController.upgradeTower( clickPoint );
+                }
                 currentGameController.setCurrentSelectedTowerFromTheList(GameController.selectedTowerFromTheList.None);
             }
 
