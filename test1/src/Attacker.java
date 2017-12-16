@@ -7,13 +7,11 @@
  *   version2 13.12.2017
  *   version3 14.12.2017
  *   version4 15.12.2017
+ *   version6 16.12.2017
  */
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class Attacker extends GameObject
 {
@@ -133,9 +131,10 @@ public class Attacker extends GameObject
                         GameMap.tiles[yPosTile][xPosTile + 1].isBlocking())
                 {
                     // check top if it is also blocking, change direction to up or down
-                    if (this.yPos - speed
+                    /*if (this.yPos - speed
                             <= GameMap.tiles[yPosTile - 1][xPosTile].getY() + boxEdge &&
-                            GameMap.tiles[yPosTile - 1][xPosTile].isBlocking())
+                            GameMap.tiles[yPosTile - 1][xPosTile].isBlocking())*/
+                    if ( GameMap.tiles[(int)(this.yPos - speed) / GameMap.tileEdge][this.xPosTile].isBlocking())
                     {
                         currentDirection = direction.down;
                     } else
@@ -143,7 +142,7 @@ public class Attacker extends GameObject
                 }
                 // Was moving left, hit sth from right
                 else if (currentDirection == direction.left &&
-                        this.xPos - speed
+                        this.xPos - speed - GameMap.tileEdge
                                 <= GameMap.tiles[yPosTile][xPosTile - 1].getBounds().getX() &&
                         GameMap.tiles[yPosTile][xPosTile - 1].isBlocking())
                 {
@@ -163,9 +162,11 @@ public class Attacker extends GameObject
                         GameMap.tiles[yPosTile - 1][xPosTile].isBlocking())
                 {
                     // check right if it is also blocking, change direction to right or left
-                    if (this.xPos + boxEdge + speed
-                            >= GameMap.tiles[yPosTile][xPosTile + 1].getBounds().getX() + boxEdge &&
-                            GameMap.tiles[yPosTile][xPosTile + 1].isBlocking())
+                    /*if (this.xPos + boxEdge + speed
+                            >= GameMap.tiles[yPosTile][xPosTile + 1].getX() + boxEdge &&
+                            GameMap.tiles[yPosTile][xPosTile + 1].isBlocking())*/
+                    if (this.xPos + speed + GameMap.tileEdge >= GameMap.tiles[yPosTile][xPosTile + 1].getX()
+                            && GameMap.tiles[yPosTile][xPosTile + 1].isBlocking())
                     {
                         currentDirection = direction.left;
                     } else
