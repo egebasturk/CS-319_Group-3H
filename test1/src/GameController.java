@@ -328,4 +328,9 @@ public class GameController implements Runnable{
         gamePanel.repaint();
         System.out.println("resume");
 	}
+    public void visible()
+    {
+        frame.setVisible(false);
+    }
+
 }

@@ -67,7 +67,10 @@ public class PauseMenu extends JPanel {
 
         mainMenuButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {}
+            public void actionPerformed(ActionEvent e) {
+                MainFrame main = new MainFrame();
+                game.visible();
+            }
         });
 
         resumeButton.addActionListener(new ActionListener() {
