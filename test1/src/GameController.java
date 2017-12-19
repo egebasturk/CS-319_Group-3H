@@ -146,14 +146,26 @@ public class GameController implements Runnable{
                 towerListController.repaint();
                 // TODO: Do save operations to txt
                 if (gameMap.getAttackers().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Game Has Finished. You are victorious");
+                    int choice = JOptionPane.showConfirmDialog(null, "Level Has Finished. You are victorious. Do you want to exit game?", "End of Level", JOptionPane.YES_NO_OPTION);
                     score = ((int)gameMap.base.getHealth() );
                     saveScore();
-                    System.exit(0);
+                    if( choice == 0 )
+                        System.exit(0);
+                    else {
+                        MainFrame main = new MainFrame();
+                        visible();
+                    }
+
+
                     break;
                 } else if (gameMap.base.getHealth() <= 0) {
-                    JOptionPane.showMessageDialog(null, "Game Has Finished. You were defeated");
-                    System.exit(0);
+                    int choice = JOptionPane.showConfirmDialog(null, "Level Has Finished. You were defeated. Do you want to exit game?", "End of Level", JOptionPane.YES_NO_OPTION);
+                    if( choice == 0 )
+                        System.exit(0);
+                    else {
+                        MainFrame main = new MainFrame();
+                        visible();
+                    }
                     break;
                 }
                 //System.out.println(mouseX + " " + mouseY);
