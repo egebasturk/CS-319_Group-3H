@@ -433,7 +433,7 @@ public class MainPageFrame extends JPanel {
 
     public void playLevels(int level)
     {
-        //İstenilen bölüm oynanıcak
+        //The desired level will be played
     }
 
     public int getLevelNumber() {
