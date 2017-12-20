@@ -7,6 +7,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MapMatrixReader
 {
@@ -16,7 +17,7 @@ public class MapMatrixReader
         int[][] typeMatrix = new int[mapHeight][mapWidth];
         Tile[][] tiles = new Tile[mapHeight][mapWidth];
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/map" + level + ".mat"));
+            BufferedReader bufferedReader =new BufferedReader(new InputStreamReader(MainPage.class.getResourceAsStream("map" + level + ".mat")));
             // Reads according to octaves output format
             // May directly read rows and columns from the file.
             for ( int i = 0; i < 5 ; i++) {

@@ -13,6 +13,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.net.URL;
 
 public class GameController implements Runnable{
 
@@ -276,11 +277,10 @@ public class GameController implements Runnable{
         else
             star = 1;
         try {
-            FileReader fileReader =
-                    new FileReader(Assets.starTxt);
-
+            URL url = getClass().getResource(Assets.starTxt);
+            File file = new File(url.getPath());
             BufferedReader bufferedReader =
-                    new BufferedReader(fileReader);
+                    new BufferedReader(new InputStreamReader(MainPage.class.getResourceAsStream(Assets.starTxt)));
             if((textFileString = bufferedReader.readLine()) != null) {
                 levelStar = Integer.parseInt(textFileString.valueOf(textFileString.charAt(level -1)));
                 textFileContent = textFileString;
@@ -291,10 +291,11 @@ public class GameController implements Runnable{
         }
         if( star > levelStar ){
             try {
-                FileWriter fileWriter =
-                        new FileWriter(Assets.starTxt);
+
+                URL url = getClass().getResource(Assets.starTxt);
+                File file = new File(url.getPath());
                 BufferedWriter bufferedWriter =
-                        new BufferedWriter(fileWriter);
+                        new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
                 char starChar = (char)star;
                 char toBeChanged = textFileContent.charAt(level-1);
                 textFileContent = ( textFileContent.substring(0,level-1) + star + textFileContent.substring(level) );

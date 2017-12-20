@@ -21,7 +21,7 @@ public class AttackerType1 extends Attacker {
 	    this.maxHealth = 250;
 	    this.currentHealth = maxHealth;
 		try {
-			image = ImageIO.read(new File(Assets.attacker1));
+			image = ImageIO.read(getClass().getResource(Assets.attacker1));
 		}
 		catch (IOException e) {
 			e.printStackTrace();

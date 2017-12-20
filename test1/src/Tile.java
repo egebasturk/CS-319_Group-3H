@@ -55,7 +55,7 @@ public class Tile extends GameObject
 		}
 	    else
 	        blocking = false;
-		try
+		/*try
 		{
 			closedGateImage = ImageIO.read(new File(Assets.closed));
 			openGateImage = ImageIO.read(new File(Assets.open));
@@ -64,7 +64,7 @@ public class Tile extends GameObject
 		}
 		catch (IOException e){
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	/**
