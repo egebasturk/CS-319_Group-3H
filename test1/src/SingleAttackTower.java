@@ -32,7 +32,7 @@ public class SingleAttackTower extends Tower {
 
         try {
             // TODO: Implement better resource loading methods
-            image = ImageIO.read(new File(Assets.tower2));
+            image = ImageIO.read(getClass().getResource(Assets.tower2));
         }
         catch (IOException e) {
             e.printStackTrace();
