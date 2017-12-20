@@ -28,8 +28,8 @@ public class HeroType1 extends Hero{
         yPos = endRow * GameMap.tileEdge;
         try
         {
-            image = ImageIO.read(new File(Assets.hero1));
-            kapowImage = ImageIO.read(new File(Assets.kapow));
+            image = ImageIO.read(getClass().getResource(Assets.hero1));
+            kapowImage = ImageIO.read(getClass().getResource(Assets.kapow));
         }
         catch (IOException e){
             e.printStackTrace();

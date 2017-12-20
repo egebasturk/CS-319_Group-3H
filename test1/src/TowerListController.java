@@ -39,13 +39,13 @@ public class TowerListController extends JPanel{
     {
         towerImages = new BufferedImage[towerNumber];
         try {
-            towerImages[0] = ImageIO.read(new File(Assets.tower1));
-            towerImages[1] = ImageIO.read(new File(Assets.tower2));
-            towerImages[2] = ImageIO.read(new File(Assets.hero1));
-            towerImages[3] = ImageIO.read(new File(Assets.hero2));
-            towerImages[4] = ImageIO.read(new File(Assets.upgrade));
-            towerImages[5] = ImageIO.read(new File(Assets.dollar));
-            towerImages[6] = ImageIO.read(new File(Assets.pause));
+            towerImages[0] = ImageIO.read(getClass().getResource(Assets.tower1));
+            towerImages[1] = ImageIO.read(getClass().getResource(Assets.tower2));
+            towerImages[2] = ImageIO.read(getClass().getResource(Assets.hero1));
+            towerImages[3] = ImageIO.read(getClass().getResource(Assets.hero2));
+            towerImages[4] = ImageIO.read(getClass().getResource(Assets.upgrade));
+            towerImages[5] = ImageIO.read(getClass().getResource(Assets.dollar));
+            towerImages[6] = ImageIO.read(getClass().getResource(Assets.pause));
         }
         catch (IOException e) {
             e.printStackTrace();

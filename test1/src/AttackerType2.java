@@ -20,7 +20,7 @@ public class AttackerType2 extends Attacker {
         this.currentHealth = maxHealth;
         this.bounty = bounty = 5;
         try {
-            image = ImageIO.read(new File(Assets.attacker2));
+            image = ImageIO.read(getClass().getResource(Assets.attacker2));
         }
         catch (IOException e) {
             e.printStackTrace();

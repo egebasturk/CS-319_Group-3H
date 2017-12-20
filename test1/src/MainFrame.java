@@ -29,7 +29,7 @@ public class MainFrame extends JFrame {
     {
         setTitle("DEFENDERS OF THE KINGDOM");
         setLayout(new BorderLayout());
-        setContentPane(new JLabel(new ImageIcon(Assets.background)));
+        setContentPane(new JLabel(new ImageIcon(getClass().getResource(Assets.background))));
         setLayout(new BorderLayout(0,0));
 
         main = new  MainPageFrame();

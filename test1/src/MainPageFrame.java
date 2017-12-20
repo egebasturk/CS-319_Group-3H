@@ -48,7 +48,7 @@ public class MainPageFrame extends JPanel {
 
 
         try {
-            starImage = ImageIO.read(new File(Assets.star));
+            starImage = ImageIO.read(getClass().getResource(Assets.star));
 
         }
         catch (IOException e) {
@@ -379,10 +379,8 @@ public class MainPageFrame extends JPanel {
 
     private int createStars(int level){
         try {
-            FileReader fileReader =
-                    new FileReader(Assets.starTxt);
-            BufferedReader bufferedReader =
-                    new BufferedReader(fileReader);
+
+            BufferedReader bufferedReader =new BufferedReader(new InputStreamReader(MainPage.class.getResourceAsStream(Assets.starTxt)));
             while((txtFileString = bufferedReader.readLine()) != null) {
                 System.out.println(txtFileString);
 

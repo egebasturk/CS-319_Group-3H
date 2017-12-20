@@ -22,7 +22,7 @@ public class PauseMenu extends JPanel {
     private JLabel paused;
     private JPanel centerPanel;
     private GameController game;
-    public Image img = new ImageIcon(Assets.background).getImage();
+    public Image img = new ImageIcon(getClass().getResource(Assets.background)).getImage();
 
     public PauseMenu(GameController game) {
 
