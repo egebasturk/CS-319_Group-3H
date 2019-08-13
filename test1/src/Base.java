@@ -32,7 +32,7 @@ public class Base extends GameObject{
         yPos = endRow * GameMap.tileEdge;
         currentHealth = maxHealth;
         try {
-            image = ImageIO.read(new File(Assets.base));
+            image = ImageIO.read(getClass().getResource(Assets.base));
         } catch (IOException e) {
             e.printStackTrace();
         }

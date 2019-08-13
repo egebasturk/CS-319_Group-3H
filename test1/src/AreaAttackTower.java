@@ -28,7 +28,7 @@ public class AreaAttackTower extends Tower {
 
         try {
             // TODO: Implement better resource loading methods
-            image = ImageIO.read(new File(Assets.tower1));
+            image = ImageIO.read(getClass().getResource(Assets.tower1));
         }
         catch (IOException e) {
             e.printStackTrace();

@@ -39,7 +39,10 @@ public class FactoryLevel3 extends AbstractFactory {
         for ( int i = 0; i < attackers.length; i++)
         {
             // TODO: Get rid of magic numbers
-            attackers[i] = new AttackerType2(9);
+            if ( i%2 == 0)
+                attackers[i] = new AttackerType2(9);
+            else
+                attackers[i] = new AttackerType1(9);
         }
 
         return attackers;
@@ -47,7 +50,7 @@ public class FactoryLevel3 extends AbstractFactory {
     @Override
     public Tile[][] createTiles()
     {
-        return mapMatrixReader.readMapFromMatrix(mapHeight,mapWidth,tileEdge,level);
+        return MapMatrixReader.readMapFromMatrix(mapHeight,mapWidth,tileEdge,level);
     }
 
     @Override

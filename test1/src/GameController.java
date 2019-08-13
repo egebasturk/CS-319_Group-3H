@@ -12,19 +12,20 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferStrategy;
+import java.io.*;
+import java.net.URL;
 
 public class GameController implements Runnable{
 
-    enum ThreadFunctionality {ONE, TWO, THREE};
+    //enum ThreadFunctionality {ONE, TWO, THREE};
     private Thread thread = new Thread(this);
     private int playerGold;
     /*private ThreadMethod threadMethod1 = new ThreadMethod( this, this, ThreadFunctionality.ONE);
     private ThreadMethod threadMethod2 = new ThreadMethod( this, this, ThreadFunctionality.TWO);
     private ThreadMethod threadMethod3 = new ThreadMethod( this, this, ThreadFunctionality.THREE);*/
-
+    protected PauseMenu pause = new PauseMenu(this);
     // Thread is not used currently. Cannot control concurrent errors.
-    class ThreadMethod extends Thread{
+    /*class ThreadMethod extends Thread{
         GameController gameController;
         GameController.ThreadFunctionality threadFunctionality;
         public ThreadMethod(Runnable runnable, GameController gameController, GameController.ThreadFunctionality threadFunctionality)
@@ -36,6 +37,8 @@ public class GameController implements Runnable{
         public void run()
         {
             while ( isRunning) {
+
+
                 if (threadFunctionality == ThreadFunctionality.ONE)
                     gameController.gameMap.towerAttackLoop();
                 else if (threadFunctionality == ThreadFunctionality.TWO)
@@ -50,21 +53,23 @@ public class GameController implements Runnable{
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 
-	public long elapsedTime = 0; // TODO: Will be used for resource calculations
+	private long elapsedTime = 0; // TODO: Will be used for resource calculations
 	public static int level; // TODO: Will be used for the attacker list calculations
     // States
-	private boolean isRunning = true;
-	private boolean isPaused;
+    private boolean isRunning = true;
+	private boolean isPaused = false;
 
+    private int score;
+    private int star;
 	private GamePanel gamePanel;
 	private Frame frame;
 	private TowerListController towerListController;
 	private InputController inputController;
 	public GameMap gameMap;
-	public enum selectedTowerFromTheList { None, tower1, tower2, hero1, hero2, upgrade, sell}
-	public selectedTowerFromTheList currentSelectedTowerFromTheList;
+	public enum selectedTowerFromTheList { None, tower1, tower2, hero1, hero2, upgrade, sell,pause}
+	private selectedTowerFromTheList currentSelectedTowerFromTheList;
 	public Graphics g;
 
 	public static int mouseX = 0, mouseY = 0;
@@ -77,6 +82,8 @@ public class GameController implements Runnable{
         level = selectedLevel; // TODO: Properly implement this
         playerGold = level * 100;
 	    currentSelectedTowerFromTheList = selectedTowerFromTheList.None;
+        score = 0;
+        star = 0;
         gameMap = new GameMap(selectedLevel, this);
         setGameMaps();
         frame = new Frame();
@@ -92,6 +99,7 @@ public class GameController implements Runnable{
         towerListController.addMouseMotionListener(inputController);
         towerListController.addMouseListener(inputController);
         towerListController.setPlayerGold(playerGold);
+
 
 		frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
 		frame.getContentPane().add(towerListController, BorderLayout.EAST);
@@ -119,41 +127,62 @@ public class GameController implements Runnable{
 	@Override
 	public void run()
 	{
-		while( isRunning )
+		while( isRunning ) // isRunning is redundant
 		{
-            elapsedTime++;
+            if(!isPaused) {
+                elapsedTime++;
             /*
 			gamePanel.spawnAttackers();
 			gamePanel.motion();
 			*/
 
-            gameMap.attackerMotionLoop();
-            gameMap.attackerSpawnLoop();
-            gameMap.towerAttackLoop();
-            gameMap.heroAttackLoop();
-			//gamePanel.repaint();
-			//g = gamePanel.getGraphics();
-			//currentGameMap.draw(g);
-            gamePanel.repaint();
-			towerListController.repaint();
-			// TODO: Do save operations to txt
-            if (gameMap.getAttackers().isEmpty())
-            {
-                JOptionPane.showMessageDialog(null, "Game Has Finished. You are victorious");
-                System.exit(0);
-                break;
-            }
-            else if (gameMap.base.getHealth() <= 0)
-            {
-                JOptionPane.showMessageDialog(null, "Game Has Finished. You were defeated");
-                System.exit(0);
-                break;
-            }
-            //System.out.println(mouseX + " " + mouseY);
+                gameMap.attackerMotionLoop();
+                gameMap.attackerSpawnLoop();
+                gameMap.towerAttackLoop();
+                gameMap.heroAttackLoop();
+                //gamePanel.repaint();
+                //g = gamePanel.getGraphics();
+                //currentGameMap.draw(g);
+                gamePanel.repaint();
+                towerListController.repaint();
+                // TODO: Do save operations to txt
+                if (gameMap.getAttackers().isEmpty()) {
+                    int choice = JOptionPane.showConfirmDialog(null, "Level Has Finished. You are victorious. Do you want to exit game?", "End of Level", JOptionPane.YES_NO_OPTION);
+                    score = ((int)gameMap.base.getHealth() );
+                    saveScore();
+                    if( choice == 0 )
+                        System.exit(0);
+                    else {
+                        MainFrame main = new MainFrame();
+                        visible();
+                    }
 
-			try {
-				Thread.sleep(1);
-			} catch (Exception e){}
+
+                    break;
+                } else if (gameMap.base.getHealth() <= 0) {
+                    int choice = JOptionPane.showConfirmDialog(null, "Level Has Finished. You were defeated. Do you want to exit game?", "End of Level", JOptionPane.YES_NO_OPTION);
+                    if( choice == 0 )
+                        System.exit(0);
+                    else {
+                        MainFrame main = new MainFrame();
+                        visible();
+                    }
+                    break;
+                }
+                //System.out.println(mouseX + " " + mouseY);
+
+                try {
+                    Thread.sleep(1);
+                } catch (Exception e) {
+                }
+            }
+            else
+            {
+                try {
+                    Thread.sleep(10);
+                } catch (Exception e) {
+                }
+            }
 		}
 	}
 	public void setCurrentSelectedTowerFromTheList( selectedTowerFromTheList selectedTower)
@@ -165,6 +194,10 @@ public class GameController implements Runnable{
         return currentSelectedTowerFromTheList;
     }
 
+    // This method adds tower or here. Input controller calls this according to the object selected
+    // Checks if player has enough gold and tells the map to add it.
+    // Map will check if it can add it. If it can be added it adds and returns true
+    // Then this method reduces gold from the player
     public void addTowerOrHero(GameObject newTowerOrHero)
     {
         // The loop finds the selected tower
@@ -184,6 +217,8 @@ public class GameController implements Runnable{
             }
         }
     }
+    // Upgrades tower. Similar to the method above this gets the click point and if
+    // player has enough gold tells map to upgrade. Map decides the rest
     public void upgradeTower( Point clickPoint )
     {
         selectedTowerFromTheList selectionOnTheMap = gameMap.getSelectionFromTheMap( clickPoint );
@@ -191,13 +226,15 @@ public class GameController implements Runnable{
         for ( i = 0; i < selectedTowerFromTheList.values().length; i++)
         {
             if ( selectedTowerFromTheList.values()[i] == selectionOnTheMap )
-                break;;
+                break;
         }
         if ( towerListController.getTowerCost(i) <= playerGold )
         {
             gameMap.upgradeTower( clickPoint );
+            setPlayerGold(playerGold - towerListController.getTowerCost(i));
         }
     }
+    // Works similar to methods above.
     public void sellTower( Point clickPoint )
     {
         selectedTowerFromTheList selectionOnTheMap = gameMap.sellTower(clickPoint);
@@ -209,6 +246,8 @@ public class GameController implements Runnable{
         }
         setPlayerGold( getPlayerGold() + towerListController.getTowerCost(i) / 3);
     }
+    // Works like a observer pattern. When gold gets updated it notifies towerlist controller.
+    // However it does not seem like a observer pattern when drawn on diagram.
     public void setPlayerGold( int playerGold )
     {
         this.playerGold = playerGold;
@@ -220,32 +259,78 @@ public class GameController implements Runnable{
         return playerGold;
     }
 
-    public void updateTime() {
-		// TODO - implement GameController.updateTime
-		throw new UnsupportedOperationException();
-	}
-
-	public void notifyDeath() {
-		// TODO - implement GameController.notifyDeath
-		throw new UnsupportedOperationException();
-	}
-
-
-	private void updateBaseHealth() {
-		// TODO - implement GameController.updateBaseHealth
-		throw new UnsupportedOperationException();
-	}
-
-
-	// Currently this is implemented by checking the ArrayIndexOutOfBounds Exception, which is thrown when an attacker finishes the path.
+	// Not used currently
 	private boolean isGameOver() {
 
 		return false;
 	}
+	// Saves scores to text file
+	private void saveScore()
+    {
+        String textFileContent = "";
+        String textFileString = "";
+        int levelStar = 0;
+        if( score >= 4 )
+            star = 3;
+        else if( score >= 2)
+            star = 2;
+        else
+            star = 1;
+        try {
+            URL url = getClass().getResource(Assets.starTxt);
+            File file = new File(url.getPath());
+            BufferedReader bufferedReader =
+                    new BufferedReader(new InputStreamReader(MainPage.class.getResourceAsStream(Assets.starTxt)));
+            if((textFileString = bufferedReader.readLine()) != null) {
+                levelStar = Integer.parseInt(textFileString.valueOf(textFileString.charAt(level -1)));
+                textFileContent = textFileString;
+            }
+            bufferedReader.close();
+        }
+        catch(IOException ex) {
+        }
+        if( star > levelStar ){
+            try {
 
-	private void saveScore() {
-		// TODO - implement GameController.saveScore
-		throw new UnsupportedOperationException();
+                URL url = getClass().getResource(Assets.starTxt);
+                File file = new File(url.getPath());
+                BufferedWriter bufferedWriter =
+                        new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+                char starChar = (char)star;
+                char toBeChanged = textFileContent.charAt(level-1);
+                textFileContent = ( textFileContent.substring(0,level-1) + star + textFileContent.substring(level) );
+                System.out.println(textFileContent);
+                bufferedWriter.write( textFileContent );
+                bufferedWriter.close();
+            }
+            catch( FileNotFoundException e ){
+                e.printStackTrace();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        }
 	}
+	// Pauses the game and sets pause menu instead of the game panel
+    public void pauseGame() {
+        isPaused = true;
+        gamePanel.setVisible(false);
+        pause.setVisible(true);
+        pause.repaint();
+        System.out.println("Pause");
+        frame.getContentPane().add(pause, BorderLayout.CENTER);
+    }
+    // Resumes the game and sets game panel instead of the pause menu
+    public void resumeGame() {
+        isPaused = false;
+        pause.setVisible(false);
+        gamePanel.setVisible(true);
+        gamePanel.repaint();
+        System.out.println("resume");
+	}
+    public void visible()
+    {
+        frame.setVisible(false);
+    }
 
 }

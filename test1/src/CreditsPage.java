@@ -23,6 +23,7 @@ public class CreditsPage extends JPanel {
     private JPanel nameContainer;
     private JLabel gameName;
     private JLabel creditsText;
+    private JLabel group;
     private JLabel ALP;
     private JLabel BARIS;
     private JLabel EMRE;
@@ -44,33 +45,46 @@ public class CreditsPage extends JPanel {
         creditsText = new JLabel("CREDITS...");
         creditsText.setDisplayedMnemonic(240);
         creditsText.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 30));
+        creditsText.setForeground(Color.white);
+
+        group = new JLabel("GROUP 3-H ");
+        group.setDisplayedMnemonic(240);
+        group.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 25));
+        group.setForeground(Color.lightGray);
+
 
         ALP = new JLabel("ALP EGE BAŞTÜRK ");
         ALP.setDisplayedMnemonic(240);
         ALP.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 20));
+        ALP.setForeground(Color.white);
 
         BARIS = new JLabel("BARIŞ EYMÜR ");
         BARIS.setDisplayedMnemonic(240);
         BARIS.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 20));
+        BARIS.setForeground(Color.white);
 
         EMRE = new JLabel("EMRE GÜRÇAY ");
         EMRE.setDisplayedMnemonic(240);
         EMRE.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 20));
+        EMRE.setForeground(Color.white);
 
         OYKU = new JLabel("ÖYKÜ ECE AYAZ ");
         OYKU.setDisplayedMnemonic(240);
         OYKU.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 20));
+        OYKU.setForeground(Color.white);
 
         GITHUB = new JLabel("<html> PROJECT WEBSITE : <a href=\"\">https://github.com/egebasturk/CS-319_Group-3H/</a></html>");
         GITHUB.setCursor(new Cursor(Cursor.HAND_CURSOR));
         GITHUB.setDisplayedMnemonic(240);
         GITHUB.setFont(new Font(creditsText.getFont().getName(), Font.ITALIC, 15));
+        GITHUB.setForeground(Color.white);
 
         credits = new JPanel();
         credits.setLayout(new BoxLayout(credits, BoxLayout.PAGE_AXIS));
         credits.add(Box.createRigidArea(new Dimension(0,2)));
         credits.setBorder(BorderFactory.createEmptyBorder(40,500,40,0));
         credits.add(creditsText);
+        credits.add(group);
         credits.add(ALP);
         credits.add(BARIS);
         credits.add(EMRE);
@@ -92,12 +106,12 @@ public class CreditsPage extends JPanel {
         buttonContainer.add(mainMenuButton);
         buttonContainer.setBackground(new Color(0,0,0,0));
 
-        mainMenuButton.addActionListener(new ActionListener() {
+      /*  mainMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
-        });
+        }); */
 
         mainMenuButton.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {

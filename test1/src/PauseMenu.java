@@ -14,15 +14,20 @@ import java.awt.event.MouseEvent;
 
 public class PauseMenu extends JPanel {
 
-    public JButton resumeButton;
-    public JButton mainMenuButton;
-    public JPanel buttonContainer;
-    public JPanel nameContainer;
-    public JLabel gameName;
-    public JLabel paused;
-    public JPanel centerPanel;
-    public PauseMenu() {
+    private JButton resumeButton;
+    private JButton mainMenuButton;
+    private JPanel buttonContainer;
+    private JPanel nameContainer;
+    private JLabel gameName;
+    private JLabel paused;
+    private JPanel centerPanel;
+    private GameController game;
+    public Image img = new ImageIcon(getClass().getResource(Assets.background)).getImage();
 
+    public PauseMenu(GameController game) {
+
+
+        this.game = game;
         setLayout(new BorderLayout());
         setOpaque(false);
         setLayout(new BorderLayout(120,120));
@@ -65,11 +70,15 @@ public class PauseMenu extends JPanel {
 
         mainMenuButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {}
+            public void actionPerformed(ActionEvent e) {
+                MainFrame main = new MainFrame();
+                game.visible();
+            }
         });
 
         resumeButton.addActionListener(new ActionListener() {
             @Override
+
             public void actionPerformed(ActionEvent e) {
                 resume();
             }
@@ -114,13 +123,16 @@ public class PauseMenu extends JPanel {
         add(nameContainer,BorderLayout.NORTH);
         add(centerPanel,BorderLayout.CENTER);
         setVisible(true);
-        setSize(1280,720);
+        setSize(GameMap.mapWidth,GameMap.mapHeight);
     }
 
 
-    public void resume() {
+    private void resume() {
+        game.resumeGame();
+    }
 
-        throw new UnsupportedOperationException();
+    public void paintComponent(Graphics g) {
+        g.drawImage(img, 0, 0, null);
     }
 
 

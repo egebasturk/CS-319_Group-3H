@@ -48,7 +48,7 @@ public class HelpPage extends JPanel {
         description.setFont(new Font(description.getFont().getName(),Font.ITALIC, 15));
         description.setForeground(Color.white);
 
-        singleAttackTowerDescription = new JLabel("Single attack towers can attack a single enemy by firing their lethal laser weapons,");
+        singleAttackTowerDescription = new JLabel("Single attack towers can attack a single enemy by firing their weapons,");
         singleAttackTowerDescription.setDisplayedMnemonic(240);
         singleAttackTowerDescription.setFont(new Font(singleAttackTowerDescription.getFont().getName(),Font.ITALIC, 15));
         singleAttackTowerDescription.setForeground(Color.white);

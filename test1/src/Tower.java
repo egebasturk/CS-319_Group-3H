@@ -14,21 +14,15 @@ import java.util.LinkedList;
 
 public class Tower extends GameObject {
     AttackBehaviour currentAttackBehaviour;
-    protected Attacker currentTarget;
+    Attacker currentTarget;
 	protected double damage;
 	protected double rateOfFire;
-	protected int range;
-	protected int towerType;
-	//protected BufferedImage image;
-	//public int height;
-	//Wpublic int width;
-	//protected int xPos;
-	//protected int yPos;
+	int range;
 	protected int xPosTile = 0;
 	protected int yPosTile = 0;
 	GameMap currentGameMap;
 	int currentAttackCooldown; // Counter for cooldown after attack
-	protected boolean attackedFlag; // Flag to control cooldown
+	private boolean attackedFlag; // Flag to control cooldown
 
 	public Tower( GameMap currentGameMap, int xPos, int yPos) {
 	    super();
@@ -42,10 +36,7 @@ public class Tower extends GameObject {
 	    currentAttackCooldown = 0;
 	    attackedFlag = false;
 	}
-
-
-
-	public LinkedList<Attacker> getAttackersInRange()
+	LinkedList<Attacker> getAttackersInRange()
     {
         //Attacker[] attackers = currentGameMap.getAttackers();
         ArrayList<Attacker> attackers = currentGameMap.getAttackers();
@@ -67,14 +58,16 @@ public class Tower extends GameObject {
         }
         return listOfAttackersInRange;
     }
-    protected double getDistanceBetweenTowerAndTarget( Tower tower, Attacker attacker)
+    double getDistanceBetweenTowerAndTarget(Tower tower, Attacker attacker)
     {
         return Math.sqrt(Math.pow((attacker.getX() - tower.xPos), 2) + Math.pow((attacker.getY() - tower.yPos), 2));
     }
+    // Not functional
     public void attack()
     {
 
     }
+    // Not functional
     /**
      *
      * @param attackerID
@@ -83,6 +76,7 @@ public class Tower extends GameObject {
 	public void attack(int attackerID, double damage) {
 
 	}
+	// Not functional
 	public void draw(Graphics g)
     {
 

@@ -3,6 +3,7 @@
  * Tile will be used to fill the map. Also they will be used to store information
  * @ author Alp Ege Basturk
  * @ version 04.11.2017
+ *   version2 16.12.2017
  */
 
 import javax.imageio.ImageIO;
@@ -10,14 +11,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-;
 
-public class Tile extends GameObject// extends Model.GameObject { TODO: commented out for debugging
+
+public class Tile extends GameObject
 {
-    public int id; // TODO gamebojects will have such id. Try to use it instead
+    private int id; // TODO: not used. May be removed
 	private int type;
-	protected BufferedImage closedGateImage;
-	protected BufferedImage openGateImage;
+	private BufferedImage closedGateImage;
+	private BufferedImage openGateImage;
 	//protected BufferedImage grassImage;
 	//protected BufferedImage tileImage;
 	private int xPos = 0;
@@ -54,7 +55,7 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
 		}
 	    else
 	        blocking = false;
-		try
+		/*try
 		{
 			closedGateImage = ImageIO.read(new File(Assets.closed));
 			openGateImage = ImageIO.read(new File(Assets.open));
@@ -63,7 +64,7 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
 		}
 		catch (IOException e){
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	/**
@@ -99,6 +100,7 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
             g.fillRect(xPos, yPos, width, height);
         }
         else if ( type == 1) {
+			//g.drawImage(grassImage,x, y, width, height,null,null);
 			//g.drawImage(grassImage,x, y, 50, 50,null,null);
             g.setColor(Color.GREEN);
             g.fillRect(xPos, yPos, width, height);
@@ -127,7 +129,7 @@ public class Tile extends GameObject// extends Model.GameObject { TODO: commente
 	{
 		return blocking;
 	}
-	public boolean heroPass()
+	private boolean heroPass()
 	{
 		return heroCantPass;
 	}

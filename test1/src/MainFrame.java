@@ -29,11 +29,10 @@ public class MainFrame extends JFrame {
     {
         setTitle("DEFENDERS OF THE KINGDOM");
         setLayout(new BorderLayout());
-        setContentPane(new JLabel(new ImageIcon(Assets.background)));
+        setContentPane(new JLabel(new ImageIcon(getClass().getResource(Assets.background))));
         setLayout(new BorderLayout(0,0));
 
         main = new  MainPageFrame();
-        pause = new  PauseMenu();
         help = new  HelpPage();
 
 
@@ -80,7 +79,7 @@ public class MainFrame extends JFrame {
             }
         });
 
-        pause.mainMenuButton.addActionListener(new ActionListener() {
+       /* pause.mainMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pause.setVisible(false);
@@ -88,7 +87,7 @@ public class MainFrame extends JFrame {
                 main.setVisible(true);
             }
         });
-
+*/
 
 
         add(main,BorderLayout.CENTER);

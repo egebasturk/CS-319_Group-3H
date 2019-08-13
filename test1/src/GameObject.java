@@ -16,7 +16,6 @@ public class GameObject extends Rectangle{
 	protected BufferedImage image;
 	protected int width;
 	protected int height;
-	private int objectID;
 
 	/**
 	 * 
@@ -24,13 +23,9 @@ public class GameObject extends Rectangle{
 	 * @param posX
 	 * @param posY
 	 */
+	// Not used directly.
 	public void draw(int image, int posX, int posY) {
 		// TODO - implement Model.GameObject.draw
-		throw new UnsupportedOperationException();
-	}
-
-	public int[][] getObjectLocation() {
-		// TODO - implement Model.GameObject.getObjectLocation
 		throw new UnsupportedOperationException();
 	}
 

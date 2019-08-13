@@ -15,7 +15,9 @@ public class SingleAttackUpgraded1 implements AttackBehaviour
     public void attack() {
 
     }
-
+    // This implementation also takes the attackers as a linked list
+    // and processes as a queue. However this time it iterates for 2(magic) times
+    // to simulate multiple single attacks
     @Override
     public void singleAttack(Tower attackSource)
     {
@@ -44,7 +46,9 @@ public class SingleAttackUpgraded1 implements AttackBehaviour
             {
                 for ( int i = 0; i < 2 && !currentTargets.isEmpty(); i++)
                 {
-                    // If one of the attackers die while this is trying to attack it, this would cause Index out of bounds exception
+                    // If one of the attackers die because of another reason while this is trying to attack it,
+                    // this would cause Index out of bounds exception. Null check cannot prevent at all times
+                    // thus, try-catch was used.
                     try {
                         // Check condition if it is in range
                         if (attackSource.getDistanceBetweenTowerAndTarget(attackSource, currentTargets.get(i)) > attackSource.range) {
@@ -60,29 +64,20 @@ public class SingleAttackUpgraded1 implements AttackBehaviour
                         }
                     }catch (IndexOutOfBoundsException ie)
                     {
-
+                        // Skip the problematic attack
                     }
-
                 }
             }
         }
         else
             attackSource.currentAttackCooldown++;
     }
-
-
     @Override
-    public void areaAttack(Tower attackSource) {
-
-    }
-
+    public void areaAttack(Tower attackSource) {}
     @Override
     public boolean heroAttack(Hero attackSource) {
         return false;
     }
-
     @Override
-    public void attackerAttack(Attacker attackSource) {
-
-    }
+    public void attackerAttack(Attacker attackSource) {}
 }
